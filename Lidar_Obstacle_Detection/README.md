@@ -11,3 +11,17 @@ In this course we will be talking about sensor fusion, which is the process of t
 **Radar** data is typically very sparse and in a limited range, however it can directly tell us how fast an object is moving in a certain direction. This ability makes radars a very practical sensor for doing things like cruise control where its important to know how fast the car in front of you is traveling. Radar sensors are also very affordable and common now of days in newer cars.
 
 **Sensor Fusion** by combing lidar's high resolution imaging with radar's ability to measure velocity of objects we can get a better understanding of the surrounding environment than we could using one of the sensors alone.
+
+### Preparation on Ubuntu
+
+For this project, the virtual Ubuntu environment was provided by the Udacity. Install the Point Cloud Library (PCL) and clone the project starter code [SFND_Lidar_Obstacle_Detection](https://github.com/udacity/SFND_Lidar_Obstacle_Detection.git) to the Ubuntu environment. Try build and run the `environment` application.
+
+```bash
+$ sudo apt install libpcl-dev
+$ git clone https://github.com/udacity/SFND_Lidar_Obstacle_Detection.git ./Lidar_Obstacle_Detection
+$ cd Lidar_Obstacle_Detection
+$ mkdir build && cd build
+$ cmake ..
+$ make
+$ ./environment
+```
