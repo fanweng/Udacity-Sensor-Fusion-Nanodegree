@@ -1,4 +1,4 @@
-# Lidar Obstacle Detection Project 
+# Lidar Obstacle Detection Project
 
 [//]: # (<img src="media/ObstacleDetectionFPS.gif" width="700" height="400" />)
 
@@ -30,6 +30,22 @@ $ make
 $ ./environment
 ```
 
-### Exercises
+### II. Exercises
 
-- Create a lidar object and render the ray
+#### Lidar and Point Clouds
+
+1. Create a `Lidar` pointer object on the heap, taking two parameters: `std::vector<Car>` and `setGroundSlope` of 0. The `Lidar::scan()` method does a ray casting and returns a point cloud pointer object `pcl::PointCloud<pcl::PointXYZ>::Ptr`. Call `renderRays()` to plot rays on the viewer. ([7140d05](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/7140d05554c3d98b23f2886fb3bacb120fbd7bdc))
+
+<img src="media/first-lidar-object.png" width="800" height="400" />
+
+2. Increase the lidar resolution by tweaking the constructor of `Lidar` class: `numLayers`, `horizontalAngleInc`. Set `minDistance` to 5 meter to remove points from the vehicle's rooftop. Set `sderr` to 0.2 to add some noises to the PCD. ([16d5d3c](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/16d5d3c71ce1ea0acb13e5f44a03f82c63441107))
+
+<img src="media/increase-lidar-resolution.png" width="800" height="400" />
+
+3. Remove rendering for the highway scene and rays, but enable rendering for the point cloud using `renderPointCloud()`. ([80be982](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/80be98228972e525dea72ef4f360045988db2361))
+
+<img src="media/render-point-cloud.png" width="800" height="400" />
+
+### III. References
+
+`pcl::PointXYZ`: https://pointclouds.org/documentation/structpcl_1_1_point_x_y_z.html
