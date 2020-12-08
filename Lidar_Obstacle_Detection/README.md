@@ -46,6 +46,16 @@ $ ./environment
 
 <img src="media/render-point-cloud.png" width="800" height="400" />
 
+#### Point Cloud Segmentation
+
+1. In the `processPointCloud.cpp`, to implement the `ProcessPointClouds::SegmentPlane()` method, use a `pcl::SACSegmentation<PointT>` object to segment the planar component from the input point cloud. Next to implement the `SeparateClouds()` helper method, use a `pcl::ExtractIndices<PointT>` object to extract the points not belong to the plane as the obstacles. ([24ae844](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/24ae844bc49f310c10837b4cd13df51409472827))
+
+2. In the `environment.cpp`, create a `ProcessPointClouds<pcl::PointXYZ>` object, call `SegmentPlane()` to separate the plane and obstacle. Finally, render the plane and obstacle point clouds. ([24ae844](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/24ae844bc49f310c10837b4cd13df51409472827))
+
+<img src="media/segment-plane.png" width="800" height="400" />
+
 ### III. References
 
 `pcl::PointXYZ`: https://pointclouds.org/documentation/structpcl_1_1_point_x_y_z.html
+
+Example of segmenting the Plane with PCL: https://pointclouds.org/documentation/tutorials/extract_indices.html
