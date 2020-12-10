@@ -12,6 +12,8 @@ RANSAC stands for Random Sample Consensus, a method for detecting outliers in da
     * each iteration randomly picks a subsample of the data and fits a model through it, such as line or a plane
     * the iteration with the highest number of inliers or lowest noise is used as the best model
 
+<img src="media/ransac-line-model.png" width="800" height="400" />
+
 - RANSAC version to implement in the quiz uses the **smallest possible subset of points** to fit
     * line (two points), plane (three points)
         + iterate through every remaining points and calculate its distance to the model
