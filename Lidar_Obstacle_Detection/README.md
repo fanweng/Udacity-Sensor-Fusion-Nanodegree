@@ -1,6 +1,6 @@
 # Lidar Obstacle Detection Project
 
-[//]: # (<img src="media/ObstacleDetectionFPS.gif" width="700" height="400" />)
+
 
 ### I. Preparation on Ubuntu
 
@@ -30,6 +30,8 @@ $ make
 $ ./environment
 ```
 
+
+
 ### II. Exercises
 
 #### Lidar and Point Clouds
@@ -54,8 +56,16 @@ $ ./environment
 
 <img src="media/segment-plane.png" width="800" height="400" />
 
+#### Identify different obstacles using Euclidean Clustering with PCL
+
+1. In the `processPointCloud.cpp`, to implement the `ProcessPointClouds::Clustering()` method, create a Kd-tree representation `pcl::search::KdTree<PointT>::Ptr` for the input point cloud, configure the parameters for the Euclidean clustering object `pcl::EuclideanClusterExtraction<PointT>` and extract the clusters in the point cloud. In the `environment.cpp`, call the clustering function on the segmented obstacle point cloud, render clustered obstacle in different colors. ([a5761ac](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/a5761ac9fed23bdebb5cb9ca96c56b2dca26a063))
+
+
+
 ### III. References
 
 `pcl::PointXYZ`: https://pointclouds.org/documentation/structpcl_1_1_point_x_y_z.html
 
 Example of segmenting the Plane with PCL: https://pointclouds.org/documentation/tutorials/extract_indices.html
+
+Example of Euclidean Cluster Extraction: https://pointclouds.org/documentation/tutorials/cluster_extraction.html
