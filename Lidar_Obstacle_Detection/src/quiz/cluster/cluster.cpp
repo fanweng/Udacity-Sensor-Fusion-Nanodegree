@@ -13,7 +13,7 @@
 pcl::visualization::PCLVisualizer::Ptr initScene(Box window, int zoom)
 {
     pcl::visualization::PCLVisualizer::Ptr viewer(new pcl::visualization::PCLVisualizer ("2D Viewer"));
-    viewer->setBackgroundColor (0, 0, 0);
+    viewer->setBackgroundColor (0, 1, 1);
       viewer->initCameraParameters();
       viewer->setCameraPosition(0, 0, zoom, 0, 1, 0);
       viewer->addCoordinateSystem (1.0);
