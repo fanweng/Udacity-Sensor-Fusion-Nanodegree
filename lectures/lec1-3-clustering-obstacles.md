@@ -34,4 +34,12 @@ The next function to implement is searching for nearby points in a KD-Tree compa
 
 However, KD-Tree is able to split regions and allows certain regions to be completely ruled out, speeding up the process of finding nearby neighbors. First, compare distance within a boxed square that is 2x `distanceTol` for length, centered around the target point. If the current node `point` is within this box, then calculate the distance and see if the point `id` should be added to the list of nearby `ids`. Last, recursively branch off to the next node, left or right, depending on if the boxed square crosses over the divided `x` or `y` region. The advantage being that if the box region is not inside some division region you completely skip that branch. ([f19f751](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/f19f751d5316c90f054f8d2bb11650db9ac7a5b3))
 
+<img src="media/kdtree-search-points-quiz.png" width="500" height="400" />
+
 Build and run the cluster quiz. We should be able to see `Test Search 0,1,2,3,` as a result, which indicates target point [-6, 7] is near point 0, 1, 2, 3. Find the source code at Line 115 of [cluster.cpp](../Lidar_Obstacle_Detection/src/quiz/cluster/cluster.cpp).
+
+#### Clustering using KD-Tree
+
+Using KD-Tree `search` method, it is easy to find nearby points for a given target point. Therefore, we can iterate through every point in a cloud and keep track of which points have been processed. For each point, we define a cluster, use KD-Tree `search` to find nearby points as well as nearby points' nearby points recursively. Add them all into the same cluster. ([206ff26](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/206ff2684187c28f093d78700b5e8fee95310f08))
+
+<img src="media/kdtree-clustering-quiz.png" width="800" height="400" />
