@@ -56,12 +56,17 @@ $ ./environment
 
 <img src="media/segment-plane.png" width="800" height="400" />
 
-#### Identify different obstacles using Euclidean Clustering with PCL
+#### Identify Different Obstacles using Euclidean Clustering with PCL
 
 1. In the `processPointCloud.cpp`, to implement the `ProcessPointClouds::Clustering()` method, create a Kd-tree representation `pcl::search::KdTree<PointT>::Ptr` for the input point cloud, configure the parameters for the Euclidean clustering object `pcl::EuclideanClusterExtraction<PointT>` and extract the clusters in the point cloud. In the `environment.cpp`, call the clustering function on the segmented obstacle point cloud, render clustered obstacle in different colors. ([a5761ac](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/a5761ac9fed23bdebb5cb9ca96c56b2dca26a063))
 
 <img src="media/clustering-objects.png" width="800" height="400" />
 
+#### Bounding Boxes
+
+1. Once point cloud clusters are found, we can add bounding boxes around the clusters. The boxed spaces should be considered as an area/object that our car is not allowed to enter, otherwise it would result a collision. Call `ProcessPointClouds::BoundingBox()` method, which finds the max and min point values as the boundary values for the `Box` data structure. Then render the `Box` structure for each cluster. ([e85af3f](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/e85af3fc5c27da0605243a6fbcd1ee63135002f8))
+
+<img src="media/bounding-boxes.png" width="800" height="400" />
 
 ### III. References
 
