@@ -74,6 +74,8 @@ $ ./environment
 
 <img src="media/load-real-pcd.png" width="800" height="400" />
 
+### Filter with PCL
+
 ### III. References
 
 `pcl::PointXYZ`: https://pointclouds.org/documentation/structpcl_1_1_point_x_y_z.html
@@ -81,3 +83,7 @@ $ ./environment
 Example of segmenting the Plane with PCL: https://pointclouds.org/documentation/tutorials/extract_indices.html
 
 Example of Euclidean Cluster Extraction: https://pointclouds.org/documentation/tutorials/cluster_extraction.html
+
+Example of Voxel Grid filtering: https://pointclouds.org/documentation/tutorials/voxel_grid.html
+
+Example of Crop Box filtering: https://pointclouds.org/documentation/classpcl_1_1_crop_box.html

@@ -12,4 +12,10 @@ This lesson will apply the segmentation and clustering techniques to real point 
         + Stixels are segments which represent sensor data in a compact fashion while retaining the underlying semantic and geometric properties
         + An example of stixels ([Ref](https://www.mathworks.com/matlabcentral/fileexchange/65347-stixel-world)). Use *height*, *width*, and *number* of rectangles to represent objects, instead of individual points.
 
-<img src="media/stixels-example.png" width="800" height="400" />    
+<img src="media/stixels-example.png" width="800" height="400" />
+
+### I. Downsampling
+
+Voxel grid filtering
+
+Region of interest (ROI) filtering
