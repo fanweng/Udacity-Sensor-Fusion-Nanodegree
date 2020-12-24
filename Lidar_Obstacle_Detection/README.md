@@ -68,6 +68,12 @@ $ ./environment
 
 <img src="media/bounding-boxes.png" width="800" height="400" />
 
+### Load Real PCD
+
+1. Create a new point processor for the real PCD from a `cityBlock`, the code is similar to the `simpleHighway` function. The point type is `pcl::PointXYZI` where the `I` indicates the intensity. The real PCD files are located at `src/sensors/data/pcd/data_1/` directory. ([5a0f545](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/5a0f545ab7fe9d89635a4f66ada69257f6d28e82))
+
+<img src="media/load-real-pcd.png" width="800" height="400" />
+
 ### III. References
 
 `pcl::PointXYZ`: https://pointclouds.org/documentation/structpcl_1_1_point_x_y_z.html
