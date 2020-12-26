@@ -71,7 +71,7 @@ void simpleHighway(pcl::visualization::PCLVisualizer::Ptr& viewer)
 
         Box box = pointProcessor->BoundingBox(cluster);
         renderBox(viewer, box, clusterId);
-        
+
         ++clusterId;
     }
 }
@@ -86,7 +86,11 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer)
     // Create point processor with intensity
     ProcessPointClouds<pcl::PointXYZI>* pointProcessorI = new ProcessPointClouds<pcl::PointXYZI>();
     pcl::PointCloud<pcl::PointXYZI>::Ptr inputCloud = pointProcessorI->loadPcd("../src/sensors/data/pcd/data_1/0000000000.pcd");
-    renderPointCloud(viewer, inputCloud, "inputCloud");
+    // renderPointCloud(viewer, inputCloud, "inputCloud");
+
+    // TODO: use leaf size of 0.2m, experiment with the other hyperparameters
+    pcl::PointCloud<pcl::PointXYZI>::Ptr filteredCloud = pointProcessorI->FilterCloud(inputCloud, 0.2, Eigen::Vector4f(-30, -6.5, -3, 1), Eigen::Vector4f(30, 6.5, 10, 1));
+    renderPointCloud(viewer, filteredCloud, "filteredCloud");
 }
 
 
