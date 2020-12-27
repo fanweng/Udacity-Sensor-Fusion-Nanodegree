@@ -76,6 +76,12 @@ $ ./environment
 
 ### Filter with PCL
 
+1. To implement the `ProcessPointClouds::FilterCloud()` in the `processPointClouds.cpp`, `pcl::VoxelGrid<PointT>` class is applied for **Voxel Grid** filtering, and `pcl::CropBox<PointT>` class is applied for **ROI-based** filtering. We are interested in a good amount of distance in front of the car and surroundings of the car. Point cloud data outside of the ROI should be removed, including the rooftop points. ([61ccf99](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/61cc9ffe707fcec0ee3390b56aac42a8c1750167))
+
+2. In the `environment.cpp`, call `ProcessPointClouds::FilterCloud()` function in the `cityBlock()`. Input a leaf size of 0.2m, so that the voxel size is large enough to help speed up the processing but not so large that object definition is preserved.
+
+<img src="media/downsampled-cloud.png" width="800" height="400" />
+
 ### III. References
 
 `pcl::PointXYZ`: https://pointclouds.org/documentation/structpcl_1_1_point_x_y_z.html

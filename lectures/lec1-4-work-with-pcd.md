@@ -16,6 +16,14 @@ This lesson will apply the segmentation and clustering techniques to real point 
 
 ### I. Downsampling
 
-Voxel grid filtering
+#### Voxel grid filtering
 
-Region of interest (ROI) filtering
+Voxel grid filtering will create a cubic grid, thinking about a voxel grid as a 3D tiny box, over the input point cloud data points. It will downsample the cloud by only leaving a single point per voxel grid, so the larger the grid length the lower the resolution of the point cloud.
+
+- Two options for selecting that representative point per voxel
+    * **Centroid** of the point distribution, i.e. *Spatial averaging* (slower but more accurate)
+    * **Geometrical Center** of the voxel
+
+#### Region of interest (ROI) filtering
+
+ROI-based filtering defines a boxed region and any points outside the box will be removed.
