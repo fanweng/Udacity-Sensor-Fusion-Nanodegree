@@ -89,7 +89,8 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer)
     // renderPointCloud(viewer, inputCloud, "inputCloud");
 
     // TODO: use leaf size of 0.2m, experiment with the other hyperparameters
-    pcl::PointCloud<pcl::PointXYZI>::Ptr filteredCloud = pointProcessorI->FilterCloud(inputCloud, 0.2, Eigen::Vector4f(-30, -6.5, -3, 1), Eigen::Vector4f(30, 6.5, 10, 1));
+    // Set the min/max Eigen::Vector4f(x, y, z, 1.0) values
+    pcl::PointCloud<pcl::PointXYZI>::Ptr filteredCloud = pointProcessorI->FilterCloud(inputCloud, 0.2, Eigen::Vector4f(-15, -6.0, -3, 1), Eigen::Vector4f(30, 6.0, 10, 1));
     // renderPointCloud(viewer, filteredCloud, "filteredCloud");
 
     // Segment the filtered point cloud
@@ -97,8 +98,8 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer)
     renderPointCloud(viewer, segmentCloud.first, "obstacleCloud", Color(1,0,0));
     renderPointCloud(viewer, segmentCloud.second, "planeCloud", Color(0,1,0));
 
-    // TODO: Cluster the obstacles, experiment with clustering size
-    std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessorI->Clustering(segmentCloud.first, 0.5, 10, 585);
+    // TODO: Cluster the obstacles, experiment with min/max clustering size
+    std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessorI->Clustering(segmentCloud.first, 0.5, 10, 600);
     int clusterId = 0;
     std::vector<Color> colors = {Color(1,0,0), Color(0,1,1), Color(1,1,0)};
 
