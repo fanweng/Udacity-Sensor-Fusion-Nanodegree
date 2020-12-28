@@ -76,11 +76,21 @@ $ ./environment
 
 ### Filter with PCL
 
-1. To implement the `ProcessPointClouds::FilterCloud()` in the `processPointClouds.cpp`, `pcl::VoxelGrid<PointT>` class is applied for **Voxel Grid** filtering, and `pcl::CropBox<PointT>` class is applied for **ROI-based** filtering. We are interested in a good amount of distance in front of the car and surroundings of the car. Point cloud data outside of the ROI should be removed, including the rooftop points. ([61ccf99](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/61cc9ffe707fcec0ee3390b56aac42a8c1750167))
+1. To implement the `ProcessPointClouds::FilterCloud()` in the `processPointClouds.cpp`, `pcl::VoxelGrid<PointT>` class is applied for **Voxel Grid** filtering, and `pcl::CropBox<PointT>` class is applied for **ROI-based** filtering. The `Eigen::Vector4f` class has four parameters representing `x`, `y`, `z` coordinates and the last one should be 1.0. We are interested in a good amount of distance in front or at back of the car and surroundings of the car. Point cloud data outside of the ROI should be removed, including the rooftop points. ([61ccf99](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/61cc9ffe707fcec0ee3390b56aac42a8c1750167))
 
 2. In the `environment.cpp`, call `ProcessPointClouds::FilterCloud()` function in the `cityBlock()`. Input a leaf size of 0.2m, so that the voxel size is large enough to help speed up the processing but not so large that object definition is preserved.
 
 <img src="media/downsampled-cloud.png" width="800" height="400" />
+
+### Obstacle Detection with Real PCD
+
+1. Once having a filtered PCD, we can deploy the same segmentation and clustering techniques implemented previously. ([85cc8c6](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/85cc8c67cd2f583271c9ee34505688f0ca5cb1ac))
+
+2. Tweak the `Eigen::Vector4f minPoint/maxPoint` for `ProcessPointClouds::FilterCloud()` and `int minSize/maxSize` for `ProcessPointClouds::Clustering()`. ([85c7c1a](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/85c7c1adbbf2f8384f71459dedb09f24b828bac1))
+
+<img src="media/obstacle-detection-with-real-pcd.png" width="800" height="400" />
+
+
 
 ### III. References
 

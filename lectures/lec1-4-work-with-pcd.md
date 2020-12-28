@@ -27,3 +27,7 @@ Voxel grid filtering will create a cubic grid, thinking about a voxel grid as a 
 #### Region of interest (ROI) filtering
 
 ROI-based filtering defines a boxed region and any points outside the box will be removed.
+
+- Two regions interested
+    * An adequate mount of distance in front of and at back of the car, with an approximate width of the road
+    * Outside the rooftop area
