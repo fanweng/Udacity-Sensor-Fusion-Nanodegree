@@ -9,6 +9,9 @@
 // using templates for processPointClouds so also include .cpp to help linker
 #include "processPointClouds.cpp"
 
+// #define PCL_METHOD
+#define CUSTOM_METHOD
+
 std::vector<Car> initHighway(bool renderScene, pcl::visualization::PCLVisualizer::Ptr& viewer)
 {
 
@@ -83,7 +86,11 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer, ProcessPointCloud
 {
     pcl::PointCloud<pcl::PointXYZI>::Ptr filteredCloud = pointProcessorI->FilterCloud(inputCloud, 0.18, Eigen::Vector4f(-15, -5, -3, 1), Eigen::Vector4f(30, 7, 5, 1));
 
+#if defined PCL_METHOD
     std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud = pointProcessorI->SegmentPlane(filteredCloud, 100, 0.2);
+#elif defined CUSTOM_METHOD
+    std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud = pointProcessorI->SegmentPlaneRansac(filteredCloud, 200, 0.2);
+#endif
     renderPointCloud(viewer, segmentCloud.first, "obstacleCloud", Color(1,0,0));
     renderPointCloud(viewer, segmentCloud.second, "planeCloud", Color(0,1,0));
 
@@ -123,7 +130,11 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer)
     // renderPointCloud(viewer, filteredCloud, "filteredCloud");
 
     // Segment the filtered point cloud
+#if defined PCL_METHOD
     std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud = pointProcessorI->SegmentPlane(filteredCloud, 100, 0.2);
+#elif defined CUSTOM_METHOD
+    std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud = pointProcessorI->SegmentPlaneRansac(filteredCloud, 200, 0.2);
+#endif
     renderPointCloud(viewer, segmentCloud.first, "obstacleCloud", Color(1,0,0));
     renderPointCloud(viewer, segmentCloud.second, "planeCloud", Color(0,1,0));
 
@@ -172,6 +183,13 @@ void initCamera(CameraAngle setAngle, pcl::visualization::PCLVisualizer::Ptr& vi
 
 int main (int argc, char** argv)
 {
+
+#if defined PCL_METHOD
+    std::cout << "PCL LIBRARY IS USED FOR SEGMENTATION AND CLUSTERING!" << std::endl;
+#elif defined CUSTOM_METHOD
+    std::cout << "CUSTOM FUNCTIONS FROM QUIZZES ARE USED FOR SEGMENTATION AND CLUSTERING!" << std::endl;
+#endif
+
     std::cout << "starting enviroment" << std::endl;
 
     pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
@@ -198,7 +216,7 @@ int main (int argc, char** argv)
         streamIterator++;
         if (streamIterator == stream.end())
             streamIterator = stream.begin();
-        
+
         std::this_thread::sleep_for(std::chrono::milliseconds(300));
 
         viewer->spinOnce();

@@ -130,6 +130,58 @@ std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT
 }
 
 
+/*
+ * Segmentation Function for final Lidar Obstacle Detection Project
+ * Reuse the RansacPlane() function from the src/quiz/ransac/ransac2d.cpp
+ */
+template<typename PointT>
+std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT>::Ptr> ProcessPointClouds<PointT>::SegmentPlaneRansac(typename pcl::PointCloud<PointT>::Ptr cloud, int maxIterations, float distanceThreshold)
+{
+    pcl::PointIndices::Ptr inliersResult{new pcl::PointIndices()};
+    srand(time(NULL));
+
+    // Segment the planar component from the cloud, represented by indicies of inliers from fitted plane with most inliers
+    while (maxIterations-- > 0)
+    {
+        // Randomly sample subset
+        PointT point1 = cloud->points.at(rand() % (cloud->points.size()));
+        PointT point2 = cloud->points.at(rand() % (cloud->points.size()));
+        PointT point3 = cloud->points.at(rand() % (cloud->points.size()));
+        // Fit a plane, Ax+By+Cz+D=0
+        float A, B, C, D;
+        A = (point2.y - point1.y) * (point3.z - point1.z) - (point2.z - point1.z) * (point3.y - point1.y); // (y2 - y1)(z3 - z1) - (z2 - z1)(y3 - y1)
+        B = (point2.z - point1.z) * (point3.x - point1.x) - (point2.x - point1.x) * (point3.z - point1.z); // (z2 - z1)(x3 - x1) - (x2 - x1)(z3 - z1)
+        C = (point2.x - point1.x) * (point3.y - point1.y) - (point2.y - point1.y) * (point3.x - point1.x); // (x2 - x1)(y3 - y1) - (y2 - y1)(x3 - x1)
+        D = -1 * (A * point1.x + B * point1.y + C * point1.z); // -(A * x1 + B * y1 + C * z1)
+
+        // Measure distance between every point and fitted plane
+        pcl::PointIndices::Ptr inliersTemp{new pcl::PointIndices()};
+        for (auto it = cloud->points.begin(); it != cloud->points.end(); ++it)
+        {
+            float d = fabs(A * (*it).x + B * (*it).y + C * (*it).z + D) / sqrt(A * A + B * B + C * C); // |A*x+B*y+C*z+D|/(A^2+B^2+C^2)
+            // If distance is smaller than threshold count it as inlier
+            if (d <= distanceThreshold)
+            {
+                inliersTemp->indices.push_back(it - cloud->begin());
+            }
+        }
+        if (inliersTemp->indices.size() > inliersResult->indices.size())
+        {
+            inliersResult = inliersTemp;
+        }
+    }
+
+    if (inliersResult->indices.size() == 0)
+    {
+        std::cerr << "Could not estimate a planar model for the given dataset." << std::endl;
+    }
+
+    std::pair<typename pcl::PointCloud<PointT>::Ptr, typename pcl::PointCloud<PointT>::Ptr> segResult = SeparateClouds(inliersResult, cloud);
+
+    return segResult;
+}
+
+
 template<typename PointT>
 std::vector<typename pcl::PointCloud<PointT>::Ptr> ProcessPointClouds<PointT>::Clustering(typename pcl::PointCloud<PointT>::Ptr cloud, float clusterTolerance, int minSize, int maxSize)
 {
