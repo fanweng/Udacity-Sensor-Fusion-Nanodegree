@@ -227,6 +227,71 @@ std::vector<typename pcl::PointCloud<PointT>::Ptr> ProcessPointClouds<PointT>::C
 }
 
 
+/*
+ * Clustering Helper Function for final Lidar Obstacle Detection Project
+ * Reuse the clusterHelper() function from the src/quiz/cluster/cluster.cpp
+ * Find nearby points for a given target point, add them to the same cluster
+ */
+template<typename PointT>
+void ProcessPointClouds<PointT>::clusterHelper(typename pcl::PointCloud<PointT>::Ptr cloud, std::vector<bool>& processedPoints, int index, typename pcl::PointCloud<PointT>::Ptr cluster, KdTree* tree, float clusterTolerance)
+{
+    processedPoints[index] = true;
+    cluster->push_back(cloud->points[index]);
+
+    PointT point = cloud->points[index];
+    std::vector<int> proximity = tree->search({point.x, point.y, point.z}, clusterTolerance);
+    for (int id : proximity)
+    {
+        if (!processedPoints[id])
+        {
+            clusterHelper(cloud, processedPoints, id, cluster, tree, clusterTolerance);
+        }
+    }
+}
+
+
+/*
+ * Clustering Function for final Lidar Obstacle Detection Project
+ * Reuse the euclideanCluster() function from the src/quiz/cluster/cluster.cpp
+ */
+template<typename PointT>
+std::vector<typename pcl::PointCloud<PointT>::Ptr> ProcessPointClouds<PointT>::ClusteringEuclidean(typename pcl::PointCloud<PointT>::Ptr cloud, float clusterTolerance, int minSize, int maxSize)
+{
+    // Create a KdTree object for the search method of the extraction
+    KdTree* tree = new KdTree;
+    for (int i = 0; i < cloud->points.size(); i++)
+    {
+        PointT point = cloud->points[i];
+        tree->insert({point.x, point.y, point.y}, i);
+    }
+
+    std::vector<typename pcl::PointCloud<PointT>::Ptr> clusters;
+    std::vector<bool> processedPoints(cloud->points.size(), false);    // map the processed points
+
+    for (int i = 0; i < cloud->points.size(); ++i)
+    {
+        if (processedPoints[i])
+            continue;
+
+        typename pcl::PointCloud<PointT>::Ptr cluster(new pcl::PointCloud<PointT>);
+        clusterHelper(cloud, processedPoints, i, cluster, tree, clusterTolerance);
+
+        // Only keep the cluster with a size between the allowance
+        if ((cluster->size() >= minSize) && (cluster->size() <= maxSize))
+        {
+            cluster->width = cluster->size();
+            cluster->height = 1;
+            cluster->is_dense = true;
+            clusters.push_back(cluster);
+        }
+    }
+
+    std::cout << "clustering found " << clusters.size() << " clusters" << std::endl;
+
+    return clusters;
+}
+
+
 template<typename PointT>
 Box ProcessPointClouds<PointT>::BoundingBox(typename pcl::PointCloud<PointT>::Ptr cluster)
 {

@@ -84,17 +84,21 @@ void simpleHighway(pcl::visualization::PCLVisualizer::Ptr& viewer)
 /* For streaming PCD */
 void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer, ProcessPointClouds<pcl::PointXYZI>* pointProcessorI, const pcl::PointCloud<pcl::PointXYZI>::Ptr& inputCloud)
 {
-    pcl::PointCloud<pcl::PointXYZI>::Ptr filteredCloud = pointProcessorI->FilterCloud(inputCloud, 0.18, Eigen::Vector4f(-15, -5, -3, 1), Eigen::Vector4f(30, 7, 5, 1));
+    pcl::PointCloud<pcl::PointXYZI>::Ptr filteredCloud = pointProcessorI->FilterCloud(inputCloud, 0.18, Eigen::Vector4f(-10, -5, -2, 1), Eigen::Vector4f(30, 7, 4, 1));
 
 #if defined PCL_METHOD
     std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud = pointProcessorI->SegmentPlane(filteredCloud, 100, 0.2);
 #elif defined CUSTOM_METHOD
-    std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud = pointProcessorI->SegmentPlaneRansac(filteredCloud, 200, 0.2);
+    std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud = pointProcessorI->SegmentPlaneRansac(filteredCloud, 100, 0.2);
 #endif
     renderPointCloud(viewer, segmentCloud.first, "obstacleCloud", Color(1,0,0));
     renderPointCloud(viewer, segmentCloud.second, "planeCloud", Color(0,1,0));
 
+#if defined PCL_METHOD
     std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessorI->Clustering(segmentCloud.first, 0.44, 15, 700);
+#elif defined CUSTOM_METHOD
+    std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessorI->ClusteringEuclidean(segmentCloud.first, 0.33, 15, 700);
+#endif
     int clusterId = 0;
     std::vector<Color> colors = {Color(1,0,0), Color(0,1,1), Color(1,1,0)};
 
@@ -139,7 +143,11 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer)
     renderPointCloud(viewer, segmentCloud.second, "planeCloud", Color(0,1,0));
 
     // TODO: Cluster the obstacles, experiment with min/max clustering size
+#if defined PCL_METHOD
     std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessorI->Clustering(segmentCloud.first, 0.5, 10, 600);
+#elif defined CUSTOM_METHOD
+    std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = pointProcessorI->ClusteringEuclidean(segmentCloud.first, 0.5, 10, 600);
+#endif
     int clusterId = 0;
     std::vector<Color> colors = {Color(1,0,0), Color(0,1,1), Color(1,1,0)};
 
@@ -190,10 +198,10 @@ int main (int argc, char** argv)
     std::cout << "CUSTOM FUNCTIONS FROM QUIZZES ARE USED FOR SEGMENTATION AND CLUSTERING!" << std::endl;
 #endif
 
-    std::cout << "starting enviroment" << std::endl;
+    std::cout << "starting environment" << std::endl;
 
     pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
-    CameraAngle setAngle = XY;
+    CameraAngle setAngle = FPS;
     initCamera(setAngle, viewer);
     // simpleHighway(viewer);
     // cityBlock(viewer);
