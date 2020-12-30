@@ -68,13 +68,13 @@ $ ./environment
 
 <img src="media/bounding-boxes.png" width="800" height="400" />
 
-### Load Real PCD
+#### Load Real PCD
 
 1. Create a new point processor for the real PCD from a `cityBlock`, the code is similar to the `simpleHighway` function. The point type is `pcl::PointXYZI` where the `I` indicates the intensity. The real PCD files are located at `src/sensors/data/pcd/data_1/` directory. ([5a0f545](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/5a0f545ab7fe9d89635a4f66ada69257f6d28e82))
 
 <img src="media/load-real-pcd.png" width="800" height="400" />
 
-### Filter with PCL
+#### Filter with PCL
 
 1. To implement the `ProcessPointClouds::FilterCloud()` in the `processPointClouds.cpp`, `pcl::VoxelGrid<PointT>` class is applied for **Voxel Grid** filtering, and `pcl::CropBox<PointT>` class is applied for **ROI-based** filtering. The `Eigen::Vector4f` class has four parameters representing `x`, `y`, `z` coordinates and the last one should be 1.0. We are interested in a good amount of distance in front or at back of the car and surroundings of the car. Point cloud data outside of the ROI should be removed, including the rooftop points. ([61ccf99](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/61cc9ffe707fcec0ee3390b56aac42a8c1750167))
 
@@ -82,7 +82,7 @@ $ ./environment
 
 <img src="media/downsampled-cloud.png" width="800" height="400" />
 
-### Obstacle Detection with Real PCD
+#### Obstacle Detection with Real PCD
 
 1. Once having a filtered PCD, we can deploy the same segmentation and clustering techniques implemented previously in the `cityBlock()`. ([85cc8c6](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/85cc8c67cd2f583271c9ee34505688f0ca5cb1ac))
 
@@ -90,14 +90,33 @@ $ ./environment
 
 <img src="media/obstacle-detection-with-real-pcd.png" width="800" height="400" />
 
-### Stream PCD
+#### Stream PCD
 
 1. Create a vector `stream` to store paths to the PCD files chronologically. Create a new `cityBlock()` function, which processes the input point cloud from the external. In the `main()` function of `environment.cpp`, inside the viewer update loop, read PCD file, process it and update the viewer. ([221ce08](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/221ce08a98a9bc8baafab0f302819afac91ac2bf))
 
 <img src="media/stream-pcd.gif" width="800" height="400" />
 
 
-### III. References
+
+### III. Lidar Obstacle Detection Project
+
+The previous exercises have created a processing pipeline for detecting the obstacles using PCL segmentation and clustering methods. In the final project, we have to implement the same obstacle detection pipeline but with the *3D RANSAC segmentation*, *KD-Tree*, and *Euclidean clustering algorithm* we created in the quizzes.
+
+1. Create a `ProcessPointClouds::SegmentPlaneRansac()` function in the `processPointClouds.cpp`, which uses the 3D RANSAC segmentation for plane implemented in the quiz. And call this segmentation function in the `cityBlock()` of `environment.cpp`. ([ba99dbd](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/ba99dbd3822d668971056c2cd8abdf7f50d5400f))
+
+2. Create `ProcessPointClouds::ClusteringEuclidean` and its helper function `ProcessPointClouds::clusterHelper` in the `processPointClouds.cpp`, which reuses the Euclidean clustering with KD-Tree with some modification from the quiz. And call this clustering function in the `cityBlock()` of `environment.cpp`. ([0a5efcd](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/0a5efcd518f5dc8948df6e56c870e342952df76a))
+
+3. Before building the final project, make sure the macro `CUSTOM_METHOD` is defined in the `environment.cpp` so that the custom implementations in the Step 1 and 2 are used. Otherwise, defining macro `PCL_METHOD` will use the segmentation and clustering functions provided by PCL library.
+
+<img src="media/obstacle-detection-fps-final.gif" width="800" height="400" />
+
+
+
+### IV. Tracking and Challenge Problem
+
+
+
+### V. References
 
 `pcl::PointXYZ`: https://pointclouds.org/documentation/structpcl_1_1_point_x_y_z.html
 

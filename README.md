@@ -8,4 +8,12 @@ In this course we will be talking about sensor fusion, which is the process of t
 
 **Radar** data is typically very sparse and in a limited range, however it can directly tell us how fast an object is moving in a certain direction. This ability makes radars a very practical sensor for doing things like cruise control where its important to know how fast the car in front of you is traveling. Radar sensors are also very affordable and common now of days in newer cars.
 
-**Sensor Fusion** by combing lidar's high resolution imaging with radar's ability to measure velocity of objects we can get a better understanding of the surrounding environment than we could using one of the sensors alone.
+**Sensor Fusion** by combing Lidar's high resolution imaging with radar's ability to measure velocity of objects we can get a better understanding of the surrounding environment than we could using one of the sensors alone.
+
+### Project 1 - Lidar Obstacle Detection
+
+This program processes multiple point clouds data files from Lidar sensor, and detects the cars or other obstacles on a city street. The detection pipeline follows the **Voxel Grid and ROI based filtering**, **3D RANSAC segmentation**, **Euclidean clustering based on KD-Tree**, and **bounding boxes**. The final result is shown below, where the green points represent the street surface and the obstacles are marked in the red boxes.
+
+<img src="Lidar_Obstacle_Detection/media/obstacle-detection-fps-final.gif" width="800" height="400" />
+
+Please check the detailed project description in the [Lidar_Obstacle_Detection/README.md](Lidar_Obstacle_Detection/README.md).
