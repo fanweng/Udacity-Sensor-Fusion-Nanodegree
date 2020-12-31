@@ -43,3 +43,7 @@ Build and run the cluster quiz. We should be able to see `Test Search 0,1,2,3,` 
 Using KD-Tree `search` method, it is easy to find nearby points for a given target point. Therefore, we can iterate through every point in a cloud and keep track of which points have been processed. For each point, we define a cluster, use KD-Tree `search` to find nearby points as well as nearby points' nearby points recursively. Add them all into the same cluster. ([206ff26](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/206ff2684187c28f093d78700b5e8fee95310f08))
 
 <img src="media/kdtree-clustering-quiz.png" width="800" height="400" />
+
+### III. References
+
+[Clustering Algorithms: From Start To State Of The Art](https://www.toptal.com/machine-learning/clustering-algorithms)

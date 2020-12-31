@@ -56,3 +56,12 @@ References used: [Equation of a plane passing three points](https://www.geeksfor
 In the main function, change to use `CreateData3D()` and call `RansacPlane()` function. Build and run the quiz, the result shows a plane is separated out from the point cloud.
 
 <img src="media/ransac3d-quiz.png" width="800" height="400" />
+
+
+### V. References
+
+[RANSAC - Computer Vision](http://www.cs.cornell.edu/courses/cs4670/2015sp/lectures/lec13_ransac_web.pdf)
+
+[Using RANSAC for estimating geometric transforms in computer vision](https://de.mathworks.com/discovery/ransac.html)
+
+[The RANSAC Algorithm](http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/FISHER/RANSAC/)
