@@ -65,3 +65,29 @@ The variety of the sensor sets for autonomous vehicles depends on the autonomy l
 | **System Cost** | More expensive | Compact and affordable | Compact and affordable |
 | **Package Size** | Hard to integrate | Easily integrated | Easily integrated for mono cameras, but stereo camera setup is bulky |
 | **Computational Requirements** | Little | Little | Significant |
+
+
+
+### III. Camera Technology
+
+#### Pinhole Camera
+
+A model of a pinhole camera is shown below. An **object of interest** *P* can be mapped to the *p'* on the image plane by casting a beam through the **center of projection** until it hits the image plane.
+
+**Image plane**: the photosensitive surface on the left
+
+**Camera center**: the pinhole
+
+**Focal length (f)**: the distance between camera center and image plane
+
+<img src="media/pinhole-camera.png" width="600" height="300" />
+
+In a 3D space, the relationship between *P* and *p'* is expressed by the following equations. So that we are able to compute the 2D position of an object on the image plane, in metrical coordinates and not pixel positions yet.
+
+<img src="media/pinhole-camera-equations.png" width="400" height="200" />
+
+The problem with pinhole cameras is the amount of light passing through the pinhole is not sufficient to generate a decent image on the image sensor. Widening the pinhole can result in a brighter the image, but at the same time, rays of light from other parts of the object of interest would superimpose each other, leading to a **blurring effect**.
+
+The solution to the blurring effect is using lens, which is able to capture multiple rays of light that emanate from the same point on the object of interest.
+
+<img src="media/pinhole-camera-blurring-effect.png" width="600" height="300" />
