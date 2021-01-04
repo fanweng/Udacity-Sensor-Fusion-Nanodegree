@@ -88,6 +88,26 @@ In a 3D space, the relationship between *P* and *p'* is expressed by the followi
 
 The problem with pinhole cameras is the amount of light passing through the pinhole is not sufficient to generate a decent image on the image sensor. Widening the pinhole can result in a brighter the image, but at the same time, rays of light from other parts of the object of interest would superimpose each other, leading to a **blurring effect**.
 
+<img src="media/pinhole-camera-blurring-effect.png" width="600" height="300" />
+
 The solution to the blurring effect is using lens, which is able to capture multiple rays of light that emanate from the same point on the object of interest.
 
-<img src="media/pinhole-camera-blurring-effect.png" width="600" height="300" />
+#### Lenses and Aperture
+
+A properly sized and positioned lens refracts all rays of light that emanate from a point *P0* on an object such that they converge to a single point *p0'* in the image plane.
+
+However, any points that are closer or farther away than *P0*, such as *P2*, appear **out of focus** on the image plane because the light rays don't converge in a point but rather in a circle in the image plane. This blurry circle is **circle of confusion (COF)**.
+
+To reduce the blurring, an aperture can be used, which is a concentric opening of usually adjustable size. By reducing the diameter of aperture, the light rays on the outer edges are blocked which reduces the size of COF with the expense of low light sensitivity. Larger the aperture, brighter the images with a better signal-to-noise ratio.
+
+<img src="media/lenses-and-aperture.png" width="600" height="300" />
+
+Lenses introduce distortion into images depending on the lens type. The distortion most relevant to practice is called *radial distortion*. It is caused by the *focal length* of lens not being uniform over its diameter. Therefore, the magnification effect of the lens changes depending on the distance between the optical axis.
+
+<img src="media/lens-distortions.png" width="600" height="200" />
+
+- Before analyzing the camera images, distortion effect must be removed or at least mitigated
+    * **Calibration**: for each lens setup, compute the distortion parameters
+    * **Rectification**: remove the distortion using the distortion parameters
+
+<img src="media/lens-calibration.png" width="600" height="200" />
