@@ -111,3 +111,17 @@ Lenses introduce distortion into images depending on the lens type. The distorti
     * **Rectification**: remove the distortion using the distortion parameters
 
 <img src="media/lens-calibration.png" width="600" height="200" />
+
+#### Image transformation
+
+Camera center is shown with a position *O* in space along with its own coordinate system with axes *i*, *j* and *k*, where *k* is pointing into the direction of the image plane. The position *c'* where *k* intersects the image plane is called the **principal point** and represents the center of the image coordinate system.
+
+Transformation process:
+
+1. Project the point *P* in space onto the image plane *p*, subtract the principle point coordinates so that the discrete image has its own coordinate system centered.
+
+2. Move from metric to pixel coordinates using parameters *k* and *l* provided by the calibration procedure that convert meters to pixels.
+
+<img src="media/image-transformation.png" width="800" height="450" />
+
+Points in space are often described with *i*, *j*, *k* or *X*, *Y*, *Z*, while on the image plane, the coordinate axes are denoted as *x*, *y*.
