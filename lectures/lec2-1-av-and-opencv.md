@@ -140,3 +140,33 @@ The light sensitive elements convert the amount of light to a number of electron
 The common way of arranging RGB filters is **Bayer Pattern**, which has alternating rows of red-green and green-blue filters. Since the human eye is more sensitive to green than to red or blue, the Bayer array has twice as many green color filters.
 
 <img src="media/image-sensors.png" width="600" height="250" />
+
+
+
+### IV. Exercise: OpenCV Library
+
+OpenCV is a cross-platform computer vision library which provides a common infrastructure for computer vision applications and to accelerate the use of machine vision in science and engineering projects. Most OpenCV functions exist within the `_cv_` namespace. Usually, to shorten the code, the `using namespace cv` command is used in many applications.
+
+- Main modules
+    * **core:** core functionality
+        + all basic object types and their operations
+    * **highgui:** high-level GUI
+        + user interfaces to display images, to take simple user input
+    * **imgproc:** image processing
+        + basic image transformations: filtering, geometric transformations, feature detection and tracking
+    * **features2d:** 2D features framework
+        + algorithms for detecting, describing and matching keypoints between images
+
+OpenCV Documentation: https://docs.opencv.org/master/
+
+#### Task 1: Matrix Datatype
+
+The basic data type to store and manipulate images is `cv::Mat`. In the [create_matrix.cpp](../Camera/Lesson-2-Autonomous-Vehicles-and-Computer-Vision/The-OpenCV-Library/OpenCV_exercises/src/create_matrix.cpp), create a `cv::Mat` variable with three channels with a depth of 8-bit per channel `CV_8UC3`. Then, set the first channel to 255 `cv::Scalar(255, 0, 0)`. Display the image and it is a blue image. ([eab4fb8](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/eab4fb8426f7b263569086ef00999c22dfe0c74f))
+
+#### Task 2: Manipulate Matrices
+
+Using member function `cv::Mat::at<type_of_data>(row, col) = data` can change the value at particular point. In the [change_pixels.cpp](../Camera/Lesson-2-Autonomous-Vehicles-and-Computer-Vision/The-OpenCV-Library/OpenCV_exercises/src/change_pixels.cpp), loop through rows and columns to change the pixel values. ([da667f7](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/da667f7bc495895c63a64a21e62da49f3d2168df))
+
+#### Task 3: Load and Handle Images
+
+By calling `cv::imread`, we can load an image from file and assign it to a `cv::Mat` variable. In the [load_image_3.cpp](../Camera/Lesson-2-Autonomous-Vehicles-and-Computer-Vision/The-OpenCV-Library/OpenCV_exercises/src/load_image_3.cpp), images are loaded and pushed into the `vector<cv::Mat>`. We simply skip the Image No.7 when displaying. ([4130ee2](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/4130ee244b150759453d7f5a05a76388516bcbad))
