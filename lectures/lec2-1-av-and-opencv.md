@@ -125,3 +125,18 @@ Transformation process:
 <img src="media/image-transformation.png" width="800" height="450" />
 
 Points in space are often described with *i*, *j*, *k* or *X*, *Y*, *Z*, while on the image plane, the coordinate axes are denoted as *x*, *y*.
+
+#### Imagers and Bayer Pattern
+
+- Two imagers (image sensors)
+    * **CCD (Charge-Coupled Device)**
+        + higher light sensitivity and less noise than CMOS, but these advantages disappeared
+        + higher production cost, higher power consumption (x100 of CMOS), heat issue
+    * **CMOS (Complementary Metal-oxide Semiconductor)**
+        + lower cost, faster data readout, lower power consumption, higher noise immunity, smaller package
+
+The light sensitive elements convert the amount of light to a number of electrons, and thus voltage. The sensing element is inherently color blind so that tiny filter elements are placed in front of each pixel.
+
+The common way of arranging RGB filters is **Bayer Pattern**, which has alternating rows of red-green and green-blue filters. Since the human eye is more sensitive to green than to red or blue, the Bayer array has twice as many green color filters.
+
+<img src="media/image-sensors.png" width="600" height="250" />
