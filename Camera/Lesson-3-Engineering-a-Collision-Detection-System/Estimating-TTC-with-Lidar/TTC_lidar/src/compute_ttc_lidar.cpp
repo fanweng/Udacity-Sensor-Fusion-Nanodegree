@@ -19,12 +19,20 @@ void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
     double minXPrev = 1e9, minXCurr = 1e9;
     for (auto it = lidarPointsPrev.begin(); it != lidarPointsPrev.end(); ++it)
     {
-        minXPrev = minXPrev > it->x ? it->x : minXPrev;
+        // 3D pionts within the ego-lane
+        if (abs(it->y) <= (laneWidth/2.0))
+        {
+            minXPrev = minXPrev > it->x ? it->x : minXPrev;
+        }
     }
 
     for (auto it = lidarPointsCurr.begin(); it != lidarPointsCurr.end(); ++it)
     {
-        minXCurr = minXCurr > it->x ? it->x : minXCurr;
+        // 3D pionts within the ego-lane
+        if (abs(it->y) <= (laneWidth/2.0))
+        {
+            minXCurr = minXCurr > it->x ? it->x : minXCurr;
+        }
     }
 
     // compute TTC from both measurements
@@ -33,11 +41,9 @@ void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
 
 int main()
 {
-
     std::vector<LidarPoint> currLidarPts, prevLidarPts;
     readLidarPts("../dat/C22A5_currLidarPts.dat", currLidarPts);
     readLidarPts("../dat/C22A5_prevLidarPts.dat", prevLidarPts);
-
 
     double ttc;
     computeTTCLidar(prevLidarPts, currLidarPts, ttc);
