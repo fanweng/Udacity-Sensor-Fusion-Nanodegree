@@ -65,3 +65,26 @@ Thus, we need to know the ratio of heights *h1/h0* to compute the TTC.
 <img src="media/ttc-estimation-camera-keypoints.png" width="600" height="350" />
 
 In the [compute_ttc_camera.cpp](../Camera/Lesson-3-Engineering-a-Collision-Detection-System/Estimating-TTC-with-Camera/TTC_camera/src/compute_ttc_camera.cpp) of `computeTTCCamera`, use the median of the calculated ratios to replace the average value, which is more robust. ([d1a655f](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/d1a655f66e23f061c8fe89e841d08694170355aa))
+
+
+
+### IV.Design of TTC Computation
+
+- Camera building blocks
+    * Main idea
+        + compute keypoint matches between successive images, and observe the relative distances between them over time
+    * Problem
+        + need to isolate keypoints on the preceding vehicle, excluding the road surface, static objects, etc.
+
+- Lidar building blocks
+    * Main idea
+        + compute distance to preceding vehicle from 3D point cloud at successive moments in time
+    * Problem
+        + need to isolate 3D points on the preceding vehicle, excluding the road surface, static objects, etc.
+        + cropping isn't reliable enough, especially when the preceding vehicle isn't directly in front of the sensor
+
+- Sensor fusion building blocks
+    * Main idea
+        + use camera-based object classification to cluster Lidar points, and compute TTC from 3D bounding boxes
+
+<img src="media/ttc-computation-design.png" width="500" height="600" />
