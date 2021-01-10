@@ -15,6 +15,11 @@ Mathematically, the gradient is the partial derivative of the image intensity in
 
 <img src="media/intensity-gradient-calculation.png" width="600" height="300" />
 
+`Sobel` operator is one of the most famous approaches to compute the gradient. They are 3x3 kernels, as small integer-valued filters.
+
+<img src="media/sobel-operator.png" width="600" height="150" />
+
+
 #### Gaussian Filtering
 
 Before computing the intensity gradient, we should apply noise filtering to get an accurate result. **Gaussian filter** is shifted over the image and combined with the intensity values beneath it. Two parameters can be adjusted:
@@ -39,6 +44,15 @@ In the [gaussian_smoothing.cpp](../Camera/Lesson-4-Tracking-Image-Features/Inten
 
 <img src="media/gaussian-kernel-coefficients-exercise.png" width="800" height="250" />
 
+#### Exercise: Computing Intensity Gradient
+
+In the [gradient_sobel.cpp](../Camera/Lesson-4-Tracking-Image-Features/Intensity-Gradient-and-Filtering/gradient_filtering/src/gradient_sobel.cpp), create the sobel kernels and apply the filters to *x* and *y* directions respectively. ([73a5b01](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/73a5b013c6fc2f664c999581902742bd7aa11e35))
+
+<img src="media/sobel-kernel-filter.png" width="800" height="500" />
+
+In the [magnitude_sobel.cpp](../Camera/Lesson-4-Tracking-Image-Features/Intensity-Gradient-and-Filtering/gradient_filtering/src/magnitude_sobel.cpp), the processing pipeline is: convert the image to gray scale -> smooth it using `cv::GaussianBlur()` -> apply `cv::filter2D()` with sobel kernels in both *x* and *y* directions -> calculated the magnitude for each pixel based on the *x*/*y* gradient. ([4d5fc96](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/4d5fc96e4e3ac05f2c064644c433f0f17fa1034f))
+
+<img src="media/sobel-filtered-magnitude.png" width="800" height="250" />
 
 
 ### II.
