@@ -29,15 +29,57 @@ void cornernessHarris()
 
     // visualize results
     string windowName = "Harris Corner Detector Response Matrix";
-    cv::namedWindow(windowName, 4);
+    cv::namedWindow(windowName, 1);
     cv::imshow(windowName, dst_norm_scaled);
     cv::waitKey(0);
 
-    // TODO: Your task is to locate local maxima in the Harris response matrix 
-    // and perform a non-maximum suppression (NMS) in a local neighborhood around 
-    // each maximum. The resulting coordinates shall be stored in a list of keypoints 
-    // of the type `vector<cv::KeyPoint>`.
+    // locate local maxima in the Harris response matrix
+    vector<cv::KeyPoint> keypoints;
+    double maxOverlap = 0.0;
+    for (int j = 0; j < dst_norm.rows; j++)
+    {
+        for (int i = 0; i < dst_norm.cols; i++)
+        {
+            int response = (int)dst_norm.at<float>(j, i);
+            if (response > minResponse)
+            {
+                cv::KeyPoint newKeypoint;
+                newKeypoint.pt = cv::Point2f(i, j);
+                newKeypoint.size = 2 * apertureSize;
+                newKeypoint.response = response;
 
+                // perform a non-maximum suppression (NMS) in a local neighborhood around each maximum
+                bool isOverlapped = false;
+                for (auto it = keypoints.begin(); it != keypoints.end(); ++it)
+                {
+                    double overlap = cv::KeyPoint::overlap(newKeypoint, *it);
+                    if (overlap > maxOverlap)
+                    {
+                        isOverlapped = true;
+                        if (newKeypoint.response > (*it).response)
+                        {
+                            *it = newKeypoint; // replace the keypoint with a higher response one
+                            break;
+                        }
+                    }
+                }
+
+                // add the new keypoint which isn't consider to have overlap with the keypoints already stored in the list
+                if (!isOverlapped)
+                {
+                    keypoints.push_back(newKeypoint);
+                }
+            }
+        }
+    }
+
+    // visualize results
+    windowName = "Harris Corner Detection Results";
+    cv::namedWindow(windowName, 1);
+    cv::Mat imgCorners = dst_norm_scaled.clone();
+    cv::drawKeypoints(dst_norm_scaled, keypoints, imgCorners, cv::Scalar::all(-1), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+    cv::imshow(windowName, imgCorners);
+    cv::waitKey(0);
 }
 
 int main()
