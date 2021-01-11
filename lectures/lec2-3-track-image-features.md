@@ -55,7 +55,29 @@ In the [magnitude_sobel.cpp](../Camera/Lesson-4-Tracking-Image-Features/Intensit
 <img src="media/sobel-filtered-magnitude.png" width="800" height="250" />
 
 
-### II.
+
+### II. Keypoint Tracking
+
+#### Harris Corner Detection
+
+The idea of keypoint detection is to detect a unique structure in an image that can be precisely located in both coordinate directions. As discussed in the previous section, corners are ideally suited for this purpose. In order to locate a corner, we consider how the content of the window would change when shifting it by a small amount. Such change is described by the *sum of squared differences (SSD)*.
+
+<img src="media/locate-a-corner.png" width="600" height="250" />
+
+A *covariance matrix* `Hw` is part of the calculation result of that change. The matrix `Hw` can be visualized as an eclipse, whose axis length and direction are given by its **eigenvalues** and **eigenvectors**. For *Harris Detector*, we can derive a corner response measure at every pixel location with the factor *k* being an empirical constant (0.04 ~ 0.06).
+
+<img src="media/harris-corner-response.png" width="800" height="300" />
+
+#### Exercise:
+
+After getting Harris corner response, it is time to perform a **non-maxima suppression (NMS)** to:
+1. ensure the pixel with maximum corner response in a local neighborhood
+2. prevent corners from being too close to each other
+
+In the [cornerness_harris.cpp](../Camera/Lesson-4-Tracking-Image-Features/Harris-Corner-Detection/cornerness_harris/src/cornerness_harris.cpp), first, the Harris Corner Response matrix is calculated. Then we locate a local maxima in the response matrix and perform NMS to it. ([2776d68](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/2776d68e13deaf24e7aebf0924803ed07e2069db))
+
+<img src="media/harris-corner-detection-exercise.png" width="800" height="250" />
+
 
 
 ### III.
