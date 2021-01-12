@@ -68,7 +68,7 @@ A *covariance matrix* `Hw` is part of the calculation result of that change. The
 
 <img src="media/harris-corner-response.png" width="800" height="300" />
 
-#### Exercise:
+#### Exercise: Harris Corner Response
 
 After getting Harris corner response, it is time to perform a **non-maxima suppression (NMS)** to:
 1. ensure the pixel with maximum corner response in a local neighborhood
@@ -78,7 +78,30 @@ In the [cornerness_harris.cpp](../Camera/Lesson-4-Tracking-Image-Features/Harris
 
 <img src="media/harris-corner-detection-exercise.png" width="800" height="250" />
 
+#### Invariance to Photometric and Geometric Changes
 
+Four basic transformation types we need to think about when selecting suitable keypoint detector:
+1. Rotation
+2. Scale change
+3. Intensity change
+4. Affine transformation
+
+Harris detector is robust under rotation and additive intensity shifts, but sensitive to scale change, multiplicative intensity shifts (i.e. change in contract), and affine transformations.
+
+- Classic detectors
+    * aim at maximizing the detection **accuracy**
+        + Harris Corner Detector
+        + Good Features to Track
+        + Scale Invariance Feature Transform
+        + Speeded Up Robust Features
+- Modern detectors
+    * aim at **speed**, **real-time** applications
+        + Features from Accelerated Segment Test (FAST)
+        + Binary Robust Independent Elementary Features (BRIEF)
+        + Oriented FAST and Rotated BRIEF (ORB)
+        + Binary Robust Invariant Scalable Keypoints (BRISK)
+        + Fast Retina Keypoint (FREAK)
+        + KAZE
 
 ### III.
 
