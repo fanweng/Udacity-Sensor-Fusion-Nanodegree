@@ -40,17 +40,31 @@ void detKeypoints1()
     }
 
     // visualize results
-    cv::Mat visImage = img.clone();
-    cv::drawKeypoints(img, kptsShiTomasi, visImage, cv::Scalar::all(-1), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
-    string windowName = "Shi-Tomasi Results";
-    cv::namedWindow(windowName, 1);
-    imshow(windowName, visImage);
+    cv::Mat visImage1 = img.clone();
+    cv::drawKeypoints(img, kptsShiTomasi, visImage1, cv::Scalar::all(-1), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+    string windowName1 = "Shi-Tomasi Results";
+    cv::namedWindow(windowName1, 1);
+    imshow(windowName1, visImage1);
+    cv::waitKey(0);
 
-    // TODO: use the OpenCV library to add the FAST detector
-    // in addition to the already implemented Shi-Tomasi 
-    // detector and compare both algorithms with regard to 
-    // (a) number of keypoints, (b) distribution of 
-    // keypoints over the image and (c) processing speed.
+    // FAST detector
+    int threshold = 30; // difference between intensity of the central pixel and pixels of a circle around this pixel
+    bool useNonMaxSuppression = true;
+
+    cv::Ptr<cv::FastFeatureDetector> fastDetector = cv::FastFeatureDetector::create(threshold, useNonMaxSuppression, cv::FastFeatureDetector::TYPE_9_16);
+
+    vector<cv::KeyPoint> kptsFast;
+    t = (double)cv::getTickCount();
+    fastDetector->detect(imgGray, kptsFast);
+    t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+    cout << "FAST with n= " << kptsFast.size() << " keypoints in " << 1000 * t / 1.0 << " ms" << endl;
+
+    cv::Mat visImage2 = img.clone();
+    cv::drawKeypoints(img, kptsFast, visImage2, cv::Scalar::all(-1), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+    string windowName2 = "FAST Results";
+    cv::namedWindow(windowName2, 1);
+    imshow(windowName2, visImage2);
+    cv::waitKey(0);
 }
 
 int main()
