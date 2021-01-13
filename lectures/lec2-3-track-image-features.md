@@ -91,7 +91,7 @@ Harris detector is robust under rotation and additive intensity shifts, but sens
 - Classic detectors
     * aim at maximizing the detection **accuracy**
         + Harris Corner Detector
-        + Good Features to Track
+        + Good Features to Track (Shi-Tomasi)
         + Scale Invariance Feature Transform
         + Speeded Up Robust Features
 - Modern detectors
@@ -102,6 +102,12 @@ Harris detector is robust under rotation and additive intensity shifts, but sens
         + Binary Robust Invariant Scalable Keypoints (BRISK)
         + Fast Retina Keypoint (FREAK)
         + KAZE
+
+#### Exercise: Shi-Tomasi vs. FAST
+
+In the [detect_keypoints.cpp](../Camera/Lesson-4-Tracking-Image-Features/Overview-of-Popular-Keypoint-Detectors/detect_keypoints/src/detect_keypoints.cpp), `cv::FastFeatureDetector::create()` a pointer to the `cv::FastFeatureDetector` object, call its `detect()` member function to extract the keypoints. Compare the number of keypoints, keypoints distribution, and processing speed with Shi-Tomasi detector. ([4d09290](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/4d09290b6d1227e173b07e49d20637dbf5d0f8a9))
+
+<img src="media/detector-comparison.png" width="800" height="400" />
 
 ### III.
 
