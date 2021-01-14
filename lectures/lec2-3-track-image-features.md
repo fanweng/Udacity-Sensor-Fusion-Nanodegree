@@ -1,7 +1,7 @@
 # Lesson 2-3 Tracking Image Features
 
 This lesson will show how to identify and track reliable and stable features through a sequence of images.
-1. Locate keypionts (point of interest)
+1. Locate keypionts (point of interest, salient point)
 
 
 
@@ -58,6 +58,10 @@ In the [magnitude_sobel.cpp](../Camera/Lesson-4-Tracking-Image-Features/Intensit
 
 ### II. Keypoint Tracking
 
+**Keypoint detector:** choose points from an image based on *a local maximum* of a function, such as the "cornerness" metric for Harris Corner Detector.
+
+**Descriptor:** a vector of values, which describes the image patch around a keypoint.
+
 #### Harris Corner Detection
 
 The idea of keypoint detection is to detect a unique structure in an image that can be precisely located in both coordinate directions. As discussed in the previous section, corners are ideally suited for this purpose. In order to locate a corner, we consider how the content of the window would change when shifting it by a small amount. Such change is described by the *sum of squared differences (SSD)*.
@@ -92,22 +96,51 @@ Harris detector is robust under rotation and additive intensity shifts, but sens
     * aim at maximizing the detection **accuracy**
         + Harris Corner Detector
         + Good Features to Track (Shi-Tomasi)
-        + Scale Invariance Feature Transform
+        + Scale Invariance Feature Transform (SIFT)
         + Speeded Up Robust Features
 - Modern detectors
     * aim at **speed**, **real-time** applications
         + Features from Accelerated Segment Test (FAST)
-        + Binary Robust Independent Elementary Features (BRIEF)
-        + Oriented FAST and Rotated BRIEF (ORB)
+        + Binary Robust Independent Elementary Features ([BRIEF](https://stackoverflow.com/questions/29870726/brief-implementation-with-opencv-2-4-10))
+        + Oriented FAST and Rotated BRIEF ([ORB](https://docs.opencv.org/3.4/d1/d89/tutorial_py_orb.html))
         + Binary Robust Invariant Scalable Keypoints (BRISK)
         + Fast Retina Keypoint (FREAK)
         + KAZE
+        + Accelerated-KAZE ([AKAZE](https://docs.opencv.org/3.4/db/d70/tutorial_akaze_matching.html))
 
 #### Exercise: Shi-Tomasi vs. FAST
 
 In the [detect_keypoints.cpp](../Camera/Lesson-4-Tracking-Image-Features/Overview-of-Popular-Keypoint-Detectors/detect_keypoints/src/detect_keypoints.cpp), `cv::FastFeatureDetector::create()` a pointer to the `cv::FastFeatureDetector` object, call its `detect()` member function to extract the keypoints. Compare the number of keypoints, keypoints distribution, and processing speed with Shi-Tomasi detector. ([4d09290](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/4d09290b6d1227e173b07e49d20637dbf5d0f8a9))
 
 <img src="media/detector-comparison.png" width="800" height="400" />
+
+#### Detectors and Descriptors
+
+Descriptor provides a distinctive information on the surrounding area of a keypoint. It helps assigning similar keypoints in different images to each other.
+
+- **Gradient-based** descriptor: SIFT
+    * based on Histograms of Oriented Gradients (HOG)
+        + the idea is to describe the structure of an object by the distribution of its intensity gradients in a local neighborhood
+    * advantages
+        + robust at identifying objects even among clutter and under partial occlusion
+        + invariant to uniform changes in scale, to rotation, to changes in both brightness and contrast
+        + partially invariant to affine distortions
+    * disadvantages
+        + low speed due to computing the intensity gradients
+        + heavily patented, not free to use
+
+<img src="media/sift-procedures.png" width="800" height="170" />
+
+- **Binary** descriptor: BRISK
+    * solely rely on the intensity information, and encode the information around a keypoint in a string of binary numbers
+    * components
+        + **sampling pattern:** describes where sample points are located around the keypoint
+        + **orientation compensation:** removes the influence of rotation of the image patch around the keypoint
+        + **sample-pair selection:** generates pairs of sample points that are compared against each other with regard to their intensity values
+
+- OpenCV for detectors and descriptors
+    * [FeatureDetector](https://docs.opencv.org/2.4/modules/features2d/doc/common_interfaces_of_feature_detectors.html#featuredetector-create) and [DescriptorExtractor](https://docs.opencv.org/2.4/modules/features2d/doc/common_interfaces_of_descriptor_extractors.html#descriptorextractor-create) share a few common algorithms
+    * [Overview](https://docs.opencv.org/2.4/modules/features2d/doc/feature_detection_and_description.html) of feature detection and descriptor classes
 
 ### III.
 
