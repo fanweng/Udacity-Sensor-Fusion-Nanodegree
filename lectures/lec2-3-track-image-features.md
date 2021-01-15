@@ -142,6 +142,8 @@ Descriptor provides a distinctive information on the surrounding area of a keypo
     * [FeatureDetector](https://docs.opencv.org/2.4/modules/features2d/doc/common_interfaces_of_feature_detectors.html#featuredetector-create) and [DescriptorExtractor](https://docs.opencv.org/2.4/modules/features2d/doc/common_interfaces_of_descriptor_extractors.html#descriptorextractor-create) share a few common algorithms
     * [Overview](https://docs.opencv.org/2.4/modules/features2d/doc/feature_detection_and_description.html) of feature detection and descriptor classes
 
+#### Exercise: HOG vs. Binary
+
 ### III.
 
 
