@@ -144,6 +144,10 @@ Descriptor provides a distinctive information on the surrounding area of a keypo
 
 #### Exercise: HOG vs. Binary
 
+In the [describe_keypoints.cpp](../Camera/Lesson-4-Tracking-Image-Features/Gradient-based-vs-Binary-Descriptors/describe_keypoints/src/describe_keypoints.cpp), add HOG-based algorithm *SIFT* to compute the keypoints, compare the processing speed, number of keypoints, and the distribution of the keypoints with the Binary algorithm *BRISK*. ([c51971b](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/c51971b4aaf6f42320d716bf54655c925b3fb2a0))
+
+<img src="media/brisk-vs-sift.png" width="900" height="400" />
+
 ### III.
 
 
