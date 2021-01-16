@@ -62,7 +62,7 @@ In the [magnitude_sobel.cpp](../Camera/Lesson-4-Tracking-Image-Features/Intensit
 
 **Descriptor:** a vector of values, which describes the image patch around a keypoint.
 
-#### Harris Corner Detection
+#### 1. Harris Corner Detection
 
 The idea of keypoint detection is to detect a unique structure in an image that can be precisely located in both coordinate directions. As discussed in the previous section, corners are ideally suited for this purpose. In order to locate a corner, we consider how the content of the window would change when shifting it by a small amount. Such change is described by the *sum of squared differences (SSD)*.
 
@@ -82,7 +82,7 @@ In the [cornerness_harris.cpp](../Camera/Lesson-4-Tracking-Image-Features/Harris
 
 <img src="media/harris-corner-detection-exercise.png" width="800" height="250" />
 
-#### Invariance to Photometric and Geometric Changes
+#### 2. Invariance to Photometric and Geometric Changes
 
 Four basic transformation types we need to think about when selecting suitable keypoint detector:
 1. Rotation
@@ -114,7 +114,7 @@ In the [detect_keypoints.cpp](../Camera/Lesson-4-Tracking-Image-Features/Overvie
 
 <img src="media/detector-comparison.png" width="800" height="400" />
 
-#### Detectors and Descriptors
+#### 3. Detectors and Descriptors
 
 Descriptor provides a distinctive information on the surrounding area of a keypoint. It helps assigning similar keypoints in different images to each other.
 
@@ -147,6 +147,38 @@ Descriptor provides a distinctive information on the surrounding area of a keypo
 In the [describe_keypoints.cpp](../Camera/Lesson-4-Tracking-Image-Features/Gradient-based-vs-Binary-Descriptors/describe_keypoints/src/describe_keypoints.cpp), add HOG-based algorithm *SIFT* to compute the keypoints, compare the processing speed, number of keypoints, and the distribution of the keypoints with the Binary algorithm *BRISK*. ([c51971b](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/c51971b4aaf6f42320d716bf54655c925b3fb2a0))
 
 <img src="media/brisk-vs-sift.png" width="900" height="400" />
+
+#### 4. Descriptor Matching
+
+Once locating and describing a set of keypoints in a sequence of images, the next step is to find the best fit for each keypoints in successive frames. We need to implement a suitable similarity measures to uniquely assign keypoint pairs. One simple measure is to compute the distance between two descriptors.
+
+- Sum of Absolute Differences (SAD)
+    * SAD norm is also referred as L1-norm
+- Sum of Squared Differences (SSD)
+    * SSD norm is also referred as L2-norm
+    * better for gradient-based descriptors
+- Hamming Distance (HD)
+    * best for binary descriptors who consist only `0` or `1`
+    * compute by using `XOR` function
+        + return `0` if two bits are identical; return `1` if two bits are different
+        + sum of all `XOR` operations is simply the number of differing bits between both descriptors
+
+<img src="media/distance-measures.png" width="400" height="300" />
+
+- Methods to find matching pairs based on distance measures
+    * Brutal force matching
+        + for a given keypoints from the first image, calculates the distances to every keypoint in the second image
+    * Fast library for approximate nearest neighbors (FLANN)
+        + build KD-tree to search for potential matching pairs efficiently instead of an exhaustive search
+
+Both matching algorithms accept a descriptor distance threshold *T* which is used to limit the number of matches to the "good" ones, and discard matches where the respective pairs are no correspondences. False matches are inevitably existing, to counteract that, we use **cross checking matching**. It applies the matching procedure in both directions, and keep only those matches whose best match in one direction equals the best match in the other direction.
+
+#### Exercise: Brutal Force vs. FLANN
+
+In the [descriptor_matching.cpp](../Camera/Lesson-4-Tracking-Image-Features/Descriptor-Matching/descriptor_matching/src/descriptor_matching.cpp), implement the FLANN matching and the k-nearest-neighbor *KNN* selection (keeping the best k matches per keypoint). Compare the results with Brutal Force matching with nearest-neighbor *NN* selection (keeping only the best match). ([720b82d](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/720b82d618cb24f9c9b352701e7b704438cbe9d3))
+
+<img src="media/BF-vs-FLANN-matching.png" width="900" height="350" />
+
 
 ### III.
 
