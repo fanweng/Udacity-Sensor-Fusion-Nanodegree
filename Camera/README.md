@@ -42,7 +42,7 @@ This repo contains lesson-wise exercises and corresponding solutions for Udacity
 3. OpenCV >= 4.1
     * This must be compiled from source using the `-D OPENCV_ENABLE_NONFREE=ON` cmake flag for testing the SIFT and SURF detectors.
     * The OpenCV 4.1.0 source code can be found [here](https://github.com/opencv/opencv/tree/4.1.0)
-    * Install the OpenCV dependencies and build from the source
+    * Install the OpenCV dependencies as well as OpenCV Contrib for extra modules, then build from the source. Instruction [HERE](http://techawarey.com/programming/install-opencv-c-c-in-ubuntu-18-04-lts-step-by-step-guide/).
 ```bash
 # compiler
 $ sudo apt-get install build-essential
@@ -52,9 +52,10 @@ $ sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavfo
 $ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev
 
 $ git clone https://github.com/opencv/opencv.git
+$ git clone https://github.com/opencv/opencv_contrib.git <opencv_contrib_dir>
 $ cd ./opencv
 $ mkdir build && cd build
-$ cmake -DOPENCV_ENABLE_NONFREE=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
+$ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib_dir>/modules -DOPENCV_ENABLE_NONFREE=ON ..
 $ make -j4
 $ sudo make install
 ```
