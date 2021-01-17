@@ -6,16 +6,16 @@ This repo contains lesson-wise exercises and corresponding solutions for Udacity
 
 ### I. List of Lesson-wise Exercises
 
-- Lesson exercises is available here - https://github.com/udacity/SFND_Camera
-    * Lesson 2: Autonomous Vehicles and Computer Vision
+- Original source code of lesson exercises is available here - https://github.com/udacity/SFND_Camera
+    * Lesson 2: Autonomous Vehicles and Computer Vision ([Lecture notes](../lectures/lec2-1-av-and-opencv.md))
         + The OpenCV Library
-    * Lesson 3: Engineering a Collision Detection System
+    * Lesson 3: Engineering a Collision Detection System ([Lecture notes](../lectures/lec2-2-collision-detection-system.md))
         + Estimating TTC with Camera
         + Estimating TTC with Lidar
-    * Lesson 4: Tracking Image Features
+    * Lesson 4: Tracking Image Features ([Lecture notes](../lectures/lec2-3-track-image-features.md))
         + Descriptor Matching
         + Gradient-based vs. Binary Descriptors
-        + Haris Corner Detection
+        + Harris Corner Detection
         + Intensity Gradient and Filtering
         + Overview of Popular Keypoint Detectors
     * Lesson 6: Combining Camera and Lidar
@@ -25,7 +25,9 @@ This repo contains lesson-wise exercises and corresponding solutions for Udacity
 
 - Projects
     * Lesson 5: Starter code for "Project: Camera Based 2D Feature Tracking" is available here - https://github.com/udacity/SFND_2D_Feature_Tracking
+        + Project report ([HERE](./Lesson-5-Project-2D-Feature-Tracking/README.md))
     * Lesson 7: Starter code for "Project: Track an Object in 3D Space" is available here - https://github.com/udacity/SFND_3D_Object_Tracking
+        + Project report ([HERE](./Lesson-7-Project-3D-Object-Tracking/README.md))
 
 
 
