@@ -24,6 +24,18 @@ int main(int argc, const char *argv[])
 
     /* INIT VARIABLES AND DATA STRUCTURES */
 
+    string detectorType = "";
+    if (argc != 2)
+    {
+        cerr << "Error: Wrong input arguments. Exited the program." << endl;
+        cout << "Usage: ./2D_feature_tracking [detectorType]" << endl;
+        cout << "[detectorType]: SHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT" << endl;
+    }
+    else
+    {
+        detectorType = argv[1];
+    }
+
     // data location
     string dataPath = "../";
 
@@ -72,21 +84,27 @@ int main(int argc, const char *argv[])
 
         // extract 2D keypoints from current image
         vector<cv::KeyPoint> keypoints; // create empty feature list for current image
-        string detectorType = "SHITOMASI";
 
-        //// STUDENT ASSIGNMENT
-        //// TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
-        //// -> HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
+        // TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
+        // -> HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
 
         if (detectorType.compare("SHITOMASI") == 0)
         {
             detKeypointsShiTomasi(keypoints, imgGray, false);
         }
+        else if (detectorType.compare("HARRIS") == 0)
+        {
+            detKeypointsHarris(keypoints, imgGray, false, false);
+        }
+        else if ((detectorType.compare("FAST") == 0) || (detectorType.compare("BRISK") == 0) || (detectorType.compare("ORB") == 0) || (detectorType.compare("AKAZE") == 0) || (detectorType.compare("SIFT") == 0))
+        {
+            detKeypointsModern(keypoints, imgGray, detectorType, false);
+        }
         else
         {
-            //...
+            cerr << "#2 : DETECT KEYPOINTS failed. Wrong detectorType - " << detectorType << ". Use one of the following detectors: SHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT" << endl;
+            return -1;
         }
-        //// EOF STUDENT ASSIGNMENT
 
         //// STUDENT ASSIGNMENT
         //// TASK MP.3 -> only keep keypoints on the preceding vehicle
