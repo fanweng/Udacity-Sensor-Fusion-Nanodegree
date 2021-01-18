@@ -41,17 +41,69 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
     cv::Ptr<cv::DescriptorExtractor> extractor;
     if (descriptorType.compare("BRISK") == 0)
     {
-
         int threshold = 30;        // FAST/AGAST detection threshold score.
         int octaves = 3;           // detection octaves (use 0 to do single scale)
         float patternScale = 1.0f; // apply this scale to the pattern used for sampling the neighbourhood of a keypoint.
 
         extractor = cv::BRISK::create(threshold, octaves, patternScale);
     }
+    else if (descriptorType.compare("BRIEF") == 0)
+    {
+        int bytes = 32;
+        bool bOrientation = false;
+
+        extractor = cv::xfeatures2d::BriefDescriptorExtractor::create(bytes, bOrientation);
+    }
+    else if (descriptorType.compare("ORB") == 0)
+    {
+        int nfeatures = 500;
+        float scaleFactor = 1.2f;
+        int nlevels = 8;
+        int edgeThreshold = 31;
+        int firstLevel = 0;
+        int WTA_K = 2;
+        cv::ORB::ScoreType scoreType = cv::ORB::HARRIS_SCORE;
+        int patchSize = 31;
+        int fastThreshold = 20;
+
+        extractor = cv::ORB::create(nfeatures, scaleFactor, nlevels, edgeThreshold, firstLevel, WTA_K, scoreType, patchSize, fastThreshold);
+    }
+    else if (descriptorType.compare("FREAK") == 0)
+    {
+        bool orientationNormalized = true;
+        bool scaleNormalized = true;
+        float patternScale = 22.0f;
+        int nOctaves = 4;
+        const std::vector<int> selectedPairs = std::vector<int>();
+
+        extractor = cv::xfeatures2d::FREAK::create(orientationNormalized, scaleNormalized, patternScale, nOctaves, selectedPairs);
+    }
+    else if (descriptorType.compare("AKAZE") == 0)
+    {
+        cv::AKAZE::DescriptorType descriptorType = cv::AKAZE::DESCRIPTOR_MLDB;
+        int descriptorSize = 0;
+        int descriptorChannels = 3;
+        float threshold = 0.001f;
+        int nOctaves = 4;
+        int nOctaveLayers = 4;
+        cv::KAZE::DiffusivityType diffusivity = cv::KAZE::DIFF_PM_G2;
+
+        extractor = cv::AKAZE::create(descriptorType, descriptorSize, descriptorChannels, threshold, nOctaves, nOctaveLayers, diffusivity);
+    }
+    else if (descriptorType.compare("SIFT") == 0)
+    {
+        int nfeatures = 0;
+        int nOctaveLayers = 3;
+        double contrastThreshold = 0.04;
+        double edgeThreshold = 10.0;
+        double sigma = 1.6;
+
+        extractor = cv::xfeatures2d::SIFT::create(nfeatures, nOctaveLayers, contrastThreshold, edgeThreshold, sigma);
+    }
     else
     {
-
-        //...
+        cerr << "#3 : EXTRACT DESCRIPTORS failed. Wrong descriptorType - " << descriptorType << ". Use one of the following descriptors: BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT" << endl;
+        exit(-1);
     }
 
     // perform feature description
@@ -123,8 +175,6 @@ void detKeypointsHarris(vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool bVis
     cv::convertScaleAbs(dst_norm, dst_norm_scaled);
 
     // locate local maxima in the Harris response matrix
-    // vector<cv::KeyPoint> keypoints;
-    // double maxOverlap = 0.0;
     for (int j = 0; j < dst_norm.rows; j++)
     {
         for (int i = 0; i < dst_norm.cols; i++)
@@ -246,7 +296,7 @@ void detKeypointsModern(vector<cv::KeyPoint> &keypoints, cv::Mat &img, std::stri
     detector->detect(img, keypoints);
     t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
     cout << detectorType << " detector with n=" << keypoints.size() << " keypoints in " << 1000 * t / 1.0 << " ms" << endl;
-    
+
     string windowName = detectorType + " Detector Results";
 
     // visualize results

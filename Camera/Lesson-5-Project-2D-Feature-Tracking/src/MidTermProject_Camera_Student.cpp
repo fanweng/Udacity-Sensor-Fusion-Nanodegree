@@ -25,15 +25,18 @@ int main(int argc, const char *argv[])
     /* INIT VARIABLES AND DATA STRUCTURES */
 
     string detectorType = "";
-    if (argc != 2)
+    string descriptorType = "";
+    if (argc != 3)
     {
         cerr << "Error: Wrong input arguments. Exited the program." << endl;
-        cout << "Usage: ./2D_feature_tracking [detectorType]" << endl;
+        cout << "Usage: ./2D_feature_tracking [detectorType] [descriptorType" << endl;
         cout << "[detectorType]: SHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT" << endl;
+        cout << "[descriptorType]: BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT" << endl;
     }
     else
     {
         detectorType = argv[1];
+        descriptorType = argv[2];
     }
 
     // data location
@@ -103,7 +106,7 @@ int main(int argc, const char *argv[])
         else
         {
             cerr << "#2 : DETECT KEYPOINTS failed. Wrong detectorType - " << detectorType << ". Use one of the following detectors: SHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT" << endl;
-            return -1;
+            exit(-1);
         }
 
         // TASK MP.3 -> only keep keypoints on the preceding vehicle
@@ -144,14 +147,10 @@ int main(int argc, const char *argv[])
 
         /* EXTRACT KEYPOINT DESCRIPTORS */
 
-        //// STUDENT ASSIGNMENT
-        //// TASK MP.4 -> add the following descriptors in file matching2D.cpp and enable string-based selection based on descriptorType
-        //// -> BRIEF, ORB, FREAK, AKAZE, SIFT
-
+        // TASK MP.4 -> add the following descriptors in file matching2D.cpp and enable string-based selection based on descriptorType
+        // -> BRIEF, ORB, FREAK, AKAZE, SIFT
         cv::Mat descriptors;
-        string descriptorType = "BRISK"; // BRIEF, ORB, FREAK, AKAZE, SIFT
         descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType);
-        //// EOF STUDENT ASSIGNMENT
 
         // push descriptors for current frame to end of data buffer
         (dataBuffer.end() - 1)->descriptors = descriptors;
