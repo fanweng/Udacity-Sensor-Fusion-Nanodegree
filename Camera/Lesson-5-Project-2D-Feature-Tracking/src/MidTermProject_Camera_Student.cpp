@@ -246,13 +246,13 @@ int main(int argc, const char *argv[])
                 string windowName = "Matching keypoints between two camera images";
                 cv::namedWindow(windowName, 7);
                 cv::imshow(windowName, matchImg);
-                cout << "Press key to continue to next image" << endl;
                 if (bLogging) {
                     string resultImg = "../results/" + detectorType + "-" + descriptorType + "-img" + imgNumber.str() + imgFileType;
                     cv::imwrite(resultImg, matchImg);
                 }
                 else
                 {
+                    cout << "Press key to continue to next image" << endl;
                     cv::waitKey(0); // wait for key to be pressed
                 }
             }
