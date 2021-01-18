@@ -106,18 +106,23 @@ int main(int argc, const char *argv[])
             return -1;
         }
 
-        //// STUDENT ASSIGNMENT
-        //// TASK MP.3 -> only keep keypoints on the preceding vehicle
-
+        // TASK MP.3 -> only keep keypoints on the preceding vehicle
         // only keep keypoints on the preceding vehicle
         bool bFocusOnVehicle = true;
         cv::Rect vehicleRect(535, 180, 180, 150);
         if (bFocusOnVehicle)
         {
-            // ...
+            vector<cv::KeyPoint> keypointsROI;
+            for (auto it = keypoints.begin(); it != keypoints.end(); ++it)
+            {
+                if (vehicleRect.contains(it->pt))
+                {
+                    keypointsROI.push_back(*it);
+                }
+            }
+            keypoints = keypointsROI;
+            cout << detectorType << " detector with n=" << keypoints.size() << " keypoints in the rectangle ROI" << endl;
         }
-
-        //// EOF STUDENT ASSIGNMENT
 
         // optional : limit number of keypoints (helpful for debugging and learning)
         bool bLimitKpts = false;
