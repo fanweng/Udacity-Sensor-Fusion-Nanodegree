@@ -1,0 +1,89 @@
+root@3d21b1fca8cd:/home/workspace/Udacity-Sensor-Fusion-Nanodegree/Camera/Lesson
+-5-Project-2D-Feature-Tracking/build# ./2D_feature_tracking HARRIS SIFT MAT_FLANN DES_HOG SEL_KNN
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=339 keypoints in 23.2118 ms
+HARRIS detector with n=51 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 31.8005 ms
+#3 : EXTRACT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=286 keypoints in 24.3156 ms
+HARRIS detector with n=41 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 24.0041 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=51 matches in 0.822618 ms
+Distance ratio test removed 30 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=349 keypoints in 18.7367 ms
+HARRIS detector with n=63 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 32.7306 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=41 matches in 1.23738 ms
+Distance ratio test removed 29 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=356 keypoints in 20.4491 ms
+HARRIS detector with n=58 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 28.7846 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=63 matches in 1.59228 ms
+Distance ratio test removed 39 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=521 keypoints in 19.888 ms
+HARRIS detector with n=85 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 25.8368 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=58 matches in 1.16178 ms
+Distance ratio test removed 36 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=2611 keypoints in 16.1399 ms
+HARRIS detector with n=322 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 46.1503 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=85 matches in 3.80676 ms
+Distance ratio test removed 62 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=200 keypoints in 21.1642 ms
+HARRIS detector with n=38 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 25.0581 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=322 matches in 6.18614 ms
+Distance ratio test removed 226 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=806 keypoints in 17.0612 ms
+HARRIS detector with n=136 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 37.0754 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=38 matches in 1.33273 ms
+Distance ratio test removed 23 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=572 keypoints in 16.6208 ms
+HARRIS detector with n=96 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 30.0537 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=136 matches in 3.3488 ms
+Distance ratio test removed 85 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=1471 keypoints in 23.1421 ms
+HARRIS detector with n=194 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 36.9809 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=96 matches in 2.27427 ms
+Distance ratio test removed 48 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done

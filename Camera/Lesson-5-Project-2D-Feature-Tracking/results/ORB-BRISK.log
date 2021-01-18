@@ -1,0 +1,89 @@
+root@3d21b1fca8cd:/home/workspace/Udacity-Sensor-Fusion-Nanodegree/Camera/Lesson
+-5-Project-2D-Feature-Tracking/build# ./2D_feature_tracking ORB BRISK MAT_BF DES_BINARY SEL_KNN
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 13.1849 ms
+ORB detector with n=92 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 2.47095 ms
+#3 : EXTRACT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 9.51256 ms
+ORB detector with n=102 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 1.4477 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=83 matches in 0.363503 ms
+Distance ratio test removed 10 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 9.08888 ms
+ORB detector with n=106 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 1.4539 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=93 matches in 0.330805 ms
+Distance ratio test removed 19 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 9.0551 ms
+ORB detector with n=113 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 1.58699 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=95 matches in 0.363516 ms
+Distance ratio test removed 16 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 9.15299 ms
+ORB detector with n=109 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 1.52059 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=103 matches in 0.391864 ms
+Distance ratio test removed 18 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 8.38283 ms
+ORB detector with n=125 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 1.75462 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=101 matches in 0.409049 ms
+Distance ratio test removed 22 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.99736 ms
+ORB detector with n=130 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 1.71093 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=116 matches in 0.501972 ms
+Distance ratio test removed 24 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.86897 ms
+ORB detector with n=129 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 1.79225 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=120 matches in 0.506288 ms
+Distance ratio test removed 30 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 8.66563 ms
+ORB detector with n=127 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 1.6931 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=120 matches in 0.486422 ms
+Distance ratio test removed 32 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.69704 ms
+ORB detector with n=128 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 1.76834 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=119 matches in 0.485497 ms
+Distance ratio test removed 28 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done

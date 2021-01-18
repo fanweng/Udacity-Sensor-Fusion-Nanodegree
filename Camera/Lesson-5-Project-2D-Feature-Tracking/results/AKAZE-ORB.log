@@ -1,0 +1,89 @@
+root@3d21b1fca8cd:/home/workspace/Udacity-Sensor-Fusion-Nanodegree/Camera/Lesson
+-5-Project-2D-Feature-Tracking/build# ./2D_feature_tracking AKAZE ORB MAT_BF DES_BINARY SEL_KNN
+#1 : LOAD IMAGE INTO BUFFER done
+AKAZE detector with n=1351 keypoints in 126.465 ms
+AKAZE detector with n=166 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 5.67639 ms
+#3 : EXTRACT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+AKAZE detector with n=1327 keypoints in 133.516 ms
+AKAZE detector with n=157 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 12.0735 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=166 matches in 0.862183 ms
+Distance ratio test removed 35 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+AKAZE detector with n=1311 keypoints in 129.259 ms
+AKAZE detector with n=161 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 7.73621 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=157 matches in 1.05584 ms
+Distance ratio test removed 28 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+AKAZE detector with n=1351 keypoints in 134.577 ms
+AKAZE detector with n=155 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 7.06056 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=161 matches in 1.29425 ms
+Distance ratio test removed 33 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+AKAZE detector with n=1360 keypoints in 147.668 ms
+AKAZE detector with n=163 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 4.866 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=155 matches in 1.28725 ms
+Distance ratio test removed 37 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+AKAZE detector with n=1347 keypoints in 153.64 ms
+AKAZE detector with n=164 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 7.46284 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=163 matches in 1.30358 ms
+Distance ratio test removed 32 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+AKAZE detector with n=1363 keypoints in 156.023 ms
+AKAZE detector with n=173 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 7.79381 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=164 matches in 1.73805 ms
+Distance ratio test removed 32 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+AKAZE detector with n=1331 keypoints in 118.554 ms
+AKAZE detector with n=175 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 5.70292 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=173 matches in 1.4533 ms
+Distance ratio test removed 35 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+AKAZE detector with n=1357 keypoints in 132.241 ms
+AKAZE detector with n=177 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 5.27674 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=175 matches in 1.49398 ms
+Distance ratio test removed 40 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+AKAZE detector with n=1331 keypoints in 122.777 ms
+AKAZE detector with n=179 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 5.70515 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=177 matches in 1.56766 ms
+Distance ratio test removed 31 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done

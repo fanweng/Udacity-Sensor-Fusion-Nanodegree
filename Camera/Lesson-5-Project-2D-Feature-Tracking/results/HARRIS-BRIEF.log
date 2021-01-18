@@ -1,0 +1,89 @@
+root@3d21b1fca8cd:/home/workspace/Udacity-Sensor-Fusion-Nanodegree/Camera/Lesson
+-5-Project-2D-Feature-Tracking/build# ./2D_feature_tracking HARRIS BRIEF MAT_BF DES_BINARY SEL_KNN
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=339 keypoints in 21.8032 ms
+HARRIS detector with n=51 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRIEF descriptor extraction in 0.659955 ms
+#3 : EXTRACT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=286 keypoints in 18.4431 ms
+HARRIS detector with n=41 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRIEF descriptor extraction in 0.590865 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=51 matches in 0.226268 ms
+Distance ratio test removed 24 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=349 keypoints in 22.109 ms
+HARRIS detector with n=63 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRIEF descriptor extraction in 1.25196 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=41 matches in 0.349997 ms
+Distance ratio test removed 18 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=356 keypoints in 22.9627 ms
+HARRIS detector with n=58 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRIEF descriptor extraction in 1.27164 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=63 matches in 0.179005 ms
+Distance ratio test removed 14 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=521 keypoints in 20.2379 ms
+HARRIS detector with n=85 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRIEF descriptor extraction in 1.36625 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=58 matches in 0.215715 ms
+Distance ratio test removed 28 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=2611 keypoints in 22.9405 ms
+HARRIS detector with n=322 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRIEF descriptor extraction in 2.09224 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=85 matches in 0.870111 ms
+Distance ratio test removed 58 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=200 keypoints in 20.1603 ms
+HARRIS detector with n=38 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRIEF descriptor extraction in 1.22192 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=322 matches in 0.479088 ms
+Distance ratio test removed 206 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=806 keypoints in 20.5433 ms
+HARRIS detector with n=136 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRIEF descriptor extraction in 1.47732 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=38 matches in 0.209476 ms
+Distance ratio test removed 20 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=572 keypoints in 22.94 ms
+HARRIS detector with n=96 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRIEF descriptor extraction in 1.32071 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=136 matches in 0.437224 ms
+Distance ratio test removed 59 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=1471 keypoints in 17.0294 ms
+HARRIS detector with n=194 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRIEF descriptor extraction in 1.60278 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=96 matches in 0.558646 ms
+Distance ratio test removed 42 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done

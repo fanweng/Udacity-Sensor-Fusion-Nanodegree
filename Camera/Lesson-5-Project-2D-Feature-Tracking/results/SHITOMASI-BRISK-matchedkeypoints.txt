@@ -1,0 +1,18 @@
+===>>>../images/KITTI/2011_09_26/image_00/data/0000000001.png
+Extracted 95 matched keypoints
+===>>>../images/KITTI/2011_09_26/image_00/data/0000000002.png
+Extracted 88 matched keypoints
+===>>>../images/KITTI/2011_09_26/image_00/data/0000000003.png
+Extracted 80 matched keypoints
+===>>>../images/KITTI/2011_09_26/image_00/data/0000000004.png
+Extracted 90 matched keypoints
+===>>>../images/KITTI/2011_09_26/image_00/data/0000000005.png
+Extracted 83 matched keypoints
+===>>>../images/KITTI/2011_09_26/image_00/data/0000000006.png
+Extracted 80 matched keypoints
+===>>>../images/KITTI/2011_09_26/image_00/data/0000000007.png
+Extracted 86 matched keypoints
+===>>>../images/KITTI/2011_09_26/image_00/data/0000000008.png
+Extracted 86 matched keypoints
+===>>>../images/KITTI/2011_09_26/image_00/data/0000000009.png
+Extracted 82 matched keypoints

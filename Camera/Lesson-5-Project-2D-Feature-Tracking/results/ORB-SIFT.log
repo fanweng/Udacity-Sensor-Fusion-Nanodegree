@@ -1,0 +1,89 @@
+root@3d21b1fca8cd:/home/workspace/Udacity-Sensor-Fusion-Nanodegree/Camera/Lesson
+-5-Project-2D-Feature-Tracking/build# ./2D_feature_tracking ORB SIFT MAT_FLANN DES_HOG SEL_KNN
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 19.1798 ms
+ORB detector with n=92 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 83.7849 ms
+#3 : EXTRACT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.71473 ms
+ORB detector with n=102 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 70.4605 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=92 matches in 1.69226 ms
+Distance ratio test removed 25 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 8.09822 ms
+ORB detector with n=106 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 90.9645 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=102 matches in 1.83365 ms
+Distance ratio test removed 23 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 8.09657 ms
+ORB detector with n=113 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 81.6361 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=106 matches in 1.85179 ms
+Distance ratio test removed 28 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 9.74978 ms
+ORB detector with n=109 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 71.5779 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=113 matches in 2.03775 ms
+Distance ratio test removed 33 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.63277 ms
+ORB detector with n=125 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 84.5618 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=109 matches in 1.94163 ms
+Distance ratio test removed 27 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.54453 ms
+ORB detector with n=130 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 84.2565 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=125 matches in 2.22211 ms
+Distance ratio test removed 30 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.77006 ms
+ORB detector with n=129 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 90.1622 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=130 matches in 2.23754 ms
+Distance ratio test removed 35 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 11.3191 ms
+ORB detector with n=127 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 90.7814 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=129 matches in 3.57388 ms
+Distance ratio test removed 35 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 10.7545 ms
+ORB detector with n=128 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 85.4805 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=127 matches in 2.20753 ms
+Distance ratio test removed 33 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done

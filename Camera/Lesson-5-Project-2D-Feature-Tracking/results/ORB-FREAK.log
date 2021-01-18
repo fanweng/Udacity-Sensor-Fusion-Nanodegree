@@ -1,0 +1,89 @@
+root@3d21b1fca8cd:/home/workspace/Udacity-Sensor-Fusion-Nanodegree/Camera/Lesson
+-5-Project-2D-Feature-Tracking/build# ./2D_feature_tracking ORB FREAK MAT_BF DES_BINARY SEL_KNN
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 13.3015 ms
+ORB detector with n=92 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+FREAK descriptor extraction in 55.9242 ms
+#3 : EXTRACT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 11.9219 ms
+ORB detector with n=102 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+FREAK descriptor extraction in 57.4345 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=46 matches in 0.215102 ms
+Distance ratio test removed 4 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 8.25796 ms
+ORB detector with n=106 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+FREAK descriptor extraction in 62.4854 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=53 matches in 0.408817 ms
+Distance ratio test removed 17 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.86251 ms
+ORB detector with n=113 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+FREAK descriptor extraction in 57.5317 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=56 matches in 0.209631 ms
+Distance ratio test removed 12 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.62304 ms
+ORB detector with n=109 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+FREAK descriptor extraction in 60.9597 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=65 matches in 0.199565 ms
+Distance ratio test removed 18 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 8.08391 ms
+ORB detector with n=125 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+FREAK descriptor extraction in 60.4085 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=55 matches in 0.181259 ms
+Distance ratio test removed 11 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.5767 ms
+ORB detector with n=130 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+FREAK descriptor extraction in 58.2916 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=64 matches in 0.243438 ms
+Distance ratio test removed 13 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.76372 ms
+ORB detector with n=129 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+FREAK descriptor extraction in 57.2728 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=66 matches in 0.220339 ms
+Distance ratio test removed 14 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.45186 ms
+ORB detector with n=127 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+FREAK descriptor extraction in 58.4792 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=71 matches in 0.239073 ms
+Distance ratio test removed 23 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.77132 ms
+ORB detector with n=128 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+FREAK descriptor extraction in 54.0111 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=73 matches in 0.243814 ms
+Distance ratio test removed 17 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done

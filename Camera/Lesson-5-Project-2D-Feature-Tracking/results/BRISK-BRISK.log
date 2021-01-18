@@ -1,0 +1,89 @@
+root@3d21b1fca8cd:/home/workspace/Udacity-Sensor-Fusion-Nanodegree/Camera/Lesson
+-5-Project-2D-Feature-Tracking/build# ./2D_feature_tracking BRISK BRISK MAT_BF DES_BINARY SEL_KNN
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2757 keypoints in 51.8044 ms
+BRISK detector with n=264 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 4.37331 ms
+#3 : EXTRACT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2777 keypoints in 51.9275 ms
+BRISK detector with n=282 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 3.85853 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=264 matches in 2.24912 ms
+Distance ratio test removed 93 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2741 keypoints in 48.7226 ms
+BRISK detector with n=282 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 3.4514 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=282 matches in 2.28165 ms
+Distance ratio test removed 104 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2735 keypoints in 47.4942 ms
+BRISK detector with n=277 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 3.41089 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=282 matches in 2.45928 ms
+Distance ratio test removed 124 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2757 keypoints in 47.1645 ms
+BRISK detector with n=297 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 3.82341 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=277 matches in 2.40912 ms
+Distance ratio test removed 101 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2695 keypoints in 47.5469 ms
+BRISK detector with n=279 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 3.52187 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=297 matches in 2.42025 ms
+Distance ratio test removed 122 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2715 keypoints in 47.7009 ms
+BRISK detector with n=289 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 3.6309 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=279 matches in 2.35542 ms
+Distance ratio test removed 89 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2628 keypoints in 46.5507 ms
+BRISK detector with n=272 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 3.93563 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=289 matches in 2.40283 ms
+Distance ratio test removed 116 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2639 keypoints in 46.7277 ms
+BRISK detector with n=266 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 3.27428 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=272 matches in 2.0539 ms
+Distance ratio test removed 101 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2672 keypoints in 49.225 ms
+BRISK detector with n=254 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+BRISK descriptor extraction in 3.16268 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=266 matches in 1.91684 ms
+Distance ratio test removed 82 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done

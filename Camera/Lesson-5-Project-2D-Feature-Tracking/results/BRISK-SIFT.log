@@ -1,0 +1,89 @@
+root@3d21b1fca8cd:/home/workspace/Udacity-Sensor-Fusion-Nanodegree/Camera/Lesson
+-5-Project-2D-Feature-Tracking/build# ./2D_feature_tracking BRISK SIFT MAT_FLANN DES_HOG SEL_KNN
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2757 keypoints in 54.1961 ms
+BRISK detector with n=264 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 84.8894 ms
+#3 : EXTRACT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2777 keypoints in 46.9284 ms
+BRISK detector with n=282 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 77.342 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=264 matches in 5.40994 ms
+Distance ratio test removed 80 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2741 keypoints in 48.7646 ms
+BRISK detector with n=282 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 81.858 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=282 matches in 5.64387 ms
+Distance ratio test removed 89 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2735 keypoints in 47.3085 ms
+BRISK detector with n=277 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 81.5209 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=282 matches in 5.27245 ms
+Distance ratio test removed 111 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2757 keypoints in 48.4152 ms
+BRISK detector with n=297 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 80.7601 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=277 matches in 5.33731 ms
+Distance ratio test removed 94 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2695 keypoints in 47.0299 ms
+BRISK detector with n=279 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 78.5209 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=297 matches in 5.71017 ms
+Distance ratio test removed 124 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2715 keypoints in 47.2288 ms
+BRISK detector with n=289 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 80.7816 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=279 matches in 5.44264 ms
+Distance ratio test removed 83 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2628 keypoints in 46.6951 ms
+BRISK detector with n=272 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 78.4177 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=289 matches in 5.57134 ms
+Distance ratio test removed 93 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2639 keypoints in 46.233 ms
+BRISK detector with n=266 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 81.107 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=272 matches in 4.92592 ms
+Distance ratio test removed 94 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+BRISK detector with n=2672 keypoints in 47.4669 ms
+BRISK detector with n=254 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+SIFT descriptor extraction in 77.5825 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_FLANN matching (KNN) with n=266 matches in 4.8967 ms
+Distance ratio test removed 81 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done

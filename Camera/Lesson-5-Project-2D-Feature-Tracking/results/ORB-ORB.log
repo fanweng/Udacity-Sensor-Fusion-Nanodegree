@@ -1,0 +1,89 @@
+root@3d21b1fca8cd:/home/workspace/Udacity-Sensor-Fusion-Nanodegree/Camera/Lesson
+-5-Project-2D-Feature-Tracking/build# ./2D_feature_tracking ORB ORB MAT_BF DES_BINARY SEL_KNN
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 13.1784 ms
+ORB detector with n=92 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 12.7711 ms
+#3 : EXTRACT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 10.5498 ms
+ORB detector with n=102 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 4.8907 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=92 matches in 0.419749 ms
+Distance ratio test removed 24 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 11.5855 ms
+ORB detector with n=106 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 4.82071 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=102 matches in 0.397728 ms
+Distance ratio test removed 31 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 13.166 ms
+ORB detector with n=113 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 5.2581 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=106 matches in 0.444005 ms
+Distance ratio test removed 34 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 7.60139 ms
+ORB detector with n=109 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 10.9672 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=113 matches in 0.444463 ms
+Distance ratio test removed 29 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 14.2146 ms
+ORB detector with n=125 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 5.89046 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=109 matches in 0.445054 ms
+Distance ratio test removed 17 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 8.01289 ms
+ORB detector with n=130 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 5.67723 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=125 matches in 0.548541 ms
+Distance ratio test removed 24 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 8.65449 ms
+ORB detector with n=129 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 5.49582 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=130 matches in 0.537714 ms
+Distance ratio test removed 37 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 8.22416 ms
+ORB detector with n=127 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 5.96919 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=129 matches in 0.571795 ms
+Distance ratio test removed 36 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+ORB detector with n=500 keypoints in 8.10786 ms
+ORB detector with n=128 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 6.37398 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=127 matches in 0.732221 ms
+Distance ratio test removed 34 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done

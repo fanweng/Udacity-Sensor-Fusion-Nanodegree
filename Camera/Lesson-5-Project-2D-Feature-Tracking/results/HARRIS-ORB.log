@@ -1,0 +1,89 @@
+root@3d21b1fca8cd:/home/workspace/Udacity-Sensor-Fusion-Nanodegree/Camera/Lesson
+-5-Project-2D-Feature-Tracking/build# ./2D_feature_tracking HARRIS ORB MAT_BF DES_BINARY SEL_KNN
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=339 keypoints in 22.8763 ms
+HARRIS detector with n=51 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 1.40058 ms
+#3 : EXTRACT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=286 keypoints in 18.7602 ms
+HARRIS detector with n=41 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 0.834621 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=51 matches in 0.216248 ms
+Distance ratio test removed 21 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=349 keypoints in 22.6132 ms
+HARRIS detector with n=63 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 1.13812 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=41 matches in 0.168636 ms
+Distance ratio test removed 18 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=356 keypoints in 22.4041 ms
+HARRIS detector with n=58 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 0.874482 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=63 matches in 0.19631 ms
+Distance ratio test removed 24 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=521 keypoints in 20.8375 ms
+HARRIS detector with n=85 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 0.959989 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=58 matches in 0.233044 ms
+Distance ratio test removed 28 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=2611 keypoints in 24.1287 ms
+HARRIS detector with n=322 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 1.60001 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=85 matches in 1.0993 ms
+Distance ratio test removed 53 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=200 keypoints in 18.8832 ms
+HARRIS detector with n=38 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 1.42299 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=322 matches in 0.522552 ms
+Distance ratio test removed 217 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=806 keypoints in 20.3597 ms
+HARRIS detector with n=136 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 1.08852 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=38 matches in 0.22989 ms
+Distance ratio test removed 20 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=572 keypoints in 23.123 ms
+HARRIS detector with n=96 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 0.966025 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=136 matches in 0.48611 ms
+Distance ratio test removed 55 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
+#1 : LOAD IMAGE INTO BUFFER done
+Harris detection with n=1471 keypoints in 20.1009 ms
+HARRIS detector with n=194 keypoints in the rectangle ROI
+#2 : DETECT KEYPOINTS done
+ORB descriptor extraction in 1.53515 ms
+#3 : EXTRACT DESCRIPTORS done
+MAT_BF matching (DES_BINARY) with cross-check=0 (KNN) with n=96 matches in 0.624951 ms
+Distance ratio test removed 32 keypoints
+#4 : MATCH KEYPOINT DESCRIPTORS done
