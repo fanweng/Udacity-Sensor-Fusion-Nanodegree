@@ -26,17 +26,27 @@ int main(int argc, const char *argv[])
 
     string detectorType = "";
     string descriptorType = "";
-    if (argc != 3)
+    string matcherType = "";
+    string descriptorCategory = "";
+    string selectorType = "";
+    if (argc != 6)
     {
-        cerr << "Error: Wrong input arguments. Exited the program." << endl;
-        cout << "Usage: ./2D_feature_tracking [detectorType] [descriptorType" << endl;
-        cout << "[detectorType]: SHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT" << endl;
-        cout << "[descriptorType]: BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT" << endl;
+        cerr << "Error: Wrong input arguments. Exiting the program..." << endl;
+        cout << "Usage: ./2D_feature_tracking [detectorType] [descriptorType] [matcherType] [descriptorCategory] [selectorType]" << endl;
+        cout << "[detectorType]:\t\tSHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT" << endl;
+        cout << "[descriptorType]:\tBRISK, BRIEF, ORB, FREAK, AKAZE, SIFT" << endl;
+        cout << "[matcherType]:\t\tMAT_BF, MAT_FLANN" << endl;
+        cout << "[descriptorCategory]:\tDES_BINARY, DES_HOG" << endl;
+        cout << "[selectorType]:\t\tSEL_NN, SEL_KNN" << endl;
+        exit(-1);
     }
     else
     {
         detectorType = argv[1];
         descriptorType = argv[2];
+        matcherType = argv[3];
+        descriptorCategory = argv[4];
+        selectorType = argv[5];
     }
 
     // data location
@@ -162,20 +172,12 @@ int main(int argc, const char *argv[])
 
             /* MATCH KEYPOINT DESCRIPTORS */
 
+            // TASK MP.5 -> add FLANN matching in file matching2D.cpp
+            // TASK MP.6 -> add KNN match selection and perform descriptor distance ratio filtering with t=0.8 in file matching2D.cpp
             vector<cv::DMatch> matches;
-            string matcherType = "MAT_BF";        // MAT_BF, MAT_FLANN
-            string descriptorType = "DES_BINARY"; // DES_BINARY, DES_HOG
-            string selectorType = "SEL_NN";       // SEL_NN, SEL_KNN
-
-            //// STUDENT ASSIGNMENT
-            //// TASK MP.5 -> add FLANN matching in file matching2D.cpp
-            //// TASK MP.6 -> add KNN match selection and perform descriptor distance ratio filtering with t=0.8 in file matching2D.cpp
-
             matchDescriptors((dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints,
                              (dataBuffer.end() - 2)->descriptors, (dataBuffer.end() - 1)->descriptors,
-                             matches, descriptorType, matcherType, selectorType);
-
-            //// EOF STUDENT ASSIGNMENT
+                             matches, descriptorCategory, matcherType, selectorType);
 
             // store matches in current data frame
             (dataBuffer.end() - 1)->kptMatches = matches;

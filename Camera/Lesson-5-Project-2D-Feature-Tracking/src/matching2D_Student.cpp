@@ -5,32 +5,54 @@ using namespace std;
 
 // Find best matches for keypoints in two camera images based on several matching methods
 void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::KeyPoint> &kPtsRef, cv::Mat &descSource, cv::Mat &descRef,
-                      std::vector<cv::DMatch> &matches, std::string descriptorType, std::string matcherType, std::string selectorType)
+                      std::vector<cv::DMatch> &matches, std::string descriptorCategory, std::string matcherType, std::string selectorType)
 {
     // configure matcher
     bool crossCheck = false;
     cv::Ptr<cv::DescriptorMatcher> matcher;
-
+    double t;
     if (matcherType.compare("MAT_BF") == 0)
     {
-        int normType = cv::NORM_HAMMING;
+        int normType = descriptorCategory.compare("DES_BINARY") == 0 ? cv::NORM_HAMMING : cv::NORM_L2;;
         matcher = cv::BFMatcher::create(normType, crossCheck);
+        cout << "MAT_BF matching (" << descriptorCategory << ") with cross-check=" << crossCheck;
     }
     else if (matcherType.compare("MAT_FLANN") == 0)
     {
-        // ...
+        if (descSource.type() != CV_32F)
+        {
+            descSource.convertTo(descSource, CV_32F);
+            descRef.convertTo(descRef, CV_32F);
+        }
+        matcher = cv::DescriptorMatcher::create(cv::DescriptorMatcher::FLANNBASED);
+        cout << "MAT_FLANN matching";
+    }
+    else
+    {
+        cerr << "#4 : MATCH KEYPOINT DESCRIPTORS failed. Wrong matcherType - " << matcherType << ". Use one of the following matchers: MAT_BF, MAT_FLANN" << endl;
+        exit(-1);
     }
 
     // perform matching task
     if (selectorType.compare("SEL_NN") == 0)
     { // nearest neighbor (best match)
-
+        t = (double)cv::getTickCount();
         matcher->match(descSource, descRef, matches); // Finds the best match for each descriptor in desc1
+        t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+        cout << " (NN) with n=" << matches.size() << " matches in " << 1000 * t / 1.0 << " ms" << endl;
     }
     else if (selectorType.compare("SEL_KNN") == 0)
     { // k nearest neighbors (k=2)
-
-        // ...
+        vector<vector<cv::DMatch>> knnMatches;
+        t = (double)cv::getTickCount();
+        matcher->knnMatch(descSource, descRef, knnMatches, 2); // Finds the best match for each descriptor
+        t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
+        cout << " (KNN) with n=" << knnMatches.size() << " matches in " << 1000 * t / 1.0 << " ms" << endl;
+    }
+    else
+    {
+        cerr << "\n#4 : MATCH KEYPOINT DESCRIPTORS failed. Wrong selectorType - " << selectorType << ". Use one of the following selector: SEL_NN, SEL_KNN" << endl;
+        exit(-1);
     }
 }
 
