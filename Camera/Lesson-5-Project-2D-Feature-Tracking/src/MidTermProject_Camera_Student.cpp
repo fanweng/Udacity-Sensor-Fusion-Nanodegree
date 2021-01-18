@@ -6,6 +6,7 @@
 #include <vector>
 #include <cmath>
 #include <limits>
+#include <iterator>
 #include <opencv2/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -29,6 +30,7 @@ int main(int argc, const char *argv[])
     string matcherType = "";
     string descriptorCategory = "";
     string selectorType = "";
+    bool bLogging = true;
     if (argc != 6)
     {
         cerr << "Error: Wrong input arguments. Exiting the program..." << endl;
@@ -47,6 +49,12 @@ int main(int argc, const char *argv[])
         matcherType = argv[3];
         descriptorCategory = argv[4];
         selectorType = argv[5];
+    }
+
+    // create a folder to evaluation results
+    if (bLogging)
+    {
+        system("mkdir -p ../results");
     }
 
     // data location
@@ -119,10 +127,20 @@ int main(int argc, const char *argv[])
             exit(-1);
         }
 
+        std::fstream resultKeypoints;
+        if (bLogging)
+        {
+            resultKeypoints.open("../results/" + detectorType + "-" + descriptorType + "-keypoints.txt", std::ios::app);
+            resultKeypoints << "===>>>" << imgFullFilename << endl;
+            resultKeypoints << "Detected " << keypoints.size() << " keypoints";
+        }
+
         // TASK MP.3 -> only keep keypoints on the preceding vehicle
         // only keep keypoints on the preceding vehicle
         bool bFocusOnVehicle = true;
         cv::Rect vehicleRect(535, 180, 180, 150);
+        vector<float> tempSize;
+        vector<vector<float>> neighborhoodSize;
         if (bFocusOnVehicle)
         {
             vector<cv::KeyPoint> keypointsROI;
@@ -132,9 +150,30 @@ int main(int argc, const char *argv[])
                 {
                     keypointsROI.push_back(*it);
                 }
+                else
+                {
+                    // save neighborhood size
+                    tempSize.push_back(it->size);
+                }
             }
             keypoints = keypointsROI;
             cout << detectorType << " detector with n=" << keypoints.size() << " keypoints in the rectangle ROI" << endl;
+
+            neighborhoodSize.push_back(tempSize);
+
+            if (bLogging)
+            {
+                resultKeypoints << " and " << keypoints.size() << " of them are on the preciding vehicle" << endl;
+
+                resultKeypoints << "Neighborbood Sizes:" << endl;
+                std::ostream_iterator<int> outIterator(resultKeypoints, "\t");
+                for (int i = 0; i < neighborhoodSize.size(); i++)
+                {
+                    std::copy(neighborhoodSize.at(i).begin(), neighborhoodSize.at(i).end(), outIterator);
+                    resultKeypoints << endl;
+                }
+                resultKeypoints.close();
+            }
         }
 
         // optional : limit number of keypoints (helpful for debugging and learning)
@@ -179,6 +218,15 @@ int main(int argc, const char *argv[])
                              (dataBuffer.end() - 2)->descriptors, (dataBuffer.end() - 1)->descriptors,
                              matches, descriptorCategory, matcherType, selectorType);
 
+            std::fstream resultMatchedKeypoints;
+            if (bLogging)
+            {
+                resultMatchedKeypoints.open("../results/" + detectorType + "-" + descriptorType + "-matchedkeypoints.txt", std::ios::app);
+                resultMatchedKeypoints << "===>>>" << imgFullFilename << endl;
+                resultMatchedKeypoints << "Extracted " << matches.size() << " matched keypoints" << endl;
+                resultMatchedKeypoints.close();
+            }
+
             // store matches in current data frame
             (dataBuffer.end() - 1)->kptMatches = matches;
 
@@ -199,7 +247,14 @@ int main(int argc, const char *argv[])
                 cv::namedWindow(windowName, 7);
                 cv::imshow(windowName, matchImg);
                 cout << "Press key to continue to next image" << endl;
-                cv::waitKey(0); // wait for key to be pressed
+                if (bLogging) {
+                    string resultImg = "../results/" + detectorType + "-" + descriptorType + "-img" + imgNumber.str() + imgFileType;
+                    cv::imwrite(resultImg, matchImg);
+                }
+                else
+                {
+                    cv::waitKey(0); // wait for key to be pressed
+                }
             }
             bVis = false;
         }
