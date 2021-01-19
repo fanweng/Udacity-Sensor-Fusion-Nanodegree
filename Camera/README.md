@@ -7,12 +7,12 @@ This repo contains lesson-wise exercises and corresponding solutions for Udacity
 ### I. List of Lesson-wise Exercises
 
 - Original source code of lesson exercises is available here - https://github.com/udacity/SFND_Camera
-    * Lesson 2: Autonomous Vehicles and Computer Vision ([Lecture notes](../lectures/lec2-1-av-and-opencv.md))
+    * Lesson 2: Autonomous Vehicles and Computer Vision ([Lecture/Exercise notes](../lectures/lec2-1-av-and-opencv.md))
         + The OpenCV Library
-    * Lesson 3: Engineering a Collision Detection System ([Lecture notes](../lectures/lec2-2-collision-detection-system.md))
+    * Lesson 3: Engineering a Collision Detection System ([Lecture/Exercise notes](../lectures/lec2-2-collision-detection-system.md))
         + Estimating TTC with Camera
         + Estimating TTC with Lidar
-    * Lesson 4: Tracking Image Features ([Lecture notes](../lectures/lec2-3-track-image-features.md))
+    * Lesson 4: Tracking Image Features ([Lecture/Exercise notes](../lectures/lec2-3-track-image-features.md))
         + Descriptor Matching
         + Gradient-based vs. Binary Descriptors
         + Harris Corner Detection
@@ -45,6 +45,7 @@ This repo contains lesson-wise exercises and corresponding solutions for Udacity
     * This must be compiled from source using the `-D OPENCV_ENABLE_NONFREE=ON` cmake flag for testing the SIFT and SURF detectors.
     * The OpenCV 4.1.0 source code can be found [here](https://github.com/opencv/opencv/tree/4.1.0)
     * Install the OpenCV dependencies as well as OpenCV Contrib for extra modules, then build from the source. Instruction [HERE](http://techawarey.com/programming/install-opencv-c-c-in-ubuntu-18-04-lts-step-by-step-guide/).
+    * **NOTE:** the license issue still might occur when using non-free algorithms, in that case, please use the online workspace provided by Udacity.
 ```bash
 # compiler
 $ sudo apt-get install build-essential
