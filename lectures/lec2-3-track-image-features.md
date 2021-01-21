@@ -178,10 +178,3 @@ Both matching algorithms accept a descriptor distance threshold *T* which is use
 In the [descriptor_matching.cpp](../Camera/Lesson-4-Tracking-Image-Features/Descriptor-Matching/descriptor_matching/src/descriptor_matching.cpp), implement the FLANN matching and the k-nearest-neighbor *KNN* selection (keeping the best k matches per keypoint). Compare the results with Brutal Force matching with nearest-neighbor *NN* selection (keeping only the best match). ([720b82d](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/720b82d618cb24f9c9b352701e7b704438cbe9d3))
 
 <img src="media/BF-vs-FLANN-matching.png" width="900" height="350" />
-
-
-### III.
-
-
-### IV.
-
