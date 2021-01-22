@@ -6,9 +6,40 @@ Single-sensor approach is limited by the fact that each sensor has its own weakn
 
 ### I. Project Lidar Points to Camera Images
 
+Velodyne Lidar sensor is synchronized with the forward-looking camera. The captured point cloud data needs some processing to remove the points on the road surface.
 
 #### Exercise: Show Lidar point in a top view
 
 Remove the Lidar points representing the road surface by eliminating the points below a certain height `roadSurfaceLvl` in z-axis. Draw the rest of Lidar points in a gradient color from red (x = 0.0m) to green (x = 20.0m). ([9b25ab0](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/9b25ab06b20bf1c51b3580576098f9bc01265a75))
 
 <img src="media/show-lidar-top-view.png" width="800" height="350" />
+
+#### Homogeneous coordinates
+
+We can use the projection equation introduced in the [Lecture 2-1](./lec2-1-av-and-opencv.md) to map 3D points onto 2D image. But the equations involve a division by *z*, which makes them non-linear, and thus prevents us from transforming them into a convenient matrix-vector form.
+
+To avoid the problem above, we change the original **Euclidean coordinate** system to **Homogenous coordinate** system. Transformation between the two systems is *non-linear*, but the equations are *linear, and thus can be expressed as simple matrix-vector multiplications.
+
+<img src="media/homogenous-coordinate-transformation.png" width="800" height="150" />
+
+- **Intrinsic Parameters**
+    * now projection equations are arranged in matrix-vector form with camera parameters
+    * described by the matrix *k*
+
+<img src="media/intrinsic-parameters.png" width="400" height="150" />
+
+- Mapping between vehicle coordinate system and camera coordinate system generally needs three components
+    * **Translation**
+        + describes the linear shift of a point *P* to a new location *P'* by adding a vector *t*
+    * **Scale**
+        + multiplies the components with a scale vector *s*
+        * scale component is integrated into the intrinsic matrix *k*, and is no longer part of the extrinsic matrix
+    * **Rotation**
+        + rotates in counter-clockwise direction (mathematically positive) by multiplication of *R*
+
+- **Extrinsic Parameters**
+    * matrix *t* and *R*
+
+With homogenous coordinates, we can use the following equation to transform points between two systems.
+
+<img src="media/homogenous-coordinate-mapping-equation.png" width="800" height="230" />
