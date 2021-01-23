@@ -10,7 +10,7 @@ Velodyne Lidar sensor is synchronized with the forward-looking camera. The captu
 
 #### Exercise: Show Lidar point in a top view
 
-Remove the Lidar points representing the road surface by eliminating the points below a certain height `roadSurfaceLvl` in z-axis. Draw the rest of Lidar points in a gradient color from red (x = 0.0m) to green (x = 20.0m). ([9b25ab0](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/9b25ab06b20bf1c51b3580576098f9bc01265a75))
+In the [show_lidar_top_view.cpp](../Camera/Lesson-6-Combining-Camera-and-Lidar/Lidar-to-Camera-Point-Projection/lidar_to_camera/src/show_lidar_top_view.cpp), remove the Lidar points representing the road surface by eliminating the points below a certain height `roadSurfaceLvl` in z-axis. Draw the rest of Lidar points in a gradient color from red (x = 0.0m) to green (x = 20.0m). ([9b25ab0](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/9b25ab06b20bf1c51b3580576098f9bc01265a75))
 
 <img src="media/show-lidar-top-view.png" width="800" height="350" />
 
@@ -50,6 +50,15 @@ KITTI vehicle has a sensor setup with two forward-facing cameras, a roof-mounted
 
 <img src="media/kitti-setup.jpg" width="900" height="300" />
 
-The calibration files with intrinsic and extrinsic parameters are available with datasets downloaded from KITTI website. `calib_velo_to_cam.txt` contains the extrinsic parameters *R* and *T* matrices. `calib_cam_to_cam.txt` provides the intrinsic parameters `P_rect_xx` as the *k* matrix and rotation rectifying matrix `R_rect_00`. The equation to project 3D Lidar points X in space to a 2D image point Y:
+The calibration files with intrinsic and extrinsic parameters are available with datasets downloaded from KITTI website. `calib_velo_to_cam.txt` contains the extrinsic parameters *R* and *T* matrices. `calib_cam_to_cam.txt` provides the intrinsic parameters `P_rect_xx` as the *k* matrix and rotation rectifying matrix `R_rect_00` that makes image planes co-planar. The equation to project 3D Lidar points X in space to a 2D image point Y:
 
 > Y = P_rect_xx * R_rect_00 * (R|T)_velo_to_cam * X
+
+#### Exercise: Project Lidar points to camera image
+
+In the [project_lidar_to_camera.cpp](../Camera/Lesson-6-Combining-Camera-and-Lidar/Lidar-to-Camera-Point-Projection/lidar_to_camera/src/project_lidar_to_camera.cpp), loop over the Lidar points, convert the 3D points into homogenous coordinates. Then apply the projection equation to the homogenous coordinates resulting the coordinates on a 2D image. Transform the coordinates back to the Euclidean world. [d5a3d78](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/d5a3d785f13d7322198b2811b89122e465d51934)
+
+Some of the Lidar points are outside the ROIs, for example, behind the vehicle, too far ahead to the vehicle, too far on the left/right of the vehicle, road surface points. They need to be filtered out. [5eede5c](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/5eede5c62e11617604aa1d952144fd0fac86ba5d)
+
+The resulting overlay images looks like below. The red-ish color indicates the part of object is closer to the vehicle.
+<img src="media/project-lidar-pts-to-camera.png" width="800" height="250" />
