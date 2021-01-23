@@ -43,3 +43,13 @@ To avoid the problem above, we change the original **Euclidean coordinate** syst
 With homogenous coordinates, we can use the following equation to transform points between two systems.
 
 <img src="media/homogenous-coordinate-mapping-equation.png" width="800" height="230" />
+
+#### KITTI sensor setup
+
+KITTI vehicle has a sensor setup with two forward-facing cameras, a roof-mounted Velodyne Lidar, and an IMU.
+
+<img src="media/kitti-setup.jpg" width="900" height="300" />
+
+The calibration files with intrinsic and extrinsic parameters are available with datasets downloaded from KITTI website. `calib_velo_to_cam.txt` contains the extrinsic parameters *R* and *T* matrices. `calib_cam_to_cam.txt` provides the intrinsic parameters `P_rect_xx` as the *k* matrix and rotation rectifying matrix `R_rect_00`. The equation to project 3D Lidar points X in space to a 2D image point Y:
+
+> Y = P_rect_xx * R_rect_00 * (R|T)_velo_to_cam * X
