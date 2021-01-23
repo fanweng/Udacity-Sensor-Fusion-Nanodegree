@@ -49,6 +49,15 @@ void projectLidarToCamera2()
     cv::Mat Y(3,1,cv::DataType<double>::type);
 
     for(auto it=lidarPoints.begin(); it!=lidarPoints.end(); ++it) {
+        // 0. Filter Lidar point outside the consideration
+        double maxInFront = 20.0;
+        double maxAtSide = 5.0;
+        double roadSurfaceLvl = -1.5;
+        double minReflectivity = 0.01;
+        if ((it->x < 0.0) || (it->x > maxInFront) || (abs(it->y) > maxAtSide) || (it->z < roadSurfaceLvl) || (it->r < minReflectivity)) {
+            continue;
+        }
+
         // 1. Convert current Lidar point into homogeneous coordinates and store it in the 4D variable X.
         X.at<double>(0, 0) = it->x;
         X.at<double>(1, 0) = it->y;
