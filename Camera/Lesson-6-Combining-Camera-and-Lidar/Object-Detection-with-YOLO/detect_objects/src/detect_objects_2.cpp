@@ -13,7 +13,7 @@ using namespace std;
 void detectObjects2()
 {
     // load image from file
-    cv::Mat img = cv::imread("../images/s_thrun.jpg");
+    cv::Mat img = cv::imread("../images/0000000000.png");
 
     // load class names from file
     string yoloBasePath = "../dat/yolo/";
@@ -34,7 +34,7 @@ void detectObjects2()
     // generate 4D blob from input image
     cv::Mat blob;
     double scalefactor = 1/255.0;
-    cv::Size size = cv::Size(416, 416);
+    cv::Size size = cv::Size(608, 608);
     cv::Scalar mean = cv::Scalar(0,0,0);
     bool swapRB = false;
     bool crop = false;
@@ -57,7 +57,7 @@ void detectObjects2()
     net.forward(netOutput, names);
 
     // Scan through all bounding boxes and keep only the ones with high confidence
-    float confThreshold = 0.20;
+    float confThreshold = 0.30;
     vector<int> classIds;
     vector<float> confidences;
     vector<cv::Rect> boxes;
@@ -90,7 +90,7 @@ void detectObjects2()
     }
 
     // perform non-maxima suppression
-    float nmsThreshold = 0.4;  // Non-maximum suppression threshold
+    float nmsThreshold = 0.3;  // Non-maximum suppression threshold
     vector<int> indices;
     cv::dnn::NMSBoxes(boxes, confidences, confThreshold, nmsThreshold, indices);
     std::vector<BoundingBox> bBoxes;
@@ -123,10 +123,10 @@ void detectObjects2()
 
         // Display label at the top of the bounding box
         int baseLine;
-        cv::Size labelSize = getTextSize(label, cv::FONT_ITALIC, 0.5, 1, &baseLine);
+        cv::Size labelSize = getTextSize(label, cv::FONT_ITALIC, 0.3, 1, &baseLine);
         top = max(top, labelSize.height);
         rectangle(visImg, cv::Point(left, top - round(1.5 * labelSize.height)), cv::Point(left + round(1.5 * labelSize.width), top + baseLine), cv::Scalar(255, 255, 255), cv::FILLED);
-        cv::putText(visImg, label, cv::Point(left, top), cv::FONT_ITALIC, 0.75, cv::Scalar(0, 0, 0), 1);
+        cv::putText(visImg, label, cv::Point(left, top), cv::FONT_ITALIC, 0.3, cv::Scalar(0, 0, 0), 1);
     }
 
     string windowName = "Object classification";
