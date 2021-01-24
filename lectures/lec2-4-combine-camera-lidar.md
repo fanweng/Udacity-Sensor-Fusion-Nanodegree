@@ -62,3 +62,19 @@ Some of the Lidar points are outside the ROIs, for example, behind the vehicle, 
 
 The resulting overlay images looks like below. The red-ish color indicates the part of object is closer to the vehicle.
 <img src="media/project-lidar-pts-to-camera.png" width="800" height="250" />
+
+
+
+### II. Object Detection with YOLO
+
+In the [Lecture 2-3](./lec2-3-track-image-features.md), we already detect and match keypoints on camera images. But to compute a TTC estimate reliably, the keypoints on the preceding vehicle must be isolated from the points on the road surface, stationary objects, or other vehicles. One way to achieve that goal is using algorithm to identify the objects in the scene and put a set of bounding boxes around them. So we can easily associate keypoint matches to the vehicle and calculate a stable TTC estimate.
+
+In the past, histograms of oriented gradients (HOG) and support vector machine (SVM) methods were used for object detection. Now deep-learning methods come, YOLO (You Only Look Once) is one of the algorithms which is capable to detect a range of various objects, including vehicles, pedestrians, etc. A single neural network is applied to the full image. This network divides the image into regions and predicts bounding boxes and probabilities for each region. These bounding boxes are weighted by the predicted probabilities.
+
+<img src="media/yolo-workflow.jpg" width="800" height="550" />
+
+#### Exercise: YOLOv3 workflow
+
+In the [detect_objects_2.cpp](../Camera/Lesson-6-Combining-Camera-and-Lidar/Object-Detection-with-YOLO/detect_objects/src/detect_objects_2.cpp), `confThreshold` is used to remove all bounding boxes with a lower predicted confidence score value. The *non-maximum suppression* is controlled by the `nmsThreshold`. The input image size is set to `cv::Size(608, 608)` to have a more accurate prediction. ([2c99250](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/2c992506ad7d707797e8cd13f418167adeaad8b5))
+
+<img src="media/yolo-detection.png" width="800" height="250" />
