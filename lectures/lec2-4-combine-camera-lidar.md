@@ -78,3 +78,19 @@ In the past, histograms of oriented gradients (HOG) and support vector machine (
 In the [detect_objects_2.cpp](../Camera/Lesson-6-Combining-Camera-and-Lidar/Object-Detection-with-YOLO/detect_objects/src/detect_objects_2.cpp), `confThreshold` is used to remove all bounding boxes with a lower predicted confidence score value. The *non-maximum suppression* is controlled by the `nmsThreshold`. The input image size is set to `cv::Size(608, 608)` to have a more accurate prediction. ([2c99250](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/2c992506ad7d707797e8cd13f418167adeaad8b5))
 
 <img src="media/yolo-detection.png" width="800" height="250" />
+
+
+
+### III. Create 3D Objects
+
+This section will combine 2D image features, 3D Lidar points and 2D YOLO-based vehicle bounding boxes to produce a stable 3D trajectory of a preceding vehicle.
+
+- Group Lidar points that belong to the same object in the scene
+    * YOLOv3 framework detects a set of objects in a camera image, and encloses them in boxes with class labels
+    * Loop through all Lidar points, check if they belong to a specific bounding box (ROI)
+    * If within the ROI, add the point into the `BoundingBox.lidarPoints` data structure
+    * If ROI boxes have overlaps, shrink their sizes slightly
+
+#### Exercise: Group Lidar points and create 3D objects
+
+In the [cluster_with_roi.cpp](../Camera/Lesson-6-Combining-Camera-and-Lidar/Creating-3D-Objects/cluster_with_roi/src/cluster_with_roi.cpp), find the Lidar points enclosed within multiple bounding boxes, and exclude them from further processing. ([8c6edc7](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/8c6edc729a4e4ebdc928c2c4a75ac8a189eb3145))
