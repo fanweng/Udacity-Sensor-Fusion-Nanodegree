@@ -94,3 +94,7 @@ This section will combine 2D image features, 3D Lidar points and 2D YOLO-based v
 #### Exercise: Group Lidar points and create 3D objects
 
 In the [cluster_with_roi.cpp](../Camera/Lesson-6-Combining-Camera-and-Lidar/Creating-3D-Objects/cluster_with_roi/src/cluster_with_roi.cpp), find the Lidar points enclosed within multiple bounding boxes, and exclude them from further processing. ([8c6edc7](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/8c6edc729a4e4ebdc928c2c4a75ac8a189eb3145))
+
+Then displaying information about all bounding boxes: distance to closest points in x-axis, object width and height, number of supporting Lidar points. ([2daafd2](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/2daafd2eba567226a12e01938b33da5d29e4ca19))
+
+<img src="media/group-lidar-points.png" width="400" height="600" />
