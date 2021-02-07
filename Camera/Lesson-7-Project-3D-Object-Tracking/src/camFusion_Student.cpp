@@ -125,7 +125,7 @@ void show3DObjects(std::vector<BoundingBox> &boundingBoxes, cv::Size worldSize, 
 
     // display image
     string windowName = "3D Objects";
-    cv::namedWindow(windowName, 0);
+    cv::namedWindow(windowName, 4);
     cv::imshow(windowName, topviewImg);
 
     if(bWait)
@@ -153,7 +153,86 @@ void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPo
 void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
                      std::vector<LidarPoint> &lidarPointsCurr, double frameRate, double &TTC)
 {
-    // ...
+    // auxiliary parameters
+    double dT = 1.0 / frameRate;    // delta time between two frames in seconds
+    double laneWidth = 4.0;         // assumed width of the ego lane
+
+    // to eliminate the outliers, create a vector of cloest Lidar points, the number of the canadicates is a percentage of total Lidar points
+    double percentage = 0.2;        // 20% of the Lidar points will be used to calculate the cloest distance
+    int numMinsPrev = lidarPointsPrev.size() * percentage;
+    int numMinsCurr = lidarPointsCurr.size() * percentage;
+
+    // If numer of Lidar points are small, then use all Lidar points for estimation
+    if (lidarPointsPrev.size() < 10)
+    {
+        std::cout << "WARNING: Too few Lidar points from previous frame for TTC estimation!" << std::endl;
+        numMinsPrev = lidarPointsPrev.size();
+    }
+    if (lidarPointsCurr.size() < 10)
+    {
+        std::cout << "WARNING: Too few Lidar points from current frame for TTC estimation!" << std::endl;
+        numMinsCurr = lidarPointsCurr.size();
+    }
+
+    // calculate the average Lidar points distance to the preceding vehicle within ego lane
+    double avgXPrev = 1e9, avgXCurr = 1e9;
+    vector<double> minXPrev, minXCurr;
+    for (auto it = lidarPointsPrev.begin(); it != lidarPointsPrev.end(); ++it)
+    {
+        // 3D pionts within the ego-lane
+        if (abs(it->y) <= (laneWidth/2.0))
+        {
+            if (minXPrev.size() < numMinsPrev)
+            {
+                minXPrev.push_back(it->x);
+
+            }
+            else
+            {
+                auto item = max_element(std::begin(minXPrev), std::end(minXPrev));
+                if (it->x < *item)
+                {
+                    minXPrev.erase(item);
+                    minXPrev.push_back(it->x);
+                }
+            }
+        }
+    }
+    avgXPrev = std::accumulate(minXPrev.begin(), minXPrev.end(), 0.0) / numMinsPrev;
+
+    for (auto it = lidarPointsCurr.begin(); it != lidarPointsCurr.end(); ++it)
+    {
+        // 3D pionts within the ego-lane
+        if (abs(it->y) <= (laneWidth/2.0))
+        {
+            if (minXCurr.size() < numMinsCurr)
+            {
+                minXCurr.push_back(it->x);
+
+            }
+            else
+            {
+                auto item = max_element(std::begin(minXCurr), std::end(minXCurr));
+                if (it->x < *item)
+                {
+                    minXCurr.erase(item);
+                    minXCurr.push_back(it->x);
+                }
+            }
+        }
+    }
+    avgXCurr = std::accumulate(minXCurr.begin(), minXCurr.end(), 0.0) / numMinsCurr;
+
+    // compute TTC from two frames
+    TTC = avgXCurr * dT / (avgXPrev - avgXCurr);
+
+    bDebug = false;
+    if (bDebug)
+    {
+        std::cout << "avgXPrev= " << avgXPrev << std::endl;
+        std::cout << "avgXCurr= " << avgXCurr << std::endl;
+        std::cout << "TTC = " << TTC << std::endl;
+    }
 }
 
 
