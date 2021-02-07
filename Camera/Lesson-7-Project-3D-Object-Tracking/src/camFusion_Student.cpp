@@ -138,7 +138,39 @@ void show3DObjects(std::vector<BoundingBox> &boundingBoxes, cv::Size worldSize, 
 // associate a given bounding box with the keypoints it contains
 void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPoint> &kptsCurr, std::vector<cv::DMatch> &kptMatches)
 {
-    // ...
+    std::vector<cv::DMatch> matchesInBox;
+    std::vector<double> matchesDistance;
+
+    // loop the keypoint matches and check if it's within the bounding box
+    for (auto it = kptMatches.begin(); it != kptMatches.end(); ++it)
+    {
+        cv::KeyPoint kptPrev = kptsPrev[it->queryIdx];
+        cv::KeyPoint kptCurr = kptsCurr[it->trainIdx];
+
+        if (boundingBox.roi.contains(kptCurr.pt))
+        {
+            matchesInBox.push_back(*it);
+            matchesDistance.push_back(cv::norm(kptCurr.pt - kptPrev.pt));
+        }
+    }
+
+    // filter the matches whose euclidean distances are too far away from the mean value
+    double meanDistance = std::accumulate(matchesDistance.begin(), matchesDistance.end(), 0.0) / matchesDistance.size();
+    for (int idx = 0; idx < matchesDistance.size(); ++idx)
+    {
+        if (matchesDistance[idx] < meanDistance)
+        {
+            boundingBox.keypoints.push_back(kptsCurr[matchesInBox[idx].trainIdx]);
+            boundingBox.kptMatches.push_back(matchesInBox[idx]);
+        }
+    }
+
+    bool bDebug = false;
+    if (bDebug)
+    {
+        std::cout << "Input kptMatches.size=" << kptMatches.size() << std::endl;
+        std::cout << "Output boundingBox.kptMatches.size=" << boundingBox.kptMatches.size() << std::endl;
+    }
 }
 
 
@@ -226,7 +258,7 @@ void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
     // compute TTC from two frames
     TTC = avgXCurr * dT / (avgXPrev - avgXCurr);
 
-    bDebug = false;
+    bool bDebug = false;
     if (bDebug)
     {
         std::cout << "avgXPrev= " << avgXPrev << std::endl;
