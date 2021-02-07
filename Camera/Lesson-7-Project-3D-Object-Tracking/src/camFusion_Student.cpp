@@ -125,7 +125,7 @@ void show3DObjects(std::vector<BoundingBox> &boundingBoxes, cv::Size worldSize, 
 
     // display image
     string windowName = "3D Objects";
-    cv::namedWindow(windowName, 1);
+    cv::namedWindow(windowName, 0);
     cv::imshow(windowName, topviewImg);
 
     if(bWait)
@@ -159,5 +159,57 @@ void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
 
 void matchBoundingBoxes(std::vector<cv::DMatch> &matches, std::map<int, int> &bbBestMatches, DataFrame &prevFrame, DataFrame &currFrame)
 {
-    // ...
+    // The cv::DMatch object contains queryIdx (indices for the keypoints in the previous frame) and trainIdx (for current frame)
+
+    int counts[prevFrame.boundingBoxes.size()][currFrame.boundingBoxes.size()] = {0};
+
+    for (auto it1 = matches.begin(); it1 != matches.end(); ++it1)
+    {
+        int prevKptIdx = it1->queryIdx;
+        int currKptIdx = it1->trainIdx;
+
+        cv::KeyPoint prevKpt = prevFrame.keypoints[prevKptIdx];
+        cv::KeyPoint currKpt = currFrame.keypoints[currKptIdx];
+
+        std::vector<int> prevBoundingBoxIds, currBoundingBoxIds;
+
+        for (auto it2 = prevFrame.boundingBoxes.begin(); it2 != prevFrame.boundingBoxes.end(); ++it2)
+        {
+            if (it2->roi.contains(prevKpt.pt))
+            {
+                prevBoundingBoxIds.push_back(it2->boxID);
+            }
+        }
+
+        for (auto it3 = currFrame.boundingBoxes.begin(); it3 != currFrame.boundingBoxes.end(); ++it3)
+        {
+            if (it3->roi.contains(currKpt.pt))
+            {
+                currBoundingBoxIds.push_back(it3->boxID);
+            }
+        }
+
+        for (auto prevId : prevBoundingBoxIds)
+        {
+            for (auto currId : currBoundingBoxIds)
+            {
+                counts[prevId][currId]++;
+            }
+        }
+    }
+
+    for (int prevId = 0; prevId < prevFrame.boundingBoxes.size(); ++prevId)
+    {
+        int maxCount = 0;
+        int maxId = 0;
+        for (int currId = 0; currId < currFrame.boundingBoxes.size(); ++currId)
+        {
+            if (counts[prevId][currId] > maxCount)
+            {
+                maxCount = counts[prevId][currId];
+                maxId = currId;
+            }
+        }
+        bbBestMatches.insert({prevId, maxId});
+    }
 }
