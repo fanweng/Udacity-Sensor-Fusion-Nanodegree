@@ -18,7 +18,7 @@ This repo contains lesson-wise exercises and corresponding solutions for Udacity
         + Harris Corner Detection
         + Intensity Gradient and Filtering
         + Overview of Popular Keypoint Detectors
-    * Lesson 6: Combining Camera and Lidar
+    * Lesson 6: Combining Camera and Lidar ([Lecture/Exercise notes](../lectures/lec2-4-combine-camera-lidar.md))
         + Creating 3D-Objects
         + Lidar-to-Camera Point Projection
         + Object Detection with YOLO
@@ -119,19 +119,3 @@ git push --set-upstream origin <local_branch_name>
 ```
 
 * Next, create a PR and merge the new branch with the remote master.
-
-
-
-## V. Exercises and Project
-
-[Lesson 2 - Autonomous Vehicles and Computer Vision](./Lesson-2-Autonomous-Vehicles-and-Computer-Vision)
-
-[Lesson 3 - Engineering a Collision Detection System](./Lesson-3-Engineering-a-Collision-Detection-System)
-
-[Lesson 4 - Tracking Image Features](./Lesson-4-Tracking-Image-Features)
-
-[Lesson 5 - Project 2D Feature Tracking](./Lesson-5-Project-2D-Feature-Tracking)
-
-[Lesson 6 - Combining Camera and Lidar](./Lesson-6-Combining-Camera-and-Lidar)
-
-[Lesson 7 - Project 3D Object Tracking](./Lesson-7-Project-3D-Object-Tracking)
