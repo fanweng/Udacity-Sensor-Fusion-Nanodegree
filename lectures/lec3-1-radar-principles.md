@@ -34,6 +34,24 @@ Radar is very efficient with a low cost and small footprint. It is capable to de
 - Phase
     * a particular point in time on the cycle of a waveform, measured as an angle in degrees
 
-#### General Equation of a Wave
+#### General equation of a wave
 
 <img src="media/general-equation-a-wave.png" width="300" height="50" />
+
+
+
+### II. FMCW
+
+Frequency-Modulated Continuous Wave (FMCW) radar radiates continuous transmission power. Its signal frequency increases/decreases with time. Two most common waveform patterns for FMCW:
+- sawtooth (upramps)
+- triangular (both upramps and downramps)
+
+**Chirp** is defined by its **slope**. The slope is given by its chirp frequency bandwidth (B, y-axis) and its chirp time (T, x-axis). The range resolution requirement decides the *B*, whereas the maximum velocity capability of a radar is determined by the chirp time *T*.
+
+<img src="media/fmcw-slope.png" width="180" height="60" />
+
+#### Antenna details
+
+The antenna pattern below shows the strength of the relative field emitted by the antenna. The *beamwidth* determines the field of view for the radar sensor. A wider beamwidth will sense the target in other lanes. If the requirement is to just sense the targets in its own lane, the beamwidth needs to be small enough. Antenna *sidelobes* could generate false alarms and pick interference from undesired direction. Thus, it is critical to suppress the sidelobe strength level.
+
+<img src="media/antenna-pattern.png" width="800" height="400" />
