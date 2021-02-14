@@ -55,3 +55,50 @@ Frequency-Modulated Continuous Wave (FMCW) radar radiates continuous transmissio
 The antenna pattern below shows the strength of the relative field emitted by the antenna. The *beamwidth* determines the field of view for the radar sensor. A wider beamwidth will sense the target in other lanes. If the requirement is to just sense the targets in its own lane, the beamwidth needs to be small enough. Antenna *sidelobes* could generate false alarms and pick interference from undesired direction. Thus, it is critical to suppress the sidelobe strength level.
 
 <img src="media/antenna-pattern.png" width="800" height="400" />
+
+
+
+### III. Radar Cross Section
+
+The size and ability of a target to reflect radar energy is defined by **radar cross-section (RCS)**. It depends on:
+
+- target's physical geometry and exterior features
+- direction of the illuminating radar
+- radar transmitter's frequency
+- target's material properties
+
+The unit of RCS can be defined using *square meter* or *dB*.
+
+<img src="media/rcs-units.png" width="200" height="30" />
+
+
+
+### IV. Radar Range Equation
+
+<img src="media/radar-range-equation.png" width="700" height="200" />
+
+#### Signal-to-noise ratio
+
+To successfully detect a target, the return signal strength needs to be larger than the noise level, i.e. signal-to-noise (SNR) level needs to be high. Generally, a 7 to 13 dB SNR ensures a successful detection in a road scenario.
+
+#### Exercise: maximum range calculation
+
+With the given parameters, it is possible to calculate the wavelength and max detection range for radar as below.
+
+```matlab
+%Task 1: Calculate the wavelength
+lambda = c / fc;
+fprintf('wavelength = %.3f mm\n', lambda * 1000);
+
+%Task 2: Measure the Maximum Range a Radar can see
+R = nthroot((Ps * G^2 * lambda^2 * RCS / (Pe * (4 * pi)^3)), 4);
+fprintf('Max detection range = %.3f m\n', R);
+```
+
+The computation results are:
+
+```matlab
+>> max_range_cal
+wavelength = 3.896 mm
+Max detection range = 218.871 m
+```
