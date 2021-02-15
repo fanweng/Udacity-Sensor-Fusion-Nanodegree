@@ -83,7 +83,7 @@ To successfully detect a target, the return signal strength needs to be larger t
 
 #### Exercise: maximum range calculation
 
-With the given parameters, it is possible to calculate the wavelength and max detection range for radar as below.
+With the given parameters, it is possible to calculate the wavelength and max detection range for radar as below. ([8b60aee](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/8b60aeef0fd3cd16c9c3220203eee668dc8196f5))
 
 ```matlab
 %Task 1: Calculate the wavelength
