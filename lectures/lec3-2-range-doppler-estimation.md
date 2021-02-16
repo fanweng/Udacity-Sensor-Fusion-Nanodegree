@@ -35,3 +35,30 @@ Using the MATLAB code ([36f29e1](https://github.com/fanweng/Udacity-Sensor-Fusio
 >> range_cal
     0   12.1000  143.0000  264.0000
 ```
+
+
+
+### II. Doppler Estimation
+
+Doppler effect indicates that the reflected frequency is higher when the target is approaching whereas a receding target will reflect lower frequency wave. The doppler shift is directly proportional to the velocity of the target: `Fd = 2 * vr / lambda`.
+
+Here, `Fd` is the doppler shift, `vr` is the relative velocity of the target, `lambda` is the wavelength of signal.
+
+With a moving target, the **beat frequency** now depends on both components: `Fr` (frequency delta due to range) and `Fd` (frequency shift due to velocity).
+
+<img src="media/beat-freq-with-doppler-effect.png" width="600" height="350" />
+
+Although, in the case of automotive radar, the `Fd` is very small in comparison to the `Fr`. Hence, we measure the doppler shift by using **rate of change of phase across multiple chirps**: `d(f) = d(phase) / d(t)`. And the phase change: `d(phase) = d(x) / lambda = f * d(x) / c`.
+
+Here, `d(x)` is the path changed between target and radar, `lambda` is wavelength of radar signal, `f` is the frequency of radar signal, `c` is speed of light.
+
+<img src="media/freq-shift-by-phase-change.png" width="600" height="400" />
+
+#### Exercise: velocity calculation
+
+Using the MATLAB code ([464b765](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/464b7652103bd285ccac7f8171e8d60975884075)), I calculated the relative velocities [5.84 m/s, -8.76 m/s, 21.42 m/s, -5.84 m/s] of four target with doppler frequency shifts [3 KHz, -4.5 KHz, 11 KHz, -3 KHz] respectively.
+
+```matlab
+>> velocity_cal
+    5.8442   -8.7662   21.4286   -5.8442
+```
