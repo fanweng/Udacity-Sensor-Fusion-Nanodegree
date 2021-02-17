@@ -62,3 +62,17 @@ Using the MATLAB code ([464b765](https://github.com/fanweng/Udacity-Sensor-Fusio
 >> velocity_cal
     5.8442   -8.7662   21.4286   -5.8442
 ```
+
+
+
+### III. Fast Fourier Transform (FFT)
+
+FFT converts the signal from *time domain* to *frequency domain*, i.e. multiple components for a signal in the time domain can be separated by FFT. It is important for the spectral analysis and to determine the shifts in frequency due to range and doppler.
+
+<img src="media/fft.png" width="600" height="400" />
+
+#### Exercise: FFT
+
+Using the MATLAB code ([4fce1f4](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/4fce1f45d0f4523c8f8d659bd49d77079a11c485)), I constructed a signal with two frequency components plus random noise. Then FFT was used to extract the frequency components of the signal buried in noise, which are about 45Hz and 80Hz.
+
+<img src="media/fft-exercise.png" width="800" height="300" />
