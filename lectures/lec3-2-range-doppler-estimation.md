@@ -76,3 +76,21 @@ FFT converts the signal from *time domain* to *frequency domain*, i.e. multiple 
 Using the MATLAB code ([4fce1f4](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/4fce1f45d0f4523c8f8d659bd49d77079a11c485)), I constructed a signal with two frequency components plus random noise. Then FFT was used to extract the frequency components of the signal buried in noise, which are about 45Hz and 80Hz.
 
 <img src="media/fft-exercise.png" width="800" height="300" />
+
+
+
+### IV. 2D FFT
+
+First range FFTs are run for every sample on each chirp. Since each chirp is sampled `N` times, it will generate a range FFT block of `N * Num_of_Chirps`. These FFT blocks are also called **FFT bins**. The output of the first FFT gives the *beat frequency*, *amplitude*, *phase* for each target. The phase varies as moving from one chirp to another (i.e. one bin to another on each row) due to target's small displacement.
+
+Second doppler FFT is implemented along the second dimension to determine the doppler frequency shift.
+
+The output image is called **Range Doppler Map (RDM)**.
+
+<img src="media/fft-2d.png" width="900" height="300" />
+
+#### Exercise: 2D FFT
+
+Using the MATLAB code ([22059d3](https://github.com/fanweng/Udacity-Sensor-Fusion-Nanodegree/commit/22059d36b73e1eee50a0bd31e11e45246df4df37)), I created a 2D data and applied 2D FFT to generate the matrix.
+
+<img src="media/fft-2d-rdm.png" width="900" height="350" />
