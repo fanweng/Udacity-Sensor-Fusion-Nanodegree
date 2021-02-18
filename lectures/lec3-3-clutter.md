@@ -62,3 +62,11 @@ Using the MATLAB code [c01621d](https://github.com/fanweng/Udacity-Sensor-Fusion
 10. Since the cell under test are not located at the edges, due to the training cells occupying the edges, we suppress the edges to zero. Any cell value that is neither 1 nor a 0, assign it a zero.
 
 <img src="media/cfar-2d.png" width="600" height="350" />
+
+### V. Angle of Arrival (AoA)
+
+*Phased array antenna* can steer the beam electronically in the desired direction. Such beam scanning technique requires each antenna element is excited with certain phase values. The phase shift increment is calculated by the following equation.
+
+<img src="media/aoa-antenna.png" width="900" height="350" />
+
+Angle of Arrive (AoA) thus is available because radar scans at different angles spatially.
