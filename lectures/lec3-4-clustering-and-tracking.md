@@ -26,3 +26,7 @@ The purpose of Kalman filter is to estimate the **state** of a tracked vehicle, 
 `trackingKF` MATLAB object tutorial [HERE](https://www.mathworks.com/help/driving/ref/trackingkf.html).
 
 Explanation of Kalman filter with MATLAB videos [HERE](https://www.youtube.com/watch?v=mwn8xhgNpFY&list=PLn8PRpmsu08pzi6EMiYnR-076Mh-q3tWr).
+
+### III. MATLAB Sensor Fusion
+
+In the [sensor_fusion_with_radar.m](../Radar/exercises/sensor_fusion_with_radar.m), Kalman filtering is implemented in the simulated environment using MATLAB.
