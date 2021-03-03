@@ -29,4 +29,6 @@ Explanation of Kalman filter with MATLAB videos [HERE](https://www.youtube.com/w
 
 ### III. MATLAB Sensor Fusion
 
-In the [sensor_fusion_with_radar.m](../Radar/exercises/sensor_fusion_with_radar.m), Kalman filtering is implemented in the simulated environment using MATLAB.
+In the [sensor_fusion_with_radar.m](../Radar/exercises/sensor_fusion_with_radar.m), Kalman filtering is implemented in the simulated environment using MATLAB. The code generates a scenario, simulate sensor detections, and use sensor fusion to track simulated vehicles.
+
+<img src="media/sensor-fusion-with-radar.png" width="900" height="500" />
