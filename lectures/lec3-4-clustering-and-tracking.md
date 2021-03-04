@@ -32,3 +32,27 @@ Explanation of Kalman filter with MATLAB videos [HERE](https://www.youtube.com/w
 In the [sensor_fusion_with_radar.m](../Radar/exercises/sensor_fusion_with_radar.m), Kalman filtering is implemented in the simulated environment using MATLAB. The code generates a scenario, simulate sensor detections, and use sensor fusion to track simulated vehicles.
 
 <img src="media/sensor-fusion-with-radar.png" width="900" height="500" />
+
+- Generate the scenario (MATLAB Automated Driving Toolbox)
+    * generate a road network
+    * define vehicles on the road
+    * move the vehicles
+- Define radar
+    * two long-range radar sensors on both the front and the back of the ego vehicle
+    * two short-range radar sensors on each side of the ego vehicle
+- Create a multi-object tracker
+    * `multiObjectTracker` tracks the vehicles that are close to the ego vehicle
+    * tracker uses a constant velocity linear Kalman filter that works with position and velocity
+- Simulate the scenario
+    * move the vehicles
+    * call sensor simulation
+    * perform the tracking
+- Define the Kalman filter
+    * `trackingKF` function is used to initiate the Kalman filter for any type of Motion Models
+- Cluster detections
+    * merge multiple detections suspected to be of the same vehicle to a single detection
+    * closer than the size of a vehicle
+
+The following video shows how the program runs:
+
+<img src="../Radar/exercises/sensor_fusion_with_radar.gif" width="900" height="500" />

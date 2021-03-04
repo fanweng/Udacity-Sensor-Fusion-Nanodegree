@@ -1,5 +1,7 @@
 %% Sensor Fusion Using Synthetic Radar
+
 %% Generate the Scenario
+
 % Scenario generation comprises generating a road network, defining
 % vehicles that move on the roads, and moving the vehicles.
 %
@@ -12,14 +14,12 @@
 scenario = drivingScenario;
 scenario.SampleTime = 0.01;
 
-%%
 % Add a stretch of 500 meters of typical highway road with two lanes. The
 % road is defined using a set of points, where each point defines the center of
 % the road in 3-D space.
 roadCenters = [0 0; 50 0; 100 0; 250 20; 500 40];
 road(scenario, roadCenters, 'lanes',lanespec(2));
 
-%%
 % Create the ego vehicle and three cars around it: one that overtakes the
 % ego vehicle and passes it on the left, one that drives right in front of
 % the ego vehicle and one that drives right behind the ego vehicle. All the
@@ -47,6 +47,7 @@ chaseCar = vehicle(scenario, 'ClassID', 1);
 trajectory(chaseCar, [25 0; roadCenters(2:end,:)] - [0 1.8], 25); % On right lane
 
 %% Define Radar Sensors
+
 % Simulate an ego vehicle that has 6 radar sensors and
 % The ego vehicle is equipped with a
 % long-range radar sensor. Each side of the vehicle has two short-range radar
@@ -87,6 +88,7 @@ sensors{6} = radarDetectionGenerator('SensorIndex', 6, 'Height', 0.2, 'Yaw', -60
     'RangeResolution', 1.25);
 
 %% Create a Tracker
+
 % Create a |<matlab:doc('multiObjectTracker') multiObjectTracker>| to track
 % the vehicles that are close to the ego vehicle. The tracker uses the
 % |initSimDemoFilter| supporting function to initialize a constant velocity
@@ -96,9 +98,6 @@ sensors{6} = radarDetectionGenerator('SensorIndex', 6, 'Height', 0.2, 'Yaw', -60
 % the motion itself is confined to the horizontal plane, so there is no
 % need to track the height.
 
-
-
-%% TODO*
 %Change the Tracker Parameters and explain the reasoning behind selecting
 %the final values. You can find more about parameters here: https://www.mathworks.com/help/driving/ref/multiobjecttracker-system-object.html
 
@@ -107,12 +106,11 @@ tracker = multiObjectTracker('FilterInitializationFcn', @initSimDemoFilter, ...
 positionSelector = [1 0 0 0; 0 0 1 0]; % Position selector
 velocitySelector = [0 1 0 0; 0 0 0 1]; % Velocity selector
 
-% Create the display and return a handle to the bird's-eye plot
+% Create the display and return a handle to the bird-eye plot
 BEP = createDemoDisplay(egoCar, sensors);
 
-
-
 %% Simulate the Scenario
+
 % The following loop moves the vehicles, calls the sensor simulation, and
 % performs the tracking.
 %
@@ -120,7 +118,7 @@ BEP = createDemoDisplay(egoCar, sensors);
 % different time steps. Specifying different time steps for the scenario
 % and the sensors enables you to decouple the scenario simulation from the
 % sensor simulation. This is useful for modeling actor motion with high
-% accuracy independently from the sensor's measurement rate.
+% accuracy independently from the sensor measurement rate.
 %
 % Another example is when the sensors have different update rates. Suppose
 % one sensor provides updates every 20 milliseconds and another sensor
@@ -164,7 +162,7 @@ while advance(scenario) && ishghandle(BEP.Parent)
         detectionClusters = clusterDetections(detections, vehicleLength);
         confirmedTracks = updateTracks(tracker, detectionClusters, time);
 
-        % Update bird's-eye plot
+        % Update birds-eye plot
         updateBEP(BEP, egoCar, detections, confirmedTracks, positionSelector, velocitySelector);
     end
 
@@ -176,22 +174,24 @@ while advance(scenario) && ishghandle(BEP.Parent)
 end
 
 %% Supporting Functions
-%
-%
+
 % This function initializes a constant velocity filter based on a detection.
 function filter = initSimDemoFilter(detection)
 % Use a 2-D constant velocity model to initialize a trackingKF filter.
 % The state vector is [x;vx;y;vy]
 % The detection measurement vector is [x;y;vx;vy]
 % As a result, the measurement model is H = [1 0 0 0; 0 0 1 0; 0 1 0 0; 0 0 0 1]
+H = [1 0 0 0; 0 0 1 0; 0 1 0 0; 0 0 0 1];
 
-%TODO: Implement the Kalman filter using trackingKF function. If stuck
+% Implement the Kalman filter using trackingKF function. If stuck
 %review the implementation discussed in the project walkthrough
-
-
+filter = trackingKF('MotionModel', '2D Constant Velocity', ...
+    'State', H' * detection.Measurement, ...
+    'MeasurementModel', H, ...
+    'StateCovariance', H' * detection.MeasurementNoise * H, ...
+    'MeasurementNoise', detection.MeasurementNoise);
 end
 
-%%%
 % *|clusterDetections|*
 %
 % This function merges multiple detections suspected to be of the same
@@ -222,10 +222,17 @@ detectionClusters = cell(N,1);
 while ~isempty(leftToCheck)
     % Remove the detections that are in the same cluster as the one under
     % consideration
-
-    %TODO : Complete the clustering loop based on the implementation
-    %discussed in the lesson
-
+    underConsideration = leftToCheck(1);
+    clusterInds = (distances(underConsideration, leftToCheck) < vehicleSize);
+    detInds = leftToCheck(clusterInds);
+    clusterDets = [detections{detInds}];
+    clusterMeas = [clusterDets.Measurement];
+    meas = mean(clusterMeas, 2);
+    meas2D = [meas(1:2); meas(4:5)];
+    i = i+1;
+    detectionClusters{i} = detections{detInds(1)};
+    detectionClusters{i}.Measurement = meas2D;
+    leftToCheck(clusterInds) = [];
 end
 detectionClusters(i+1:end) = [];
 
@@ -238,14 +245,13 @@ for i = 1:numel(detectionClusters)
 end
 end
 
-%%%
 % *|createDemoDisplay|*
 %
 % This function creates a three-panel display:
 %
 % # Top-left corner of display: A top view that follows the ego vehicle.
 % # Bottom-left corner of display: A chase-camera view that follows the ego vehicle.
-% # Right-half of display: A <matlab:doc('birdsEyePlot') bird's-eye plot> display.
+% # Right-half of display: A <matlab:doc('birdsEyePlot') birds-eye plot> display.
 function BEP = createDemoDisplay(egoCar, sensors)
     % Make a figure
     hFigure = figure('Position', [0, 0, 1200, 640], 'Name', 'Sensor Fusion with Synthetic Data Example');
@@ -277,14 +283,14 @@ function BEP = createDemoDisplay(egoCar, sensors)
     end
 
     % Plot the coverage areas for vision sensors
-%     for i = 7:8
-%         cap = coverageAreaPlotter(BEP,'FaceColor','blue','EdgeColor','blue');
-%         plotCoverageArea(cap, sensors{i}.SensorLocation,...
-%             sensors{i}.MaxRange, sensors{i}.Yaw, 45);
-%     end
+%    for i = 7:8
+%        cap = coverageAreaPlotter(BEP,'FaceColor','blue','EdgeColor','blue');
+%        plotCoverageArea(cap, sensors{i}.SensorLocation,...
+%        sensors{i}.MaxRange, sensors{i}.Yaw, 45);
+%    end
 
     % Create a vision detection plotter put it in a struct for future use
-%     detectionPlotter(BEP, 'DisplayName','vision', 'MarkerEdgeColor','blue', 'Marker','^');
+%    detectionPlotter(BEP, 'DisplayName','vision', 'MarkerEdgeColor','blue', 'Marker','^');
 
     % Combine all radar detections into one entry and store it for later update
     detectionPlotter(BEP, 'DisplayName','radar', 'MarkerEdgeColor','red');
@@ -292,7 +298,7 @@ function BEP = createDemoDisplay(egoCar, sensors)
     % Add road borders to plot
     laneMarkingPlotter(BEP, 'DisplayName','lane markings');
 
-    % Add the tracks to the bird's-eye plot. Show last 10 track updates.
+    % Add the tracks to the bird-eye plot. Show last 10 track updates.
     trackPlotter(BEP, 'DisplayName','track', 'HistoryDepth',10);
 
     axis(BEP.Parent, 'equal');
@@ -303,10 +309,9 @@ function BEP = createDemoDisplay(egoCar, sensors)
     outlinePlotter(BEP, 'Tag', 'Ground truth');
 end
 
-%%%
 % *|updateBEP|*
 %
-% This function updates the bird's-eye plot with road boundaries,
+% This function updates the bird-eye plot with road boundaries,
 % detections, and tracks.
 function updateBEP(BEP, egoCar, detections, confirmedTracks, psel, vsel)
     % Update road boundaries and their display
