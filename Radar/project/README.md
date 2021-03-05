@@ -46,3 +46,9 @@ On mixing these two signals, we get the beat signal by *element-by-element multi
 ### 3. FFT operation
 
 By implementing the 2D FFT on the beat signal, we can extract both **Range** and **Doppler** information.
+
+First FFT would be implemented on the mixed/beat signal, outputting a peak at the range of the vehicle. The second FFT will generate a range doppler map.
+
+### 4. 2D CFAR
+
+Use 2D CFAR to threshold the cells in the range doppler map generated in the last step.
