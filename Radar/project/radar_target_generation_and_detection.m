@@ -41,13 +41,13 @@ t = linspace(0, Nd*Tchirp, Nr*Nd); % total time for samples
 
 
 % Creating the vectors for Tx, Rx and Mix based on the total samples input.
-Tx=zeros(1,length(t)); % transmitted signal
-Rx=zeros(1,length(t)); % received signal
-Mix = zeros(1,length(t)); % beat signal
+Tx = zeros(1,length(t));    % transmitted signal
+Rx = zeros(1,length(t));    % received signal
+Mix = zeros(1,length(t));   % beat signal
 
 % Similar vectors for range_covered and time delay.
-r_t=zeros(1,length(t));
-td=zeros(1,length(t));
+r_t = zeros(1,length(t));
+td = zeros(1,length(t));
 
 
 
