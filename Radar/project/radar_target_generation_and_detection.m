@@ -11,11 +11,13 @@ clc;
 
 range_max = 200;    % maximum range
 
+
 %% User Defined Range and Velocity of target
 % Define the target initial position and velocity. Note: Velocity remains contant
 
 range = 100;    % target initial position (m)
 velocity = -20; % target initial velocity (m/s)
+
 
 %% FMCW Waveform Generation
 % Design the FMCW waveform by giving the specs of each of its parameters.
@@ -50,24 +52,23 @@ r_t = zeros(1,length(t));
 td = zeros(1,length(t));
 
 
-
 %% Signal generation and Moving Target simulation
 % Running the radar scenario over the time.
 
 for i=1:length(t)
 
-    % *%TODO* :
     % For each time stamp update the Range of the Target for constant velocity.
+    range_t(i) = range + velocity * t;
+    td(i) = (2 * range_t(i)) / c;
 
-    % *%TODO* :
     % For each time sample we need update the transmitted and received signal.
-    Tx(i) =
-    Rx (i)  =
+    Tx(i) = cos(2 * pi * (fc * t(i) + (slope * t(i)^2) / 2))
+    Rx(i) = cos(2 * pi * (fc * (t(i) - td(i)) + (slope * (t(i) - td(i))^2) / 2))
 
     % *%TODO* :
     % Now by mixing the Transmit and Receive generate the beat signal
     % This is done by element wise matrix multiplication of Transmit and Receiver Signal
-    Mix(i) =
+    Mix(i) = Tx(i).*Rx(i)
 
 end
 
