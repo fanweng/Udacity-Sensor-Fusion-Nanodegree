@@ -13,3 +13,14 @@ $ ./matlab
 ```
 
 Tutorial for MATLAB is available [here](https://www.mathworks.com/learn/tutorials/matlab-onramp.html).
+
+### II. Lectures
+
+[Lecture 3.1 Radar Principle](../lectures/lec3-1-radar-principles.md)
+[Lecture 3.2 Range Doppler Estimation](../lectures/lec3-2-range-doppler-estimation.md)
+[Lecture 3.3 Clutter](../lectures/lec3-3-clutter.md)
+[Lecture 3.4 Clustering and Tracking](../lectures/lec3-4-clustering-and-tracking.md)
+
+### III. Project
+
+[Radar Target Generation and Detection](../Radar/project/README.md)
