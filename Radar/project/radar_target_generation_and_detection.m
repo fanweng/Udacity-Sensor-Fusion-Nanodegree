@@ -15,8 +15,8 @@ range_max = 200;    % maximum range
 %% User Defined Range and Velocity of target
 % Define the target initial position and velocity. Note: Velocity remains contant
 
-range = 100;    % target initial position (m)
-velocity = -20; % target initial velocity (m/s)
+range = 80;         % target initial position (m)
+velocity = -25;     % target initial velocity (m/s)
 
 
 %% FMCW Waveform Generation
@@ -78,21 +78,22 @@ end
 Mix = reshape(Mix, [Nr, Nd]);
 
 % Run the FFT on the beat signal along the range bins dimension (Nr) and normalize.
-Y = fft(Mix, [], 1);
-P = Y./Nr;
+sig_fft1 = fft(Mix, Nr)./Nr;
 
 % Take the absolute value of FFT output
-P2 = abs(P);
+sig_fft1 = abs(sig_fft1);
 
 % Output of FFT is double sided signal, but we are interested in only one side of the spectrum.
 % Hence we throw out half of the samples.
-P1 = P2(1:Nr/2 + 1);
+sig_fft1 = sig_fft1(1:Nr/2 + 1);
 
 % Plotting the range
 figure('Name', 'Range from First FFT')
 
 % Plot FFT output
-plot(P1)
+plot(sig_fft1)
+title('Range from First FFT')
+xlabel('Range (m)')
 axis ([0 200 0 1]);
 
 
@@ -122,6 +123,10 @@ RDM = 10 * log10(RDM) ;
 doppler_axis = linspace(-100, 100, Nd);
 range_axis = linspace(-200, 200, Nr/2) * ((Nr/2) / 400);
 figure,surf(doppler_axis, range_axis, RDM);
+title('Range-Doppler Map from Second FFT')
+ylabel('Range (m)')
+xlabel('Velocity (m/s)')
+zlabel('dB')
 
 
 %% CFAR implementation
@@ -156,21 +161,21 @@ noise_level = zeros(1, 1);
 
 % Use RDM[x,y] as the matrix from the output of 2D FFT for implementing CFAR
 
-cell_num = (2 * Tr + 2 * Gr + 1) * (2 * Td + 2 * Gd + 1) - (2 * Gr + 1) * (2 * Gd + 1);
+Tcell_num = (2 * Tr + 2 * Gr + 1) * (2 * Td + 2 * Gd + 1) - (2 * Gr + 1) * (2 * Gd + 1);
 signal_cfar = zeros(Nr/2, Nd);
 for i = 1:(Nr / 2 - (2 * Gr + 2 * Tr))
     for j = 1:(Nd - (2 * Gd + 2 * Td))
-        s1 = sum(db2pow(RDM(i:i+2*Tr+2*Gr, j:j+2*Td+2*Gd)), 'all');
-        s2 = sum(db2pow(RDM(i+Tr:i+Tr+2*Gr, j+Td:j+Td+2*Gd)), 'all');    
-        noise_level = s1 - s2;
-        
-        threshold = noise_level / cell_num;      
-        threshold = db2pow(pow2db(threshold)) * offset;
+        sum_all_cells = sum(db2pow(RDM(i:i+2*Tr+2*Gr, j:j+2*Td+2*Gd)), 'all');
+        sum_excl_Tcell  = sum(db2pow(RDM(i+Tr:i+Tr+2*Gr, j+Td:j+Td+2*Gd)), 'all');
+        noise_level = sum_all_cells - sum_excl_Tcell;
+
+        threshold = noise_level / Tcell_num;
+        threshold = db2pow(pow2db(threshold) + offset);
 
         signal = db2pow(RDM(i+Tr+Gr, j+Td+Gd));
         if (signal <= threshold)
             signal_cfar(i+Tr+Gr,j+Td+Gd) = 0;
-        else 
+        else
             signal_cfar(i+Tr+Gr,j+Td+Gd) = 1;
         end
     end
@@ -184,4 +189,8 @@ end
 % Display the CFAR output using the Surf function like we did for Range
 % Doppler Response output.
 figure,surf(doppler_axis, range_axis, signal_cfar);
+title("2D CFAR on Range-Doppler Map")
+xlabel('Velocity (m/s)')
+ylabel('Range (m)')
+zlabel('CFAR Detection')
 colorbar;
