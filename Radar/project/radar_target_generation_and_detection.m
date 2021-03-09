@@ -160,23 +160,22 @@ noise_level = zeros(1, 1);
 % it a value of 1, else equate it to 0.
 
 % Use RDM[x,y] as the matrix from the output of 2D FFT for implementing CFAR
-
-Tcell_num = (2 * Tr + 2 * Gr + 1) * (2 * Td + 2 * Gd + 1) - (2 * Gr + 1) * (2 * Gd + 1);
+Tcell_num = range_size * doppler_size - (2 * Gr + 1) * (2 * Gd + 1);
 signal_cfar = zeros(Nr/2, Nd);
-for i = 1:(Nr / 2 - (2 * Gr + 2 * Tr))
-    for j = 1:(Nd - (2 * Gd + 2 * Td))
-        sum_all_cells = sum(db2pow(RDM(i:i+2*Tr+2*Gr, j:j+2*Td+2*Gd)), 'all');
-        sum_excl_Tcell  = sum(db2pow(RDM(i+Tr:i+Tr+2*Gr, j+Td:j+Td+2*Gd)), 'all');
+for i = 1+Tr+Gr:(Nr/2 - (Gr+Tr))
+    for j = 1+Td+Gd:(Nd - (Gd+Td))
+        sum_all_cells = sum(db2pow(RDM(i-(Tr+Gr):i+Tr+Gr, j-(Td+Gd):j+Td+Gd)), 'all');
+        sum_excl_Tcell  = sum(db2pow(RDM(i-Gr:i+Gr, j-Gd:j+Gd)), 'all');
         noise_level = sum_all_cells - sum_excl_Tcell;
 
         threshold = noise_level / Tcell_num;
         threshold = db2pow(pow2db(threshold) + offset);
 
-        signal = db2pow(RDM(i+Tr+Gr, j+Td+Gd));
+        signal = db2pow(RDM(i,j));
         if (signal <= threshold)
-            signal_cfar(i+Tr+Gr,j+Td+Gd) = 0;
+            signal_cfar(i,j) = 0;
         else
-            signal_cfar(i+Tr+Gr,j+Td+Gd) = 1;
+            signal_cfar(i,j) = 1;
         end
     end
 end
