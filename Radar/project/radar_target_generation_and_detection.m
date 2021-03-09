@@ -58,17 +58,16 @@ td = zeros(1,length(t));
 for i=1:length(t)
 
     % For each time stamp update the Range of the Target for constant velocity.
-    range_t(i) = range + velocity * t;
+    range_t(i) = range + velocity * t(i);
     td(i) = (2 * range_t(i)) / c;
 
     % For each time sample we need update the transmitted and received signal.
-    Tx(i) = cos(2 * pi * (fc * t(i) + (slope * t(i)^2) / 2))
-    Rx(i) = cos(2 * pi * (fc * (t(i) - td(i)) + (slope * (t(i) - td(i))^2) / 2))
+    Tx(i) = cos(2 * pi * (fc * t(i) + (slope * t(i)^2) / 2));
+    Rx(i) = cos(2 * pi * (fc * (t(i) - td(i)) + (slope * (t(i) - td(i))^2) / 2));
 
-    % *%TODO* :
     % Now by mixing the Transmit and Receive generate the beat signal
     % This is done by element wise matrix multiplication of Transmit and Receiver Signal
-    Mix(i) = Tx(i).*Rx(i)
+    Mix(i) = Tx(i) * Rx(i);
 
 end
 
@@ -76,31 +75,31 @@ end
 
 %% RANGE MEASUREMENT
 
-% *%TODO* :
 % Reshape the vector into Nr*Nd array. Nr and Nd here would also define the size of
 % Range and Doppler FFT respectively.
+Mix = reshape(Mix, [Nr, Nd]);
 
-% *%TODO* :
 % Run the FFT on the beat signal along the range bins dimension (Nr) and normalize.
+Y = fft(Mix, [], 1);
+P = Y./Nr;
 
-% *%TODO* :
 % Take the absolute value of FFT output
+P2 = abs(P);
 
-% *%TODO* :
 % Output of FFT is double sided signal, but we are interested in only one side of the spectrum.
 % Hence we throw out half of the samples.
-
+P1 = P2(1:Nr/2 + 1);
 
 % Plotting the range
-figure ('Name','Range from First FFT')
+figure('Name', 'Range from First FFT')
 subplot(2,1,1)
 
-% *%TODO* :
 % Plot FFT output
-
-
+plot(P1)
 axis ([0 200 0 1]);
 
+
+return;
 
 
 %% RANGE DOPPLER RESPONSE
