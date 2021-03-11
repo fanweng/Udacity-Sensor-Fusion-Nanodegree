@@ -91,7 +91,7 @@ For a Kalman filter for vehicle, the two dimensions to use are *location* and *v
 `y`: error
 `S`: matrix projecting the system uncertainty into the measurement space
 `R`: measurement noise matrix
-`K`: Kalman gain
+`K`: Kalman filter gain, combining the uncertainty of where we think we are `P` and uncertainty of sensor measurement `R`. If `P > R`, KF will give more weight to sensor measurement `z`. If `P < R`, more weight will be put on predicted `x`.
 `I`: identity matrix
 
 <img src="media/kalman-filter-design.png" width="900" height="250" />
