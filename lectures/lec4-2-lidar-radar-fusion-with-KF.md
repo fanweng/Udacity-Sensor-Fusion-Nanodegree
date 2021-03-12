@@ -49,6 +49,20 @@ The **state covariance matrix update equation** and **Q** is:
 
 To deduce the Q value shown above, we need to model acceleration as a random noise.
 
+## III. Laser Measurement
+
+For Lidar update process, three metrics are important - measurement vector `z`, measurement matrix `H`, covariance matrix `R`.
+
+The Lidar point cloud plus object detection yield the *object position* `(px, py)`, which is the **measurement vector** `z`. **Measurement matrix** `H` projects our *belief* about the object's current state into the measurement space of the sensor.
+
+- `z = H * x`
+
+<img src="media/measurement-matrix.png" width="600" height="500" />
+
+**Measurement noise covariance matrix** `R` represents the *uncertainty* in our sensor measurement. It's a 2x2 matrix with the off-diagonal 0s indicating that the noise processes are uncorrelated. Generally, the parameters for the random noise measurement matrix will be provided by the sensor manufacturer
+
+<img src="media/measurement-noise-covariance-matrix-r.png" width="300" height="70" />
+
 ## IV. Equation Cheatsheet
 
 [Sensor Fusion EKF Reference.pdf](../Kalman_Filters/sensor-fusion-ekf-reference.pdf)
