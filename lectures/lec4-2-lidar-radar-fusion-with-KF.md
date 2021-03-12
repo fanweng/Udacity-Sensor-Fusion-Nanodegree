@@ -27,7 +27,7 @@ Measurement updates for Lidar and Radar are usually asynchronous. If they arrive
 
 To implement the update and predict processes in C++, we need the [Eigen Library](http://eigen.tuxfamily.org/) which the version used in this course can be downloaded [HERE](https://d17h27t6h515a5.cloudfront.net/topher/2017/March/58b7604e_eigen/eigen.zip).
 
-The source code: [kf_filter_equations.cpp](../Kalman_Filters/kf_filter_equations.cpp).
+The source code: [kf_filter_equations.cpp](../Kalman_Filters/kf-equation-exercise/kf_filter_equations.cpp).
 
 <img src="media/kf-equations.png" width="600" height="400" />
 
@@ -62,6 +62,39 @@ The Lidar point cloud plus object detection yield the *object position* `(px, py
 **Measurement noise covariance matrix** `R` represents the *uncertainty* in our sensor measurement. It's a 2x2 matrix with the off-diagonal 0s indicating that the noise processes are uncorrelated. Generally, the parameters for the random noise measurement matrix will be provided by the sensor manufacturer
 
 <img src="media/measurement-noise-covariance-matrix-r.png" width="300" height="70" />
+
+The source code: [tracking.cpp](../Kalman_Filters/laser-measurement-exercise/tracking.cpp)
+
+## IV. Radar Measurement
+
+For radar, there is no `H` matrix that maps the state vector `x` into polar coordinate; instead, `h(x)` function helps to convert the cartesian coordinates to polar coordinates.
+
+- Definition of radar variables in the polar coordinates
+    * **range** (`rho`): radial distance from the vehicle to the object
+    * **bearing** (`phi`): angle between `rho` and x-axis
+    * **radial velocity** (`rho dot`): change of `rho` (angle rate)
+
+<img src="media/radar-state-transition.png" width="800" height="400" />
+
+#### Linear approximation
+
+`h(x)` is a nonlinear function, we cannot apply Gaussian distribution directly to it. Otherwise, the resulting distribution will not be a Gaussian. The solution is to use **first-order Taylor series expansion** of the `h(x)` as a linear approximation, which is also the idea of **extended Kalman filter (EKF)**.
+
+<img src="media/ekf-linear-approximation.png" width="800" height="400" />
+
+For example, the first-order Taylor series expansion of `h(x) = arctan(x)` function is:
+
+<img src="media/first-order-taylor-series-expansion.png" width="400" height="90" />
+
+The general formula for the multi-dimensional Taylor series expansion looks like the below, where the `Df(a)` is called the **Jacobian matrix** and `D^2f(a)` is called the **Hessian matrix**. To derive a linear approximation of the `h(x)` function, we only keep the Jacobian matrix. Hessian matrix and other higher order terms are ignored.
+
+<img src="media/multi-dimensional-taylor-series-expansion.png" width="600" height="70" />
+
+Jacobian matrix is shown below:
+
+<img src="media/jacobian-matrix.png" width="800" height="200" />
+
+The source code: [cal_jacobian.cpp](../Kalman_Filters/jacobian-matrix-exercise/cal_jacobian.cpp)
 
 ## IV. Equation Cheatsheet
 
