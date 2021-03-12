@@ -31,6 +31,23 @@ The source code: [kf_filter_equations.cpp](../Kalman_Filters/kf_filter_equations
 
 <img src="media/kf-equations.png" width="600" height="400" />
 
+#### State prediction
+
+The following diagram shows the detailed steps in the predict process.
+
+<img src="media/detailed-predict-process.png" width="600" height="200" />
+
+The **state prediction** uses the kinematic equation below. The *motion noise* and *process noise* refer to the uncertainty of position when predicting location. The *measurement noise* refers to the uncertainty in sensor measurement.
+
+<img src="media/state-transition-matrix.png" width="500" height="250" />
+
+#### Process covariance matrix Q
+
+The **state covariance matrix update equation** and **Q** is:
+
+<img src="media/process-covariance-matrix-equation.png" width="400" height="200" />
+
+To deduce the Q value shown above, we need to model acceleration as a random noise.
 
 ## IV. Equation Cheatsheet
 
