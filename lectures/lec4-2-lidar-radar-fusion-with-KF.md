@@ -96,6 +96,18 @@ Jacobian matrix is shown below:
 
 The source code: [cal_jacobian.cpp](../Kalman_Filters/jacobian-matrix-exercise/cal_jacobian.cpp)
 
+#### EKF Algorithm
+
+EKF equations are similar to the KF ones, but some main differences are:
+
+- `P'` is calculated with `Fj`, not `F`
+- `S`, `K` and `P` are calculated with `Hj`, not `H`
+- `x'` is calculated with prediction update function `f`, not `F` matrix
+- `y` is calculated with `h` function, not `H` matrix
+
+<img src="media/kf-vs-ekf.png" width="700" height="450" />
+
+
 ## IV. Equation Cheatsheet
 
 [Sensor Fusion EKF Reference.pdf](../Kalman_Filters/sensor-fusion-ekf-reference.pdf)
