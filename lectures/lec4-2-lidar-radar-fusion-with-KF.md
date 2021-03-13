@@ -107,7 +107,14 @@ EKF equations are similar to the KF ones, but some main differences are:
 
 <img src="media/kf-vs-ekf.png" width="700" height="450" />
 
+#### Root Mean Squared Error
 
-## IV. Equation Cheatsheet
+To evaluate the accuracy of metrics, we can use **root mean squared error (RMSE)** to measure the deviation of the estimated state from the true state.
+
+The source code: [cal_rmse.cpp](../Kalman_Filters/root-mean-squared-err-exercise/cal_rmse.cpp)
+
+<img src="media/rmse-equation.png" width="400" height="100" />
+
+## V. Equation Cheatsheet
 
 [Sensor Fusion EKF Reference.pdf](../Kalman_Filters/sensor-fusion-ekf-reference.pdf)
