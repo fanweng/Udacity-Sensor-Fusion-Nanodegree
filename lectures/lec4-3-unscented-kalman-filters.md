@@ -24,7 +24,7 @@ The EKF would give a poor performance when the predict function `f(x)` and updat
 
 <img src="media/ukf-roadmap.png" width="700" height="350" />
 
-#### Sigma points
+#### Generate sigma points
 
 The number of sigma points depends on the dimension of state vector. For a simpler case, we can use a 2D state vector with `px` and `py` which gives 5 sigma points. 
 
@@ -34,12 +34,13 @@ The following equations calculate the 5 sigma points for a 2D state vector.
 
 <img src="media/generate-sigma-points.png" width="700" height="500" />
 
-The source code: [ukf.cpp](../Kalman_Filters/sigma-points-exercise/ukf.cpp)
+The source code: `UKF::GenerateSigmaPoints()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
 
-#### UKF augmentation
-
+#### Generate sigma points for the UKF augmentation
 
 <img src="media/ukf-augmentation.png" width="700" height="700" />
+
+The source code: `UKF::AugmentedSigmaPoints()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
 
 ## V. Equation Cheatsheet
 
