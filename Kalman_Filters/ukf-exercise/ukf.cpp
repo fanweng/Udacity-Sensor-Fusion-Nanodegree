@@ -213,10 +213,47 @@ void UKF::SigmaPointPrediction(MatrixXd* Xsig_out) {
    */
 
   // predict sigma points
+  for (int i = 0; i < 2 * n_aug + 1; ++i) {
+    // extract state vector elements
+    double px = Xsig_aug(0, i);
+    double py = Xsig_aug(1, i);
+    double v = Xsig_aug(2, i);
+    double yaw = Xsig_aug(3, i);
+    double yawd = Xsig_aug(4, i);
+    double nu_a = Xsig_aug(5, i);
+    double nu_yawdd = Xsig_aug(6, i);
 
-  // avoid division by zero
+    // predict the states
+    double px_pred, py_pred;
 
+    // avoid division by zero
+    if (fabs(yawd) > 0.001) {
+      px_pred = px + v / yawd * (sin(yaw + yawd * delta_t) - sin(yaw));
+      py_pred = py + v / yawd * (-1 * cos(yaw + yawd * delta_t) + cos(yaw));
+    }
+    else {
+      px_pred = px + v * cos(yaw) * delta_t;
+      py_pred = py + v * sin(yaw) * delta_t;
+    }
+
+    double v_pred = v;
+    double yaw_pred = yaw + yawd * delta_t;
+    double yawd_pred = yawd;
+
+    // add noise
+    px_pred += 0.5 * delta_t * delta_t * cos(yaw) * nu_a;
+    py_pred += 0.5 * delta_t * delta_t * sin(yaw) * nu_a;
+    v_pred += delta_t * nu_a;
+    yaw_pred += 0.5 * delta_t * delta_t * nu_yawdd;
+    yawd_pred += delta_t * nu_yawdd;
+    
   // write predicted sigma points into right column
+    Xsig_pred(0, i) = px_pred;
+    Xsig_pred(1, i) = py_pred;
+    Xsig_pred(2, i) = v_pred;
+    Xsig_pred(3, i) = yaw_pred;
+    Xsig_pred(4, i) = yawd_pred;
+  }
 
   /**
    * Student part end

@@ -42,6 +42,14 @@ The source code: `UKF::GenerateSigmaPoints()` in the [ukf.cpp](../Kalman_Filters
 
 The source code: `UKF::AugmentedSigmaPoints()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
 
+#### Predict sigma points
+
+The 7D augmented state needs to propagate using the process model to a 5D predicted state.
+
+<img src="media/predict-state-by-sigma-points.png" width="900" height="300" />
+
+The source code: `UKF::SigmaPointPrediction()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
+
 ## V. Equation Cheatsheet
 
 [Sensor Fusion EKF Reference.pdf](../Kalman_Filters/sensor-fusion-ekf-reference.pdf)
