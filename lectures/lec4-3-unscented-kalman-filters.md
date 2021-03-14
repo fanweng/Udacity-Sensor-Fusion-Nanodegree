@@ -50,6 +50,14 @@ The 7D augmented state needs to propagate using the process model to a 5D predic
 
 The source code: `UKF::SigmaPointPrediction()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
 
+#### Predict mean and covariance 
+
+The following equations are useful to predict the mean and covariance.
+
+<img src="media/predict-mean-covariance.png" width="600" height="280" />
+
+The source code: `UKF::PredictMeanAndCovariance()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
+
 ## V. Equation Cheatsheet
 
 [Sensor Fusion EKF Reference.pdf](../Kalman_Filters/sensor-fusion-ekf-reference.pdf)
