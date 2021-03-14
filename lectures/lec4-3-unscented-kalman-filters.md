@@ -38,6 +38,8 @@ The source code: `UKF::GenerateSigmaPoints()` in the [ukf.cpp](../Kalman_Filters
 
 #### Generate sigma points for the UKF augmentation
 
+Augmentation is needed if the process noise is nonlinear `f(xk, vk)`.
+
 <img src="media/ukf-augmentation.png" width="700" height="700" />
 
 The source code: `UKF::AugmentedSigmaPoints()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
@@ -57,6 +59,14 @@ The following equations are useful to predict the mean and covariance.
 <img src="media/predict-mean-covariance.png" width="600" height="280" />
 
 The source code: `UKF::PredictMeanAndCovariance()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
+
+#### Predict radar measurement
+
+In the prediction step, we generate augmented sigma points and predict the state using the sigma points. Now it's time to transform the predicted state into measurement space. The measurement model depends on the type of sensor is used. The process is similar to the prediction step - transforming a distribution through a nonlinear function `h(x)`. We can take the same steps but there are two shortcuts making it a bit easier - (1) reuse the sigma points generated, (2) skip the augmentation because the noise is simply addition.
+
+<img src="media/measurement-prediction.png" width="900" height="380" />
+
+The source code: `UKF::PredictRadarMeasurement()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
 
 ## V. Equation Cheatsheet
 

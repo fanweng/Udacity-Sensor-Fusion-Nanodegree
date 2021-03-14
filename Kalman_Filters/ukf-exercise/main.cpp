@@ -46,5 +46,15 @@ int main() {
   std::cout << "Predicted covariance matrix" << std::endl;
   std::cout << P_pred << std::endl;
 
+  /**
+   * Predict Radar measurement
+   */  
+  VectorXd z_out = VectorXd(3);
+  MatrixXd S_out = MatrixXd(3, 3);
+  ukf.PredictRadarMeasurement(&z_out, &S_out);
+  // print result
+  std::cout << "z_pred: " << std::endl << z_out << std::endl;
+  std::cout << "S: " << std::endl << S_out << std::endl;
+
   return 0;
 }
