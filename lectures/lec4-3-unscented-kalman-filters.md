@@ -68,7 +68,13 @@ In the prediction step, we generate augmented sigma points and predict the state
 
 The source code: `UKF::PredictRadarMeasurement()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
 
-## V. Equation Cheatsheet
+#### Update state
+
+<img src="media/update-state-equations.png" width="600" height="350" />
+
+The source code: `UKF::UpdateState()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
+
+## III. Equation Cheatsheet
 
 [Sensor Fusion EKF Reference.pdf](../Kalman_Filters/sensor-fusion-ekf-reference.pdf)
 

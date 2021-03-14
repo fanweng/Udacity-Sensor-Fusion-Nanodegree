@@ -56,5 +56,15 @@ int main() {
   std::cout << "z_pred: " << std::endl << z_out << std::endl;
   std::cout << "S: " << std::endl << S_out << std::endl;
 
+  /**
+   * Update state
+   */
+  VectorXd x_out = VectorXd(5);
+  MatrixXd P_out = MatrixXd(5, 5);
+  ukf.UpdateState(&x_out, &P_out);
+  // print result
+  std::cout << "Updated state x: " << std::endl << x_out << std::endl;
+  std::cout << "Updated state covariance P: " << std::endl << P_out << std::endl;
+
   return 0;
 }
