@@ -74,7 +74,18 @@ The source code: `UKF::PredictRadarMeasurement()` in the [ukf.cpp](../Kalman_Fil
 
 The source code: `UKF::UpdateState()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
 
-## III. Equation Cheatsheet
+## III. 
+
+## IV. What to Expect from the Project
+
+- Initializing the Kalman Filter
+    * process noise parameters have an important effect on the KF
+        + tune the *longitudinal and yaw acceleration noise parameters* in the project
+    * initial values of *state vector* `x` and *state covariance matrix* `P` also affect the KF performance
+        + once getting the first measurement from sensor, `px` and `py` of the state vector `x` can be initialized
+        + for CTRV model, state covariance matrix `P` can be set as a 5x5 identity matrix with diagonal values set to 1 (top-left to bottom-right)
+
+## V. Equation Cheatsheet
 
 [Sensor Fusion EKF Reference.pdf](../Kalman_Filters/sensor-fusion-ekf-reference.pdf)
 
