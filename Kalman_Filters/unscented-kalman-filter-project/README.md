@@ -1,12 +1,14 @@
 # Unscented Kalman Filter Project
 
-In this project you will implement an Unscented Kalman Filter to estimate the state of multiple cars on a highway using noisy lidar and radar measurements.
+In this project, Unscented Kalman Filter (UKF) is implemented to estimate the state of multiple cars on a highway using noisy lidar and radar measurements.
 
 <img src="media/ukf_highway.png" width="700" height="400" />
 
-`main.cpp` is using `highway.h` to create a straight 3 lane highway environment with 3 traffic cars and the main ego car at the center. The viewer scene is centered around the ego car and the coordinate system is relative to the ego car as well. The ego car is green while the other traffic cars are blue. The traffic cars will be accelerating and altering their steering to change lanes. Each of the traffic car's has its own UKF object generated for it, and will update each individual one during every time step. 
+`main.cpp` is using `highway.h` to create a straight 3 lane highway environment with 3 traffic cars and the main ego car at the center. The viewer scene is centered around the ego car and the coordinate system is relative to the ego car as well. The ego car is green while the other traffic cars are blue. The traffic cars will be accelerating and altering their steering to change lanes. The red spheres above cars represent the `(x,y)` lidar detection and the purple lines show the radar measurements with the velocity magnitude along the detected angle. The `Z` axis is not taken into account for tracking, so you are only tracking along the `X/Y` axis.
 
-The red spheres above cars represent the `(x,y)` lidar detection and the purple lines show the radar measurements with the velocity magnitude along the detected angle. The `Z` axis is not taken into account for tracking, so you are only tracking along the `X/Y` axis.
+Each of the traffic car's has its own UKF object generated for it, and will update each individual one during every time step using Constant Turn Rate and Velocity (CTRV) motion model.
+
+The accuracy will be evaluated by the Root Mean Squared Error (RMSE) over each time step and for each car.
 
 ## I. System Preparations
 
@@ -31,6 +33,26 @@ $ git clone https://github.com/udacity/SFND_Unscented_Kalman_Filter.git unscente
 $ mkdir -p unscented-kalman-filter-project/build && cd unscented-kalman-filter-project/build
 $ cmake .. && make
 $ ./ukf_highway
+```
+
+## II. Debugging Details
+
+In the `highway.h`, there are a number of parameters we can modify for debugging purpose.
+
+- `trackCars` list can toggle on/off cars for UKF object to track
+- `projectedTime` and `projectedSteps` controls the visualization of predicted position in the future
+- `visualize_pcd` sets the visualization of Lidar point cloud data
+
+```c++
+// Set which cars to track with UKF
+std::vector<bool> trackCars = {true,true,true};
+// Visualize sensor measurements
+bool visualize_lidar = true;
+bool visualize_radar = true;
+bool visualize_pcd = false;
+// Predict path in the future using UKF
+double projectedTime = 0;
+int projectedSteps = 0;
 ```
 
 ## Generating Additional Data

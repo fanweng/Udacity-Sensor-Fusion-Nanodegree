@@ -5,7 +5,7 @@
 In the extended Kalman filter (EKF) lesson, the *constant velocity (CV)* model was used. But it has limitation when a vehicle drives straight at first and then goes into a turn.
 
 There are many other motion models:
-- constant turn rate and velocity magnitude model (CTRV)
+- constant turn rate and velocity (CTRV)
 - constant turn rate and acceleration (CTRA)
 - constant steering angle and velocity (CSAV)
 - constant curvature and acceleration (CCA)
