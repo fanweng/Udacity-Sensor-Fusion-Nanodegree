@@ -74,9 +74,7 @@ The source code: `UKF::PredictRadarMeasurement()` in the [ukf.cpp](../Kalman_Fil
 
 The source code: `UKF::UpdateState()` in the [ukf.cpp](../Kalman_Filters/ukf-exercise/ukf.cpp)
 
-## III. 
-
-## IV. What to Expect from the Project
+## III. What to Expect from the Project
 
 - Initializing the Kalman Filter
     * process noise parameters have an important effect on the KF
@@ -84,6 +82,20 @@ The source code: `UKF::UpdateState()` in the [ukf.cpp](../Kalman_Filters/ukf-exe
     * initial values of *state vector* `x` and *state covariance matrix* `P` also affect the KF performance
         + once getting the first measurement from sensor, `px` and `py` of the state vector `x` can be initialized
         + for CTRV model, state covariance matrix `P` can be set as a 5x5 identity matrix with diagonal values set to 1 (top-left to bottom-right)
+- Tuning the process noise parameters
+    * linear/longitudinal acceleration noise parameter
+    * angular/yaw acceleration noise parameter
+- Using measurement noise parameters provided by sensor manufacturer
+
+<img src="media/noise-parameters.png" width="600" height="300" />
+
+## IV. Evaluate the Prediction
+
+If the **actual measurement** `z(k+1)` falls within the error eclipse formed by the **measurement prediction** `z(k+1|k)` and **covariance matrix** `S(k+1|k)`, it is a consistent case. However, we may underestimate or overestimate the results thus we call it inconsistent.
+
+**Normalized Innovation Squared (NIS)** is used to evaluate the prediction.
+
+<img src="media/consistency-of-prediction.png" width="600" height="450" />
 
 ## V. Equation Cheatsheet
 
