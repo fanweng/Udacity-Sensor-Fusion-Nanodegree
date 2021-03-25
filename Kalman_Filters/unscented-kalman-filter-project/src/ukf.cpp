@@ -1,5 +1,6 @@
 #include "ukf.h"
 #include "Eigen/Dense"
+#include <iostream>
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
@@ -82,10 +83,69 @@ UKF::UKF() {
 UKF::~UKF() {}
 
 void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
+  bool bDebug = false;
   /**
-   * TODO: Complete this function! Make sure you switch between lidar and radar
-   * measurements.
+   * Make sure you switch between lidar and radar measurements.
    */
+  if (!is_initialized_) {
+    if (meas_package.sensor_type_ == MeasurementPackage::LASER) {
+      // set the state with the initial location and zero velocity
+      x_ << meas_package.raw_measurements_[0],
+            meas_package.raw_measurements_[1],
+            0,
+            0,
+            0;
+    }
+    else if (meas_package.sensor_type_ == MeasurementPackage::RADAR) {
+      double rho = meas_package.raw_measurements_[0];
+      double phi = meas_package.raw_measurements_[1];
+      double rho_dot = meas_package.raw_measurements_[2];
+
+      // set the state with the initial location and zero velocity
+      x_ << rho * cos(phi),
+            rho * sin(phi),
+            0,
+            0,
+            0;
+    }
+    else {
+      std::cerr << "UKF::ProcessMeasurement() error: cannot initialize because of invalid measurement sensor type " << meas_package.sensor_type_<< std::endl;
+      exit(EXIT_FAILURE);
+    }
+
+    time_us_ = meas_package.timestamp_;
+    is_initialized_ = true;
+
+    if (bDebug)
+      std::cout << "UKF::ProcessMeasurement() initializes for sensor type " << meas_package.sensor_type_ << " - state vector x:\n" << x_ << std::endl;
+
+    return;
+  }
+
+  // compute the time elapsed between the current and previous measurements dt in seconds
+  double dt = (meas_package.timestamp_ - time_us_) / 1000000.0;
+  time_us_ = meas_package.timestamp_;
+
+  Prediction(dt);
+  if (bDebug)
+    std::cout << "UKF::ProcessMeasurement() predicts the state vector x:\n" << x_ << std::endl;
+
+  if (meas_package.sensor_type_ == MeasurementPackage::LASER) {
+    UpdateLidar(meas_package);
+    if (bDebug)
+      std::cout << "UKF::ProcessMeasurement() Lidar update - state vector x:\n" << x_ << std::endl;
+  }
+  else if (meas_package.sensor_type_ == MeasurementPackage::RADAR) {
+    UpdateRadar(meas_package);
+    if (bDebug)
+      std::cout << "UKF::ProcessMeasurement() Radar update - state vector x:\n" << x_ << std::endl;
+  }
+  else {
+    std::cerr << "UKF::ProcessMeasurement() error: cannot update measurement because of invalid measurement sensor type " << meas_package.sensor_type_ << std::endl;
+    exit(EXIT_FAILURE);
+  }
+
+  return;
 }
 
 void UKF::Prediction(double delta_t) {
