@@ -7,7 +7,6 @@
 
 int main(int argc, char** argv)
 {
-
     pcl::visualization::PCLVisualizer::Ptr viewer(new pcl::visualization::PCLVisualizer("3D Viewer"));
     viewer->setBackgroundColor(0, 0, 0);
 
@@ -17,8 +16,6 @@ int main(int argc, char** argv)
     viewer->setCameraPosition ( x_pos-26, 0, 15.0, x_pos+25, 0, 0, 0, 0, 1);
 
     Highway highway(viewer);
-
-    //initHighway(viewer);
 
     int frame_per_sec = 30;
     int sec_interval = 10;
@@ -32,12 +29,9 @@ int main(int argc, char** argv)
         viewer->removeAllPointClouds();
         viewer->removeAllShapes();
 
-        stepHighway(egoVelocity, time_us, frame_per_sec, viewer);
-        highway.stepHighway(egoVelocity,time_us, frame_per_sec, viewer);
+        highway.stepHighway(egoVelocity, time_us, frame_per_sec, viewer);
         viewer->spinOnce(1000/frame_per_sec);
         frame_count++;
         time_us = 1000000*frame_count/frame_per_sec;
-
     }
-
 }
