@@ -20,7 +20,7 @@ My final result is shown below, where the green points represent the street surf
 
 Please check the detailed project description in the [Lidar_Obstacle_Detection/README.md](Lidar_Obstacle_Detection/README.md).
 
-### Project 2 - 3D Object Tracking
+### Project 2 - 3D Object Tracking based on Camera
 
 This project tracks the preceding vehicle in the same lane and estimates the time-to-collision (TTC) based on both camera images and Lidar data. To build up the camera TTC estimation pipeline, I implemented the keypoint detection, descriptor extraction, and methods matched keypoints between successive images. With the help of 3D bounding boxes, I was able to extract keypoints corresponding to the preceding vehicle and calculate the TTC based on relative distance between matched keypoints in two successive images. Matched keypoints also contributed to match 3D bounding boxes in the Lidar point cloud, so that Lidar pipeline could estimate the TTC using the closest distances of the bounding boxes to the ego vehicle in two successive frame.
 
@@ -29,3 +29,23 @@ The output clip is shown below, where the preceding vehicle is tracked with a gr
 <img src="Camera/Lesson-7-Project-3D-Object-Tracking/results/ttc-estimations.gif" width="900" height="300" />
 
 Please check the detailed project description in the [Camera/Lesson-7-Project-3D-Object-Tracking/README.md](Camera/Lesson-7-Project-3D-Object-Tracking/README.md).
+
+### Project 3 - Velocity and Range Detection based on Radar
+
+This project first defines a target with certain velocity and position, as well as Radar specifications. It then propagates the Radar wave signal based on the Frequency Modulated Continuous Wave (FWCW) model. Range and Doppler 2D FFT is applied to the received signal to determine the range and velocity of the target. At the end, 2D Constant False Alarm Rate (CFAR) detector is performed on the 2D FFT, which detects the target.
+
+The result looks like that Matlab plot below, indicating a target is detected with a range of about 81m and a velocity of about -20m/s.
+
+<img src="Radar/project/media/2d-cfar-rdm.png" width="900" height="500" />
+
+Please check the detailed project description in the [Radar/project/README.md](Radar/project/README.md).
+
+### Project 4 - Kalman Filters for Sensor Fusion
+
+In the final project, each moving car except the ego vehicle has been assigned an unscented Kalman Filter (UKF). Lidar and Radar data for the moving cars are continuously fed into their UKF respectively. Those data is processed within the UKF so that the position and velocity of each car can be estimated through predict-update cycles.
+
+The result below illustrates a highway scenario. The ego car is green while the other traffic cars are blue. The red spheres above cars represent the lidar detection and the purple lines show the radar measurements with the velocity magnitude along the detected angle. The green spheres above cars represent the UKF predicted path that cars would move in the near future. 
+
+<img src="Kalman_Filters/unscented-kalman-filter-project/media/ukf_output.gif" width="900" height="400" />
+
+Please check the detailed project description in the [Kalman_Filters/unscented-kalman-filter-project/README.md](Kalman_Filters/unscented-kalman-filter-project/README.md).
