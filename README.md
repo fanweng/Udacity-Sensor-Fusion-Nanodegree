@@ -1,12 +1,19 @@
 # Udacity Sensor Fusion Nanodegree Program
 
-### Welcome to the Sensor Fusion course for self-driving cars.
+In this program, I have learned knowledge in two different sensors, Lidar and Radar. Code has been developed to detect obstacles using Lidar point cloud data, to track the object using Camera images, to detect range and velocity of targe based on Radar data, and to fuse Lidar/Radar measurement to predict the object's movement using Kalman Filter.
 
-In this course we will be talking about sensor fusion, which is the process of taking data from multiple sensors and combining it to give us a better understanding of the world around us. we will mostly be focusing on two sensors, lidar, and radar. By the end we will be fusing the data from these two sensors to track multiple cars on the road, estimating their positions and speed.
-
-**Lidar** sensing gives us high resolution data by sending out thousands of laser signals. These lasers bounce off objects, returning to the sensor where we can then determine how far away objects are by timing how long it takes for the signal to return. Also we can tell a little bit about the object that was hit by measuring the intensity of the returned signal. Each laser ray is in the infrared spectrum, and is sent out at many different angles, usually in a 360 degree range. While lidar sensors gives us very high accurate models for the world around us in 3D, they are currently very expensive, upwards of $60,000 for a standard unit.
-
-**Radar** data is typically very sparse and in a limited range, however it can directly tell us how fast an object is moving in a certain direction. This ability makes radars a very practical sensor for doing things like cruise control where its important to know how fast the car in front of you is traveling. Radar sensors are also very affordable and common now of days in newer cars.
+|  Criteria  |  Lidar  |  Radar  |  Camera  |
+|------------|---------|---------|----------|
+| **Range**      | Meters to 200m | Meters to 200m | Only stereo camera setup can measure distance up to 80m |
+| **Spatial Resolution** | High, 0.1 degree due to short wavelength laser | Cannot resolve small features | Defined by optics, pixel size of image and its signal-to-noise ratio |
+| **Robustness in Darkness** | Excellent, due to active | Excellent, due to active | Reduced |
+| **Robustness in Rain, Snow, Fog** | Limited, due to optical | Best | Limited, due to optical |
+| **Classification of Objects** | Some level of classification by 3D point clouds | Not too much classification | Excellent at classification |
+| **Perceiving 2D Structures** | N/A | N/A | The only sensor that is able to interpret traffic signs, lane markings, traffic lights |
+| **Measure Speed** | Approximate speed by using successive distance measurement | Measure velocity by exploiting the Doppler frequency shift | Can only measure time to collision by observing the displacement of objects on the image plane |
+| **System Cost** | More expensive | Compact and affordable | Compact and affordable |
+| **Package Size** | Hard to integrate | Easily integrated | Easily integrated for mono cameras, but stereo camera setup is bulky |
+| **Computational Requirements** | Little | Little | Significant |
 
 **Sensor Fusion** by combing Lidar's high resolution imaging with radar's ability to measure velocity of objects we can get a better understanding of the surrounding environment than we could using one of the sensors alone.
 
@@ -49,3 +56,35 @@ The result below illustrates a highway scenario. The ego car is green while the 
 <img src="Kalman_Filters/unscented-kalman-filter-project/media/ukf_output.gif" width="900" height="400" />
 
 Please check the detailed project description in the [Kalman_Filters/unscented-kalman-filter-project/README.md](Kalman_Filters/unscented-kalman-filter-project/README.md).
+
+### Lecture Notes
+
+[Lecture 1-1 Lidar and Point Cloud](lectures/lec1-1-lidar-and-point-clouds.md)
+
+[Lecture 1-2 Point Cloud Segmentation](lectures/lec1-2-point-cloud-segmentation.md)
+
+[Lecture 1-3 Clustering Obstacles](lectures/lec1-3-clustering-obstacles.md)
+
+[Lecture 1-4 Work with PCD](lectures/lec1-4-work-with-pcd.md)
+
+[Lecture 2-1 AV and OpenCV](lectures/lec2-1-av-and-opencv.md)
+
+[Lecture 2-2 Collision Detection System](lectures/lec2-2-collision-detection-system.md)
+
+[Lecture 2-3 Track Image Features](lectures/lec2-3-track-image-features.md)
+
+[Lecture 2-4 Combine Camera Image and Lidar Data](lectures/lec2-4-combine-camera-lidar.md)
+
+[Lecture 3-1 Radar Principles](lectures/lec3-1-radar-principles.md)
+
+[Lecture 3-2 Range and Doppler Estimation](lectures/lec3-2-range-doppler-estimation.md)
+
+[Lecture 3-3 Clutter and CFAR](lectures/lec3-3-clutter.md)
+
+[Lecture 3-4 Clustering and Tracking](lectures/lec3-4-clustering-and-tracking.md)
+
+[Lecture 4-1 Kalman Filters](lectures/lec4-1-kalman-filters.md)
+
+[Lecture 4-2 Lidar/Radar Fusion with Kalman Filters](lectures/lec4-2-lidar-radar-fusion-with-KF.md)
+
+[Lecture 4-3 Unscented Kalman Filters](lectures/lec4-3-unscented-kalman-filters.md)

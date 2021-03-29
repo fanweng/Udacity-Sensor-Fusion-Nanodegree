@@ -1,4 +1,4 @@
-# Lecture 3-3 Cluter, CFAR, AoA
+# Lecture 3-3 Clutter, CFAR, AoA
 
 ### I. Clutter
 
